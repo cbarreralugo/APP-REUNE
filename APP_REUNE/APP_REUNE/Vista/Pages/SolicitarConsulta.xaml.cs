@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace APP_REUNE.Vista.Pages.Consultas
+namespace APP_REUNE.Vista.Pages
 {
     /// <summary>
-    /// Lógica de interacción para HistorialConsultaGeneral.xaml
+    /// Lógica de interacción para SolicitarConsulta.xaml
     /// </summary>
-    public partial class HistorialConsultaGeneral : Page
+    public partial class SolicitarConsulta : Page
     {
-        public HistorialConsultaGeneral()
+        public SolicitarConsulta()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

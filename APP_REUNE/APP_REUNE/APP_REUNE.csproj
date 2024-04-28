@@ -64,17 +64,17 @@
     <Compile Include="Vista\Index.xaml.cs">
       <DependentUpon>Index.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\Pages\Consultas\CrearConsultaGeneral.xaml.cs">
-      <DependentUpon>CrearConsultaGeneral.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vista\Pages\Consultas\HistorialConsultaGeneral.xaml.cs">
-      <DependentUpon>HistorialConsultaGeneral.xaml</DependentUpon>
+    <Compile Include="Vista\Pages\Consulta.xaml.cs">
+      <DependentUpon>Consulta.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Pages\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Pages\SolicitarConsulta.xaml.cs">
+      <DependentUpon>SolicitarConsulta.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -104,11 +104,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\Pages\Consultas\CrearConsultaGeneral.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\Pages\Consultas\HistorialConsultaGeneral.xaml">
+    <Page Include="Vista\Pages\Consulta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\Pages\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Pages\SolicitarConsulta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

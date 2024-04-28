@@ -64,109 +64,109 @@ namespace APP_REUNE.Vista
             Popup.IsOpen = false;
         }
 
-        private void btnProducts_MouseEnter(object sender, MouseEventArgs e)
+        private void btnConsultas_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnProducts;
+                Popup.PlacementTarget = btnConsultas;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Products";
+                Header.PopupText.Text = "Consultas";
             }
         }
 
-        private void btnProducts_MouseLeave(object sender, MouseEventArgs e)
+        private void btnConsultas_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
         }
 
 
-        private void btnProductStock_MouseLeave(object sender, MouseEventArgs e)
+        private void btnConsultastock_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
         }
 
-        private void btnOrderList_MouseEnter(object sender, MouseEventArgs e)
+        private void btnGestionDeUsuario_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnOrderList;
+                Popup.PlacementTarget = btnGestionDeUsuario;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
                 Header.PopupText.Text = "Order List";
             }
         }
 
-        private void btnOrderList_MouseLeave(object sender, MouseEventArgs e)
+        private void btnGestionDeUsuario_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
         }
 
-        private void btnBilling_MouseEnter(object sender, MouseEventArgs e)
+        private void btnConfiguraciones_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnBilling;
+                Popup.PlacementTarget = btnConfiguraciones;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
                 Header.PopupText.Text = "Billing";
             }
         }
 
-        private void btnBilling_MouseLeave(object sender, MouseEventArgs e)
+        private void btnConfiguraciones_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
         }
 
-        private void btnPointOfSale_MouseEnter(object sender, MouseEventArgs e)
+        private void btnAyudaYSoporte_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnPointOfSale;
+                Popup.PlacementTarget = btnAyudaYSoporte;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
                 Header.PopupText.Text = "Poin Of Sale";
             }
         }
 
-        private void btnPointOfSale_MouseLeave(object sender, MouseEventArgs e)
+        private void btnAyudaYSoporte_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
         }
 
-        private void btnSecurity_MouseEnter(object sender, MouseEventArgs e)
+        private void btnPerfilDeUsuario_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnSecurity;
+                Popup.PlacementTarget = btnPerfilDeUsuario;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Security";
+                Header.PopupText.Text = "PerfilDeUsuario";
             }
         }
 
-        private void btnSecurity_MouseLeave(object sender, MouseEventArgs e)
+        private void btnPerfilDeUsuario_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
         }
-        private void btnSetting_MouseEnter(object sender, MouseEventArgs e)
+        private void btnLog_MouseEnter(object sender, MouseEventArgs e)
         {
             if (Tg_Btn.IsChecked == false)
             {
-                Popup.PlacementTarget = btnSetting;
+                Popup.PlacementTarget = btnLog;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
                 Header.PopupText.Text = "Setting";
             }
         }
 
-        private void btnSetting_MouseLeave(object sender, MouseEventArgs e)
+        private void btnLog_MouseLeave(object sender, MouseEventArgs e)
         {
             Popup.Visibility = Visibility.Collapsed;
             Popup.IsOpen = false;
@@ -201,6 +201,11 @@ namespace APP_REUNE.Vista
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void btnConsultas_Click(object sender, RoutedEventArgs e)
+        {
+            fContainer.Navigate(new System.Uri("Vista/Pages/SolicitarConsulta.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

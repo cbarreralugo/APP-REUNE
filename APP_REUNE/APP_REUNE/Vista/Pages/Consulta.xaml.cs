@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace APP_REUNE.Vista.Pages.Consultas
+namespace APP_REUNE.Vista.Pages
 {
     /// <summary>
-    /// Lógica de interacción para CrearConsultaGeneral.xaml
+    /// Lógica de interacción para Consultas.xaml
     /// </summary>
-    public partial class CrearConsultaGeneral : Page
+    public partial class Consulta : Page
     {
-        public CrearConsultaGeneral()
+        public Consulta()
         {
             InitializeComponent();
         }

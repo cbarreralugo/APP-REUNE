@@ -56,22 +56,22 @@
                         <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource analytics}" IconWidth="16" Text="Dashboard" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnProducts" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnProducts_MouseEnter" MouseLeave="btnProducts_MouseLeave">
+                        <Button x:Name="btnConsultas" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnConsultas_MouseEnter" MouseLeave="btnConsultas_MouseLeave" Click="btnConsultas_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource collections}" IconWidth="16" Text="Consultas" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnOrderList" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnOrderList_MouseEnter" MouseLeave="btnOrderList_MouseLeave">
+                        <Button x:Name="btnGestionDeUsuario" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnGestionDeUsuario_MouseEnter" MouseLeave="btnGestionDeUsuario_MouseLeave">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource customers}" IconWidth="16" Text="Gestion de usuarios" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnBilling" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnBilling_MouseEnter" MouseLeave="btnBilling_MouseLeave">
+                        <Button x:Name="btnConfiguraciones" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnConfiguraciones_MouseEnter" MouseLeave="btnConfiguraciones_MouseLeave">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource settings}" IconWidth="16" Text="Configuraciones" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnPointOfSale" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnPointOfSale_MouseEnter" MouseLeave="btnPointOfSale_MouseLeave">
+                        <Button x:Name="btnAyudaYSoporte" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnAyudaYSoporte_MouseEnter" MouseLeave="btnAyudaYSoporte_MouseLeave">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource notifications}" IconWidth="16" Text="Ayuda y soporte" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnSecurity" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnSecurity_MouseEnter" MouseLeave="btnSecurity_MouseLeave">
+                        <Button x:Name="btnPerfilDeUsuario" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnPerfilDeUsuario_MouseEnter" MouseLeave="btnPerfilDeUsuario_MouseLeave">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="Perfil de usaurio" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnSetting" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnSetting_MouseEnter" MouseLeave="btnSetting_MouseLeave">
+                        <Button x:Name="btnLog" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnLog_MouseEnter" MouseLeave="btnLog_MouseLeave">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource lock}" IconWidth="16" Text="Log" VerticalAlignment="Center"/>
                         </Button>
                     </StackPanel>
@@ -133,10 +133,10 @@
                 <!-- End: Button Close | Restore | Minimize -->
 
                 <Frame Grid.Row="1"
-                       Name="fContainer"
-                       Margin="20"
-                       NavigationUIVisibility="Hidden">
-
+                       Name="fContainer" 
+                       NavigationUIVisibility="Hidden"
+                       Margin="15,0,15,20">
+                    
                 </Frame>
 
             </Grid>
