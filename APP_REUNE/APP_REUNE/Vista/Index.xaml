@@ -59,7 +59,7 @@
                         <Button x:Name="btnConsultas" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnConsultas_MouseEnter" MouseLeave="btnConsultas_MouseLeave" Click="btnConsultas_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource collections}" IconWidth="16" Text="Consultas" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnGestionDeUsuario" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnGestionDeUsuario_MouseEnter" MouseLeave="btnGestionDeUsuario_MouseLeave">
+                        <Button x:Name="btnGestionDeUsuario" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnGestionDeUsuario_MouseEnter" MouseLeave="btnGestionDeUsuario_MouseLeave" Click="btnGestionDeUsuario_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource customers}" IconWidth="16" Text="Gestion de usuarios" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnConfiguraciones" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnConfiguraciones_MouseEnter" MouseLeave="btnConfiguraciones_MouseLeave">

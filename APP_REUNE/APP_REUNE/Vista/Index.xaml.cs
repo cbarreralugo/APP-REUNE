@@ -95,7 +95,7 @@ namespace APP_REUNE.Vista
                 Popup.PlacementTarget = btnGestionDeUsuario;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Order List";
+                Header.PopupText.Text = "Gestión de Usuarios";
             }
         }
 
@@ -112,7 +112,7 @@ namespace APP_REUNE.Vista
                 Popup.PlacementTarget = btnConfiguraciones;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Billing";
+                Header.PopupText.Text = "Configuraciones";
             }
         }
 
@@ -129,7 +129,7 @@ namespace APP_REUNE.Vista
                 Popup.PlacementTarget = btnAyudaYSoporte;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Poin Of Sale";
+                Header.PopupText.Text = "Ayuda y soporte";
             }
         }
 
@@ -146,7 +146,7 @@ namespace APP_REUNE.Vista
                 Popup.PlacementTarget = btnPerfilDeUsuario;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "PerfilDeUsuario";
+                Header.PopupText.Text = "Perfil de usuario";
             }
         }
 
@@ -162,7 +162,7 @@ namespace APP_REUNE.Vista
                 Popup.PlacementTarget = btnLog;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Setting";
+                Header.PopupText.Text = "Log de sistema";
             }
         }
 
@@ -206,6 +206,11 @@ namespace APP_REUNE.Vista
         private void btnConsultas_Click(object sender, RoutedEventArgs e)
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/SolicitarConsulta.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void btnGestionDeUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            fContainer.Navigate(new System.Uri("Vista/Pages/GestionDeUsuarios.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

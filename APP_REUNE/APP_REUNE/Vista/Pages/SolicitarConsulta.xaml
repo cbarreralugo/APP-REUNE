@@ -420,7 +420,62 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Crear consulta con insumo">
-                    <Grid Background="{DynamicResource PrimaryBackgroundColor}"/>
+                    <Grid Background="{DynamicResource PrimaryBackgroundColor}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="315*"/>
+                        </Grid.RowDefinitions>
+                        <ComboBox x:Name="cbTipoConsulta2"
+               HorizontalAlignment="Left" 
+               Width="200" 
+               Height="28" 
+             VerticalAlignment="Center">
+                            <ComboBoxItem Content="Seleciona una opción" IsSelected="True"/>
+                            <ComboBoxItem Content="Consulta General" />
+                            <ComboBoxItem Content="Consulta de Seguros" />
+                            <ComboBoxItem Content="Consulta SIC" />
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal" 
+                 HorizontalAlignment="Right" 
+                 VerticalAlignment="Center" Margin="0,0,20,0">
+                            <!--<Button Content="Limpiar" 
+                 Margin="5" 
+                 Width="80" 
+                 x:Name="btnLimpiar"
+                 Style="{DynamicResource ProButtonStyle}"
+                 
+                 Height="30"/>-->
+                            <!--<Button Content="Enviar" 
+                 Margin="5" 
+                 Width="80" 
+                 x:Name="btnEnviar"
+                 Style="{DynamicResource ProButtonStyle}" 
+                 Height="30"/>-->
+                            <!--<Button Content="Limpiar" 
+                 Margin="5" 
+                 Width="80" 
+                 x:Name="btnLimpiar"
+                 Style="{DynamicResource ProButtonStyle}"
+                 
+                 Height="30"/>-->
+                        </StackPanel>
+                       
+                        <Button Height="35"   
+             Content="Enviar solicutud " 
+             VerticalContentAlignment="Center" 
+             HorizontalAlignment="Right"
+             Padding="5" 
+             BorderThickness="1" 
+             Margin="10"
+             BorderBrush="#E0E0E0"
+             Background="{DynamicResource PrimaryGreenColor}" 
+             Grid.Row="3" 
+             Click="Button_Click"/>
+
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Historial de consultas">
                     <Grid Background="{DynamicResource PrimaryBackgroundColor}"/>

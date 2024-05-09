@@ -1,0 +1,35 @@
+﻿<Page x:Class="APP_REUNE.Vista.Pages.GestionDeUsuarios"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:local="clr-namespace:APP_REUNE.Vista.Pages"
+           mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Home">
+
+    <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
+
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/> 
+            </Grid.RowDefinitions>
+
+            <!-- Botones para acciones -->
+            <StackPanel Orientation="Vertical"   HorizontalAlignment="Left" >
+                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Token:" Margin="0,5"></Label>
+                <PasswordBox Name="txtToken" Width="200" Password="2922|70|70016|NO|NO" Height="30" Margin="0,5"/>
+                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Usuario:" Margin="0,5"></Label>
+                <TextBox Name="txtUsuario" Text="" Width="200" Height="30" Margin="0,5" />
+                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Contraseña:" Margin="0,5"></Label>
+                <PasswordBox Name="txtPassword" Width="200"  Height="30" Margin="0,5"/>
+                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Confirmar contraseña:" Margin="0,5"></Label>
+                <PasswordBox Name="txtConfirmarPassword" Width="200"  Height="30" Margin="0,5"/>
+                <Button Name="btnAgregar" Content="Crear super usuario" Margin="5" Click="AgregarUsuario_Click"  Background="{DynamicResource PrimaryGreenColor}"/>
+
+            </StackPanel>
+
+            <!-- DataGrid para mostrar la lista de usuarios -->
+        </Grid>
+    </Border>
+</Page>
