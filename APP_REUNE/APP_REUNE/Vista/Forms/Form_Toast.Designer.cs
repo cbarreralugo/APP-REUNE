@@ -42,7 +42,7 @@
             this.lb_Titulo.AutoSize = true;
             this.lb_Titulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_Titulo.ForeColor = System.Drawing.Color.White;
-            this.lb_Titulo.Location = new System.Drawing.Point(90, 24);
+            this.lb_Titulo.Location = new System.Drawing.Point(55, 24);
             this.lb_Titulo.Name = "lb_Titulo";
             this.lb_Titulo.Size = new System.Drawing.Size(148, 19);
             this.lb_Titulo.TabIndex = 0;
@@ -76,7 +76,7 @@
             this.lb_mensaje.AutoSize = true;
             this.lb_mensaje.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_mensaje.ForeColor = System.Drawing.Color.White;
-            this.lb_mensaje.Location = new System.Drawing.Point(89, 49);
+            this.lb_mensaje.Location = new System.Drawing.Point(54, 49);
             this.lb_mensaje.Name = "lb_mensaje";
             this.lb_mensaje.Size = new System.Drawing.Size(201, 21);
             this.lb_mensaje.TabIndex = 3;
@@ -86,7 +86,7 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // FormToast
+            // Form_Toast
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Highlight;
@@ -97,7 +97,7 @@
             this.Controls.Add(this.lb_Titulo);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormToast";
+            this.Name = "Form_Toast";
             this.Text = "FormToast";
             ((System.ComponentModel.ISupportInitialize)(this.img_estatus)).EndInit();
             this.ResumeLayout(false);

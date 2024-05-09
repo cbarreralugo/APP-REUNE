@@ -44,17 +44,19 @@ namespace APP_REUNE.Service
                     {
                         var result = await response.Content.ReadAsStringAsync();
                         var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(result);
+                        Toast.Correcto(loginResponse.Msg);
                         return loginResponse?.User?.TokenAccess;
                     }
                     else
                     {
-                        var errorResult = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show("Error de autenticación: " + errorResult);
+                        var errorResult = await response.Content.ReadAsStringAsync(); 
+                        Toast.Error(errorResult);
                         return null;
                     }
                 }
                 else
                 {
+                    
                     return  "Logeo exitoso!";
                 }
 

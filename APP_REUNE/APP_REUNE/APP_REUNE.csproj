@@ -134,10 +134,7 @@
     <Compile Include="Vista\Forms\Form_Toast.Designer.cs">
       <DependentUpon>Form_Toast.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vista\Toast_.cs" />
-    <Compile Include="Vista\Forms\WT.xaml.cs">
-      <DependentUpon>WT.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Vista\Toast.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -195,10 +192,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\Themes\DarkTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\Forms\WT.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

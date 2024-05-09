@@ -67,8 +67,8 @@ namespace APP_REUNE.Vista
 
                    
                     
-                    Toast_.Correcto("Hola de nuevo");
-                    Toast_.CreateLog("Inicio se sesión", "Se ingresa al sistema por medio de la app.");
+                    Toast.Correcto("Hola de nuevo");
+                    Toast.CreateLog("Inicio se sesión", "Se ingresa al sistema por medio de la app.");
                     Index index = new Index();
                     index.Show();
                     this.Close();
@@ -86,7 +86,7 @@ namespace APP_REUNE.Vista
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error durante el inicio de sesión: " + ex.Message);
+                Toast.Sistema("Erro durante el inicio de sesión", ex);
             }
         }
 

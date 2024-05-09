@@ -4,14 +4,16 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using APP_REUNE.Modelo;
-using APP_REUNE.Vista.Forms; 
+using APP_REUNE.Vista.Forms;
+using System.Net;
+using System.Text.RegularExpressions;
 
 namespace APP_REUNE.Vista
 {
-    public static class Toast_
+    public static class Toast
     {
         // Usando métodos estáticos para diferentes tipos de alertas
-        public static void Error(string message, string title = "Fatal error!. ")
+        public static void Error(string message, string title = "Error inesperado!. ")
         {
             ShowAlert(title,message, Form_Toast.enmType.Error);
         }
@@ -31,7 +33,7 @@ namespace APP_REUNE.Vista
             ShowAlert(title, message, Form_Toast.enmType.Warning);
         }
 
-        public static void System(string message,Exception ex, string title = "Se genero un error de Sistema")
+        public static void Sistema(string message,Exception ex, string title = "Se genero un error de Sistema. ")
         {
             ShowAlert(title, message + "\n "+ex.ToString(), Form_Toast.enmType.System);
         }
@@ -47,9 +49,30 @@ namespace APP_REUNE.Vista
             Task.Run(() =>
             {
                 Form_Toast frm = new Form_Toast();
-                frm.showAlert(title,message, type);
+                frm.showAlert(title, Process(message), type);
                 Application.Run(frm);
             });
+        }
+
+        private static string Process(string message)
+        {
+            // Primero, intenta dividir el mensaje en la clave y el valor si está en formato "clave: valor"
+            var parts = message.Split(new[] { ':' }, 2);
+            if (parts.Length > 1)
+            {
+                message = parts[1];  // Tomar solo el valor después del primer ':' 
+            }
+
+            // Decodificar HTML para asegurarse de que no haya entidades HTML
+            message = System.Net.WebUtility.HtmlDecode(message);
+
+            // Eliminar caracteres JSON específicos y espacios adicionales
+            message = System.Text.RegularExpressions.Regex.Replace(message, @"[{}"",\\]", "").Trim();
+
+            // Normalizar espacios en blanco, reemplazando secuencias de espacios con un solo espacio
+            message = System.Text.RegularExpressions.Regex.Replace(message, @"\s+", " ");
+
+            return message;
         }
 
         public static void CreateLog(string title,string message)
@@ -61,7 +84,7 @@ namespace APP_REUNE.Vista
             {
                 WriteToFile(logMessage);
             }
-
+            
             if (logOption == 0 || logOption == 2)
             {
                 WriteToDatabase(logMessage);
@@ -77,16 +100,20 @@ namespace APP_REUNE.Vista
 
         private static void WriteToFile(string message)
         {
-
-            string directoryPath =  @""+ConfigurationManager.AppSettings["PathLogLocal"].ToString();
+            // Obtiene o establece la ruta del directorio de logs desde el archivo de configuración.
+            // Si no se encuentra, usa un directorio predeterminado.
+            string directoryPath = ConfigurationManager.AppSettings["PathLogLocal"] ?? @"C:\Log_Reune";
             string fileName = DateTime.Now.ToString("dd_MM_yyyy") + ".log";
             string filePath = Path.Combine(directoryPath, fileName);
 
+            // Asegurarse de que el directorio exista, si no, crearlo.
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
             }
 
+            // Escribir el mensaje al archivo de log, añadiéndolo al final del archivo.
+            // La función AppendAllText maneja la apertura y cierre del archivo automáticamente.
             File.AppendAllText(filePath, message + Environment.NewLine);
         }
 
