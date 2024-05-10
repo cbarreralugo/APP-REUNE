@@ -212,5 +212,10 @@ namespace APP_REUNE.Vista
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/GestionDeUsuarios.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void btnLog_Click(object sender, RoutedEventArgs e)
+        {
+            fContainer.Navigate(new System.Uri("Vista/Pages/Log.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }

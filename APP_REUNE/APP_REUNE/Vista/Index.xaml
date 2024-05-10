@@ -71,7 +71,7 @@
                         <Button x:Name="btnPerfilDeUsuario" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnPerfilDeUsuario_MouseEnter" MouseLeave="btnPerfilDeUsuario_MouseLeave">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="Perfil de usaurio" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnLog" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnLog_MouseEnter" MouseLeave="btnLog_MouseLeave">
+                        <Button x:Name="btnLog" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnLog_MouseEnter" MouseLeave="btnLog_MouseLeave" Click="btnLog_Click">
                             <ctls:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource lock}" IconWidth="16" Text="Log" VerticalAlignment="Center"/>
                         </Button>
                     </StackPanel>

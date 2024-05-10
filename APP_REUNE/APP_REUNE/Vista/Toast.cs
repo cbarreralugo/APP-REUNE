@@ -3,10 +3,11 @@ using System.Configuration;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using APP_REUNE.Modelo;
+using APP_REUNE_Negocio.Modelo;
 using APP_REUNE.Vista.Forms;
 using System.Net;
 using System.Text.RegularExpressions;
+using APP_REUNE_Negocio.Datos;
 
 namespace APP_REUNE.Vista
 {
@@ -15,7 +16,7 @@ namespace APP_REUNE.Vista
         // Usando métodos estáticos para diferentes tipos de alertas
         public static void Error(string message, string title = "Error inesperado!. ")
         {
-            ShowAlert(title,message, Form_Toast.enmType.Error);
+            ShowAlert(title, message, Form_Toast.enmType.Error);
         }
 
         public static void Correcto(string message, string title = "Acción correcta!. ")
@@ -25,7 +26,7 @@ namespace APP_REUNE.Vista
 
         public static void Notifiacion(string message, string title = "Hey!... ")
         {
-            ShowAlert(title,message, Form_Toast.enmType.Info);
+            ShowAlert(title, message, Form_Toast.enmType.Info);
         }
 
         public static void Denegado(string message, string title = "Acción no autorizada!. ")
@@ -33,9 +34,9 @@ namespace APP_REUNE.Vista
             ShowAlert(title, message, Form_Toast.enmType.Warning);
         }
 
-        public static void Sistema(string message,Exception ex, string title = "Se genero un error de Sistema. ")
+        public static void Sistema(string message, Exception ex, string title = "Se genero un error de Sistema. ")
         {
-            ShowAlert(title, message + "\n "+ex.ToString(), Form_Toast.enmType.System);
+            ShowAlert(title, message + "\n " + ex.ToString(), Form_Toast.enmType.System);
         }
 
         public static void Log(string message, string title = "Acción guardada en log!. ")
@@ -44,7 +45,7 @@ namespace APP_REUNE.Vista
             CreateLog(title, message);
         }
 
-        private static void ShowAlert(string title,string message, Form_Toast.enmType type)
+        private static void ShowAlert(string title, string message, Form_Toast.enmType type)
         {
             Task.Run(() =>
             {
@@ -75,19 +76,19 @@ namespace APP_REUNE.Vista
             return message;
         }
 
-        public static void CreateLog(string title,string message)
+        public static void CreateLog(string title, string message)
         {
             int logOption = int.Parse(ConfigurationManager.AppSettings["WriteFileLog"] ?? "0");
-            string logMessage = FormatLogMessage(title,message);
+            string logMessage = FormatLogMessage(title, message);
 
             if (logOption == 1 || logOption == 2)
             {
                 WriteToFile(logMessage);
             }
-            
+
             if (logOption == 0 || logOption == 2)
             {
-                WriteToDatabase(logMessage);
+                WriteToDatabase(title,logMessage);
             }
         }
 
@@ -110,6 +111,7 @@ namespace APP_REUNE.Vista
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
+                Toast.Notifiacion("Carpeta log creada en: " + directoryPath);
             }
 
             // Escribir el mensaje al archivo de log, añadiéndolo al final del archivo.
@@ -117,15 +119,27 @@ namespace APP_REUNE.Vista
             File.AppendAllText(filePath, message + Environment.NewLine);
         }
 
-        private static void WriteToDatabase(string message)
+        private static void WriteToDatabase(string title,string message)
         {
             // Simulación de escritura en base de datos
             Log_Modelo log = new Log_Modelo();
-            
-                log.Fecha = DateTime.Now.ToString("dd-MM-yyyy, HH:mm:ss");
-                log.Mensaje = message;
-                log.Equipo = Environment.MachineName;
-            
+            try
+            {
+                log.id_usuario = SesionUsuario_Modelo.id_usuario;
+                log.fecha = (DateTime.Now.ToString("dd-MM-yyyy, HH:mm:ss")).ToString();
+                log.mensaje = message;
+                log.equipo = Environment.MachineName;
+                log.nombreUsuario = (SesionUsuario_Modelo.nombre ==null  ? log.equipo : SesionUsuario_Modelo.nombre);
+                log.titulo = title;
+
+                Log_Datos datos = new Log_Datos();
+                datos.CrearLog(log);
+            }
+            catch (Exception ex)
+            {
+                Toast.Sistema("Error al crear log en BD",ex);
+            }
+
 
             // Aquí se insertaría el log en la base de datos 
         }

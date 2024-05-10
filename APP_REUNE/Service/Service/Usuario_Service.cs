@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using APP_REUNE_Negocio.Modelo;
+using APP_REUNE.Modelo;
 
 namespace APP_REUNE.Service
 {

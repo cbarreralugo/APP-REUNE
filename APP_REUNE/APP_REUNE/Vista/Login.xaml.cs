@@ -1,4 +1,6 @@
-﻿using APP_REUNE.Service; 
+﻿using APP_REUNE.Service;
+using APP_REUNE_Negocio.Datos;
+using APP_REUNE_Negocio.Modelo;
 using System;
 using System.Windows;
 using System.Windows.Media;
@@ -23,11 +25,11 @@ namespace APP_REUNE.Vista
                 email_path.Stroke = Brushes.Green;
             }
         }
-        private  void txt_pass_LostFocus(object sender, RoutedEventArgs e)
+        private void txt_pass_LostFocus(object sender, RoutedEventArgs e)
         {
-           
+
         }
-       
+
 
         // Start: Button Close | Restore | Minimize 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -41,7 +43,7 @@ namespace APP_REUNE.Vista
             //    WindowState = WindowState.Maximized;
             //else
             //    WindowState = WindowState.Normal;
-        } 
+        }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -64,14 +66,22 @@ namespace APP_REUNE.Vista
                     img_passcheck.Visibility = Visibility.Visible;
                     //pass_path.Stroke = Brushes.Green;
                     txt_pass.Foreground = Brushes.Black;
-
-                   
-                    
-                    Toast.Correcto("Hola de nuevo");
-                    Toast.CreateLog("Inicio se sesión", "Se ingresa al sistema por medio de la app.");
-                    Index index = new Index();
-                    index.Show();
-                    this.Close();
+                    Sesion_Modelo modelo = new Sesion_Modelo();
+                    modelo.password = password;
+                    modelo.nombre = username;
+                    Session_Datos session = new Session_Datos();
+                   if(session.ObtenerSession(modelo))
+                    {
+                        Toast.Correcto("Hola de nuevo");
+                        Toast.CreateLog("Inicio se sesión", "Se ingresa al sistema por medio de la app.");
+                        Index index = new Index();
+                        index.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        Toast.Error("Usuarion no encontrado en DB. ", "Error de logeo");
+                    }
                 }
                 else
                 {

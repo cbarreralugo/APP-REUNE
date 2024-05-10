@@ -11,6 +11,10 @@
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
 
         <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/> 
             </Grid.RowDefinitions>
@@ -18,16 +22,18 @@
             <!-- Botones para acciones -->
             <StackPanel Orientation="Vertical"   HorizontalAlignment="Left" >
                 <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Token:" Margin="0,5"></Label>
-                <PasswordBox Name="txtToken" Width="200" Password="2922|70|70016|NO|NO" Height="30" Margin="0,5"/>
-                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Usuario:" Margin="0,5"></Label>
-                <TextBox Name="txtUsuario" Text="" Width="200" Height="30" Margin="0,5" />
-                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Contraseña:" Margin="0,5"></Label>
-                <PasswordBox Name="txtPassword" Width="200"  Height="30" Margin="0,5"/>
-                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Confirmar contraseña:" Margin="0,5"></Label>
-                <PasswordBox Name="txtConfirmarPassword" Width="200"  Height="30" Margin="0,5"/>
-                <Button Name="btnAgregar" Content="Crear super usuario" Margin="5" Click="AgregarUsuario_Click"  Background="{DynamicResource PrimaryGreenColor}"/>
+                <PasswordBox Name="txtToken" Width="200" Password="2922|70|70016|NO|NO" Height="30" Margin="0,2"/>
+                <Label Style="{DynamicResource FreeTeamTitlesLabelStyle}" Content="Usuario:" Margin="0,2"></Label>
+                <TextBox Name="txtUsuario" Text="" Width="200" Height="30" Margin="0,2" />
+                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Contraseña:" Margin="0,2"></Label>
+                <PasswordBox Name="txtPassword" Width="200"  Height="30" Margin="0,2"/>
+                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Confirmar contraseña:" Margin="0,2"></Label>
+                <PasswordBox Name="txtConfirmarPassword" Width="200"  Height="30" Margin="0,2"/>
+                <Button  Name="btnAgregar" Content="Crear usuario" Margin="5" Click="AgregarUsuario_Click" Width="120" HorizontalAlignment="Left"/>
 
             </StackPanel>
+            <DataGrid x:Name="dg_usuarios" Margin="10,0,10,10" Grid.Column="1" AutoGenerateColumns="True" ItemsSource="{Binding}" />
+
 
             <!-- DataGrid para mostrar la lista de usuarios -->
         </Grid>

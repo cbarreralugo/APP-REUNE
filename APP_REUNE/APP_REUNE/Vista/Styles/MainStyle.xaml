@@ -142,7 +142,7 @@
     </Style>
 
 
-    <Style TargetType="{x:Type Button}">
+    <Style  TargetType="{x:Type Button}">
         <Setter Property="Foreground" Value="white"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -152,7 +152,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
 
 
-                    <Border Name="back" CornerRadius="5" Padding="{TemplateBinding Padding}" Background="#212143" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                    <Border Name="back" CornerRadius="5" Padding="{TemplateBinding Padding}" Background="{DynamicResource PrimaryGreenColor}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width ="20"/>
@@ -740,5 +740,44 @@
         </Setter>
     </Style>
     <!-- End: Button Close | Restore | Minimize -->
+
+    <!-- Estilos para DataGrid --><!--
+    <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+        <Setter Property="Background" Value="{DynamicResource SecundaryBackgroundColor}" />
+        <Setter Property="RowBackground" Value="{DynamicResource SecundaryBackgroundColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=FreeTeamIconLabelsStyle}" />
+        <Setter Property="FontFamily" Value="{DynamicResource ResourceKey=FreeTeamIconLabelsStyle}" />
+        <Setter Property="FontSize" Value="{DynamicResource ResourceKey=FreeTeamIconLabelsStyle}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="CellStyle" Value="{StaticResource DataGridCellStyle}" />
+        <Setter Property="RowStyle" Value="{StaticResource DataGridRowStyle}" />
+        <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridColumnHeaderStyle}" />
+    </Style>
+
+    --><!-- Estilo para las celdas del DataGrid --><!--
+    <Style x:Key="DataGridCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBackgroundColor}" />
+        <Setter Property="Background" Value="{DynamicResource SecundaryBackgroundColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=FreeTeamIconLabelsStyle}" />
+        <Setter Property="FontFamily" Value="{DynamicResource ResourceKey=FreeTeamIconLabelsStyle}" />
+    </Style>
+
+    --><!-- Estilo para las filas del DataGrid --><!--
+    <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+        <Setter Property="Background" Value="{DynamicResource SecundaryBackgroundColor}" />
+    </Style>
+
+    --><!-- Estilo para las cabeceras de columna del DataGrid --><!--
+    <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource FreeTeamSubTitlesLabelStyle}" />
+        <Setter Property="FontFamily" Value="{DynamicResource FreeTeamSubTitlesLabelStyle}" />
+    </Style>
+    --><!-- Estilo básico para las ScrollBars --><!--
+    <Style TargetType="ScrollBar">
+        <Setter Property="Background" Value="#B0B7C3"/>
+    </Style>-->
 
 </ResourceDictionary>

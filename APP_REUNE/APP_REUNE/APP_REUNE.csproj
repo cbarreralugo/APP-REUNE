@@ -96,9 +96,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Modelo\Login_Modelo.cs" />
-    <Compile Include="Modelo\Log_Modelo.cs" />
-    <Compile Include="Modelo\Usuario_Modelo.cs" />
     <Compile Include="Service\Login_Service.cs" />
     <Compile Include="Service\Usuario_Service.cs" />
     <Compile Include="Vista\Controls\MenuItem.xaml.cs">
@@ -124,6 +121,9 @@
     </Compile>
     <Compile Include="Vista\Pages\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Pages\Log.xaml.cs">
+      <DependentUpon>Log.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Pages\SolicitarConsulta.xaml.cs">
       <DependentUpon>SolicitarConsulta.xaml</DependentUpon>
@@ -183,6 +183,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\Pages\Log.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Pages\SolicitarConsulta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -228,8 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controlador\" />
-    <Folder Include="Datos\" />
-    <Folder Include="Vista\Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\Recursos\cancel.png" />
@@ -264,6 +266,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Vista\Recursos\cerrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\APP_REUNE_Negocio\APP_REUNE_Negocio.csproj">
+      <Project>{815ddcae-ce07-41eb-a612-58958dc1e050}</Project>
+      <Name>APP_REUNE_Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
