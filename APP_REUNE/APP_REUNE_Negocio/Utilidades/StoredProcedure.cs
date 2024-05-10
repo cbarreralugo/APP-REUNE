@@ -22,6 +22,8 @@ namespace APP_REUNE_Negocio.Utilidades
     }
     public static class SP_Sesion
     {
+        //@usuario
+        //@password
         public static string sp_reune_obtener_sesion = "sp_reune_obtener_sesion";
     }
 }

@@ -24,15 +24,15 @@ namespace APP_REUNE_Negocio.Controlador
             }
         }
 
-        public DataTable Obtener_Configuracion(Configuraciones_Modelo conf_)
+        public DataTable Obtener_Configuracion()
         {
             DataTable dt = new DataTable();
             string[,] parametro =
             {
                 {"@accion","G" },
-                {"@valida_login",conf_.valida_login.ToString() },
-                {"@escribir_log",conf_.escribir_log.ToString() },
-                {"@ruta_log",conf_.ruta_log.ToString() }
+                {"@valida_login","" },
+                {"@escribir_log","" },
+                {"@ruta_log","" }
 
             };
 
@@ -52,19 +52,19 @@ namespace APP_REUNE_Negocio.Controlador
         public void Actualizar_Configuracion(Configuraciones_Modelo conf_)
         {
             DataTable dt = new DataTable();
-
             string[,] parametro =
-             {
+            {
                 {"@accion","U" },
                 {"@valida_login",conf_.valida_login.ToString() },
                 {"@escribir_log",conf_.escribir_log.ToString() },
                 {"@ruta_log",conf_.ruta_log.ToString() }
+
             };
 
             try
             {
                 ConnectorLibrary.App.GetCurrentConnector().Tabla(Utilidades.SP_Configuraciones.sp_reune_obtener_update_configuracion, parametro);
-
+                 
             }
             catch (Exception ex)
             {

@@ -78,7 +78,7 @@ namespace APP_REUNE.Vista
 
         public static void CreateLog(string title, string message)
         {
-            int logOption = int.Parse(ConfigurationManager.AppSettings["WriteFileLog"] ?? "0");
+            int logOption = Configuracion_Modelo.escribir_log;
             string logMessage = FormatLogMessage(title, message);
 
             if (logOption == 1 || logOption == 2)
@@ -103,7 +103,7 @@ namespace APP_REUNE.Vista
         {
             // Obtiene o establece la ruta del directorio de logs desde el archivo de configuración.
             // Si no se encuentra, usa un directorio predeterminado.
-            string directoryPath = ConfigurationManager.AppSettings["PathLogLocal"] ?? @"C:\Log_Reune";
+            string directoryPath = Configuracion_Modelo.ruta_log ?? @"C:\Log_Reune";
             string fileName = DateTime.Now.ToString("dd_MM_yyyy") + ".log";
             string filePath = Path.Combine(directoryPath, fileName);
 

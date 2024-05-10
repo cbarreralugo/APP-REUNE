@@ -110,6 +110,9 @@
     <Compile Include="Vista\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Pages\Configuraciones.xaml.cs">
+      <DependentUpon>Configuraciones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Pages\Consulta.xaml.cs">
       <DependentUpon>Consulta.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Pages\Configuraciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

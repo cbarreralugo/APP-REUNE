@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System; 
 using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Controls.Primitives; 
+using System.Windows.Input; 
+using APP_REUNE_Negocio.Modelo;
 
 namespace APP_REUNE.Vista
 {
@@ -23,7 +14,65 @@ namespace APP_REUNE.Vista
         public Index()
         {
             InitializeComponent();
+            validarSesion();
         }
+
+        private void validarSesion()
+        {
+            if (SesionUsuario_Modelo.id_usuario != 0)
+            {
+                if (SesionUsuario_Modelo.id_tipoUser == 1)
+                {
+                    Toast.Correcto("Haz ingresado como Super Usuario", "Bienvenido");
+                    AccesoSuperUsuario();
+                }
+                else
+                {
+                    Toast.Correcto("Haz ingresado como Usuario general", "Bienvenido");
+                    this.AccesoUsuarioGeneral();
+                }
+            }
+            else
+            {
+                Toast.Denegado("No tienes los permisos necesarios para ingresar");
+                this.AccesoDenegado();
+            }
+        }
+
+        private void AccesoDenegado()
+        {
+             
+            btnDashboard.Visibility = Visibility.Collapsed;
+            btnConsultas.Visibility = Visibility.Collapsed;
+            btnGestionDeUsuario.Visibility = Visibility.Collapsed;
+            btnConfiguraciones.Visibility = Visibility.Collapsed;
+            btnAyudaYSoporte.Visibility = Visibility.Collapsed;
+            btnPerfilDeUsuario.Visibility = Visibility.Collapsed;
+            btnLog.Visibility = Visibility.Collapsed;
+        }
+
+        private void AccesoUsuarioGeneral()
+        {
+            btnDashboard.Visibility = Visibility.Visible;
+            btnConsultas.Visibility = Visibility.Visible;
+            btnGestionDeUsuario.Visibility = Visibility.Collapsed;
+            btnConfiguraciones.Visibility = Visibility.Collapsed;
+            btnAyudaYSoporte.Visibility = Visibility.Visible;
+            btnPerfilDeUsuario.Visibility = Visibility.Visible;
+            btnLog.Visibility = Visibility.Collapsed;
+        }
+
+        private void AccesoSuperUsuario()
+        {
+            btnDashboard.Visibility = Visibility.Visible;
+            btnConsultas.Visibility = Visibility.Visible;
+            btnGestionDeUsuario.Visibility = Visibility.Visible;
+            btnConfiguraciones.Visibility = Visibility.Visible;
+            btnAyudaYSoporte.Visibility = Visibility.Visible;
+            btnPerfilDeUsuario.Visibility = Visibility.Visible;
+            btnLog.Visibility = Visibility.Visible;
+        }
+
         private void BG_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Tg_Btn.IsChecked = false;

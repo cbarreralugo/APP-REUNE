@@ -21,7 +21,7 @@ namespace APP_REUNE.Service
         {
             _client = new HttpClient
             {
-                BaseAddress = new Uri("https://api-reune-pruebas.condusef.gob.mx/")
+                BaseAddress = new Uri(Configuracion_Modelo.api_reune)
             };
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -33,7 +33,7 @@ namespace APP_REUNE.Service
 
             try
             {
-                ValidaLogin = bool.Parse(ConfigurationManager.AppSettings["login"].ToString());
+                ValidaLogin = Configuracion_Modelo.valida_login==0;
                 if (ValidaLogin)
                 {
                     var builder = new UriBuilder($"{_client.BaseAddress}auth/users/token/");

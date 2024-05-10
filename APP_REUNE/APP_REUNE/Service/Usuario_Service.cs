@@ -19,7 +19,7 @@ namespace APP_REUNE.Service
         {
             _client = new HttpClient
             {
-                BaseAddress = new Uri("api-reune-pruebas.condusef.gob.mx/auth/users/create-super-user/")
+                BaseAddress = new Uri(Configuracion_Modelo.api_reune)
             };
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

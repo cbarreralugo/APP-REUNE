@@ -13,9 +13,12 @@ namespace APP_REUNE.Vista
     /// </summary>
     public partial class Login : Window
     {
+        Configuracion_Datos configuracion;
         public Login()
         {
             InitializeComponent();
+            configuracion = new Configuracion_Datos();
+            configuracion.Obtener_Configuracion();
         }
         private void txt_email_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -73,7 +76,7 @@ namespace APP_REUNE.Vista
                    if(session.ObtenerSession(modelo))
                     {
                         Toast.Correcto("Hola de nuevo");
-                        Toast.CreateLog("Inicio se sesión", "Se ingresa al sistema por medio de la app.");
+                        Toast.CreateLog("Inicio se sesión", "Se ingresa al sistema por medio de la app."); 
                         Index index = new Index();
                         index.Show();
                         this.Close();
