@@ -4,12 +4,97 @@
     <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
     <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-    
+
+
+    <!--Start: TextBox Default-->
+
+    <Style x:Key="TextBoxDefault" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SecundaryIconColor}"/>
+        <Setter Property="Padding" Value="5 3 "/>
+        <Setter Property="FontWeight" Value="400"/>
+        <Setter Property="FontFamily" Value="Poppins"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryIconColor}"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="Auto "/>
+        <Setter Property="MaxHeight" Value="40"/>
+        <Setter Property="MaxWidth" Value="500"/>
+        <Setter Property="AllowDrop" Value="True"/>
+        <Setter Property="ScrollViewer.PanningMode"  Value="VerticalFirst"/> 
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="txtBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"
+                            MaxHeight="{TemplateBinding MaxHeight}"
+                            MaxWidth="{TemplateBinding MaxWidth}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Margin="-2 3"/>
+                            <Label x:Name="WaterMarkerLabel"
+                                   Content="{TemplateBinding Tag}"
+                                   FontWeight="{TemplateBinding FontWeight}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   Visibility="Collapsed"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Padding="{TemplateBinding Padding}"/>
+
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility"
+                                    TargetName="WaterMarkerLabel"
+                                    Value="Visible"/>
+                        </MultiTrigger>
+                        <Trigger Property="IsMouseOver" Value="True"> 
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource TertiaryBlueColor}"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True"> 
+                            <Setter Property="BorderBrush" 
+                                    Value="{DynamicResource SecundaryBlueColor}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--End: TextBox Default-->
+
+    <!-- Start: Border Style -->
+    <Style x:Key="CardBorderStyle" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="Height" Value="480"/>
+        <Setter Property="Width" Value="290"/>
+        <Setter Property="Padding" Value="30 40"/>
+    </Style>
+    <!-- End: Border Style -->
+
+
     <!--Start: LoginStyle-->
     <!--<SolidColorBrush x:Key="TextBox.Static.Border" Color="#FF0C0C21"/>
     <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF0C0C21"/>
     <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF0C0C21"/>-->
-    <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
+    <Style   x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -113,7 +198,7 @@
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
     <!--End: LoginStyle-->
-    
+
     <Style TargetType="{x:Type ListViewItem}">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Height" Value="35"/>
@@ -227,7 +312,7 @@
         <Setter Property="FontSize" Value="12" />
     </Style>
 
-   
+
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
@@ -268,7 +353,7 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
-    
+
     <!-- Start: ToggleButtonStyle -->
     <Style x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="{DynamicResource SecundaryGrayColor}"/>
@@ -308,32 +393,33 @@
                         </Ellipse>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <!-- EventTrigger Checked -->
-                        <EventTrigger RoutedEvent="Checked">
+                        
+                        
+                        <EventTrigger RoutedEvent="ToggleButton.Checked">
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="Border"
-                                                      Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                      To="#C2D1FC" Duration="0:0:0.2"/>
+                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                            To="#C2D1FC" Duration="0:0:0.2"/>
                                     <ThicknessAnimation Storyboard.TargetName="Ellipse"
-                                                          Storyboard.TargetProperty="Margin"
-                                                          To="15 0 0 0" Duration="0:0:0.2"/>
+                                Storyboard.TargetProperty="Margin"
+                                To="15 0 0 0" Duration="0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
-                        <!-- EventTrigger UnChecked -->
-                        <EventTrigger RoutedEvent="Unchecked">
+                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="Border"
-                                                      Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                      To="#CECECE" Duration="0:0:0.2"/>
+                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                            To="#CECECE" Duration="0:0:0.2"/>
                                     <ThicknessAnimation Storyboard.TargetName="Ellipse"
-                                                          Storyboard.TargetProperty="Margin"
-                                                          To="0 0 0 0" Duration="0:0:0.2"/>
+                                Storyboard.TargetProperty="Margin"
+                                To="0 0 0 0" Duration="0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
+
 
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="Ellipse"
@@ -349,7 +435,7 @@
         </Setter>
     </Style>
     <!-- End: ToggleButtonStyle -->
-    
+
     <!-- Start: PrimaryButtonStyle -->
     <Style x:Key="PrimaryButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource PrimaryBlueColor}"/>
@@ -401,12 +487,12 @@
         </Setter>
     </Style>
     <!-- End: PrimaryButtonStyle -->
-    
+
     <!-- Start: ProButtonStyle -->
     <Style x:Key="ProButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource TertiaryWhiteColor}"/>
         <Setter Property="Foreground" Value="{DynamicResource PrimaryBlackColor}"/>
-        <Setter Property="FontWeight" Value="600"/> 
+        <Setter Property="FontWeight" Value="600"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="Width" Value="Auto"/>
@@ -430,9 +516,9 @@
                                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                             RecognizesAccessKey="True"/>
                         <Border.Effect>
-                              <DropShadowEffect ShadowDepth=".5" Direction="0"
+                            <DropShadowEffect ShadowDepth=".5" Direction="0"
                                                 Opacity=".3"/>
-                          </Border.Effect>
+                        </Border.Effect>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -446,7 +532,7 @@
         </Setter>
     </Style>
     <!-- End: ProButtonStyle -->
-    
+
     <!-- Start: Pop-up Button Style -->
     <Style x:Key="PopupButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent"/>
@@ -729,10 +815,10 @@
                                 <Condition Property="Tag" Value="IsCloseButton"/>
                             </MultiTrigger.Conditions>
                             <Setter Property="Background" Value="{DynamicResource btnClose}"/>
-                            <Setter TargetName="ico" Property="Fill" Value="{DynamicResource PrimaryTexColor}"/>
+                            <Setter TargetName="ico" Property="Fill" Value="{DynamicResource PrimaryTextColor}"/>
                         </MultiTrigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="ico" Property="Fill" Value="{DynamicResource PrimaryTexColor}"/>
+                            <Setter TargetName="ico" Property="Fill" Value="{DynamicResource PrimaryTextColor}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -741,7 +827,8 @@
     </Style>
     <!-- End: Button Close | Restore | Minimize -->
 
-    <!-- Estilos para DataGrid --><!--
+    <!-- Estilos para DataGrid -->
+    <!--
     <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
         <Setter Property="Background" Value="{DynamicResource SecundaryBackgroundColor}" />
         <Setter Property="RowBackground" Value="{DynamicResource SecundaryBackgroundColor}" />
@@ -756,7 +843,9 @@
         <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridColumnHeaderStyle}" />
     </Style>
 
-    --><!-- Estilo para las celdas del DataGrid --><!--
+    -->
+    <!-- Estilo para las celdas del DataGrid -->
+    <!--
     <Style x:Key="DataGridCellStyle" TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
         <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBackgroundColor}" />
         <Setter Property="Background" Value="{DynamicResource SecundaryBackgroundColor}" />
@@ -764,20 +853,78 @@
         <Setter Property="FontFamily" Value="{DynamicResource ResourceKey=FreeTeamIconLabelsStyle}" />
     </Style>
 
-    --><!-- Estilo para las filas del DataGrid --><!--
+    -->
+    <!-- Estilo para las filas del DataGrid -->
+    <!--
     <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
         <Setter Property="Background" Value="{DynamicResource SecundaryBackgroundColor}" />
     </Style>
 
-    --><!-- Estilo para las cabeceras de columna del DataGrid --><!--
+    -->
+    <!-- Estilo para las cabeceras de columna del DataGrid -->
+    <!--
     <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
         <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundColor}" />
         <Setter Property="Foreground" Value="{DynamicResource FreeTeamSubTitlesLabelStyle}" />
         <Setter Property="FontFamily" Value="{DynamicResource FreeTeamSubTitlesLabelStyle}" />
     </Style>
-    --><!-- Estilo básico para las ScrollBars --><!--
+    -->
+    <!-- Estilo básico para las ScrollBars -->
+    <!--
     <Style TargetType="ScrollBar">
         <Setter Property="Background" Value="#B0B7C3"/>
     </Style>-->
 
+    <!-- Start: ToggleButtonStyle -->
+    <Style x:Key="ToggleButtonStyle2" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="{DynamicResource SecundaryGrayColor}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryGrayColor}"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="35"/>
+        <Setter Property="MaxHeight" Value="20"/>
+        <Setter Property="MaxWidth" Value="35"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="7"
+                            Height="14"
+                            Width="35"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                        </Border>
+                        <Ellipse x:Name="Ellipse"
+                             Height="20"
+                             Width="20"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Fill="{DynamicResource ProTextColor}"
+                             Stroke="{TemplateBinding BorderBrush}"
+                             StrokeThickness="3"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Ellipse" Property="Margin" Value="15 0 0 0"/>
+                            <Setter TargetName="Border" Property="Background" Value="#C2D1FC"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="Ellipse" Property="Margin" Value="0 0 0 0"/>
+                            <Setter TargetName="Border" Property="Background" Value="#CECECE"/>
+                        </Trigger> 
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Ellipse"
+                                    Property="Fill"
+                                    Value="{DynamicResource SecundaryBlueColor}"/>
+                            <Setter TargetName="Ellipse"
+                                   Property="Stroke"
+                                   Value="{DynamicResource BorderBrushColor}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- End: ToggleButtonStyle -->
 </ResourceDictionary>

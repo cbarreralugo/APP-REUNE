@@ -62,4 +62,15 @@
     <SolidColorBrush x:Key="PrimaryBlackColor" Color="#0E1A32"/>
     <SolidColorBrush x:Key="SecundaryBlackColor" Color="#102341"/>
     <SolidColorBrush x:Key="TertiaryBlackColor" Color="#1C3254"/>
+
+
+    <!-- Otros -->
+    <SolidColorBrush x:Key="PrimaryGrayColor" Color="#64677A"/> 
+    <SolidColorBrush x:Key="SecundaryGrayColor" Color="#CECECE"/> 
+    <SolidColorBrush x:Key="BorderBrushColor" Color="#233DC7"/> 
+    <SolidColorBrush x:Key="ProTextColor" Color="#FFFFFF"/> 
+    <SolidColorBrush x:Key="PrimaryBlueEmojiColor" Color="#9FB1F9" Opacity=".5"/>
+    <SolidColorBrush x:Key="PrimaryEmojiColor" Color="#32323A" Opacity=".5"/> 
+    <SolidColorBrush x:Key="ProButtonColor" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="ButtonTextColor" Color="#14181D"/>
 </ResourceDictionary>

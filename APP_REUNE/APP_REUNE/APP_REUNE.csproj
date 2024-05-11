@@ -98,6 +98,7 @@
     </ApplicationDefinition>
     <Compile Include="Service\Login_Service.cs" />
     <Compile Include="Service\Usuario_Service.cs" />
+    <Compile Include="Utilidad\Util.cs" />
     <Compile Include="Vista\Controls\MenuItem.xaml.cs">
       <DependentUpon>MenuItem.xaml</DependentUpon>
     </Compile>

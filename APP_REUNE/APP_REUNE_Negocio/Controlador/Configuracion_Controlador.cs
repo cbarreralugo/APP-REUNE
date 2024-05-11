@@ -57,8 +57,7 @@ namespace APP_REUNE_Negocio.Controlador
                 {"@accion","U" },
                 {"@valida_login",conf_.valida_login.ToString() },
                 {"@escribir_log",conf_.escribir_log.ToString() },
-                {"@ruta_log",conf_.ruta_log.ToString() }
-
+                {"@ruta_log",conf_.ruta_log.ToString() } 
             };
 
             try

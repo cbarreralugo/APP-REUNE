@@ -10,37 +10,76 @@
 
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="93*"/>
-                <RowDefinition Height="97*"/>
-                <RowDefinition Height="260*"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="419*"/>
             </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" 
+             Margin="0 20 0 0"
+             VerticalAlignment="Center">
+                    <Label Content="URL de la API:"
+            FontSize="12"
+            Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <TextBox Name="txt_API"
+                             Width="350"
+                             Text=""
+                             Margin="15 0 0 0"
+                             Tag="Ingresa la dirección de API Base"
+                             Style="{DynamicResource TextBoxDefault}"/>
+                </StackPanel>
+               
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 20 0 0">
+                    <Label Content="Validar login de acceso por medio de API:"
+                           FontSize="12"
+                           Foreground="{DynamicResource PrimaryTextColor}"
+                            />
+                    <ToggleButton x:Name="Chek_Login"
+                                  Margin="15 0 0 0"
+                                  IsChecked="False" 
+                                  Style="{DynamicResource ToggleButtonStyle2}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                             Margin="0 20 0 0"
+                             VerticalAlignment="Center">
+                    <Label Content="Crear Log de actividades:"
+                            FontSize="12"
+                            Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <ComboBox x:Name="cb_log"
+                              Width="295"
+                              Margin="10 0 0 0"
+                              SelectedIndex="0" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0 20 0 0"
+                            VerticalAlignment="Center">
+                    <Label Content="Ruta local del archivo .log:"
+                           FontSize="12"
+                           Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <TextBox Name="txt_RutaLog" 
+                             Width="300"
+                             Text=""
+                             Tag="Coloca la ruta en donde estará el .log"
+                             Style="{DynamicResource TextBoxDefault}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 20 0 0"
+                            VerticalAlignment="Center">
+                    <Button x:Name="btn_Guardar"
+                            Content="Guardar cambios  " Click="btn_Guardar_Click"
+                            />
 
-            <Button Height="30" 
-                  CommandParameter="{x:Reference Name= mainwindow}" 
-                  Command="{Binding ShowWindowCommand}"  
-                  Content="Add User" 
-                  Width="100" 
-                  VerticalContentAlignment="Center" 
-                  Padding="5"   
-                  VerticalAlignment="Top" 
-                  HorizontalAlignment="Right" 
-                  BorderThickness="1" 
-                   Style="{DynamicResource SuccessButtonStyle}"
-                    Margin="0,0,10,0" Grid.Row="1"/>
-
-            <TextBox Name="FilterTextBox" 
-                   Text="dfsdjfn"
-                   Height="30" 
-                   Width="200"  
-                   FontSize="14"
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Left" 
-                   BorderThickness="1"  
-                   Background="{DynamicResource FourthIconColor}"
-                   BorderBrush="{DynamicResource FourthIconColor}" 
-                   Foreground="{DynamicResource PrimaryTextColor}" Margin="30,53,0,0" />
-
+                </StackPanel> 
+            </StackPanel>
         </Grid>
     </Border>
 </Page>
