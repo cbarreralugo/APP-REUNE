@@ -33,7 +33,7 @@ namespace APP_REUNE.Service
 
             try
             {
-                ValidaLogin = Configuracion_Modelo.valida_login==0;
+                ValidaLogin = Configuracion_Modelo.valida_login==1;
                 if (ValidaLogin)
                 {
                     var builder = new UriBuilder($"{_client.BaseAddress}auth/users/token/");

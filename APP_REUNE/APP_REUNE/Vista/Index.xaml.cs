@@ -271,5 +271,11 @@ namespace APP_REUNE.Vista
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/Configuraciones.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        private void btnPerfilDeUsuario_Click(object sender, RoutedEventArgs e)
+        {
+
+            fContainer.Navigate(new System.Uri("Vista/Pages/MiPerfil.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }

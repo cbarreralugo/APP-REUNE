@@ -1,7 +1,10 @@
 ﻿using APP_REUNE.Service;
+using APP_REUNE_Negocio.Datos;
+using APP_REUNE_Negocio.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,24 +34,38 @@ namespace APP_REUNE.Vista.Pages
         }
         private void CargarUsuarios()
         {
-          
+            Usuario_Datos usuario_Datos = new Usuario_Datos(); 
+            DataTable table = new DataTable();
+            try
+            {
+                table=usuario_Datos.ObtenerTodosUsuarios();
+                dg_usuarios.ItemsSource = null;
+                dg_usuarios.ItemsSource = table.DefaultView;
+
+            }
+            catch (Exception ex)
+            {
+                table =new DataTable(); 
+                dg_usuarios.ItemsSource = null;
+                Toast.Sistema("Error al obtener los usuarios registrados", ex);
+            }
         }
 
         private async void AgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            string key = txtToken.Password;
-            string username = txtUsuario.Text;
-            string password = txtPassword.Password;
+           // string key = txtToken.Password;
+            string username = txtUsuario.Text.Trim();
+            string password = txtPassword.Text;
             try
-            {
-                var token = await new ApiService().CreateSuperUser(key, username, password);
-                if (!string.IsNullOrEmpty(token))
+            { 
+                var token = await new ApiService().CreateUser(username.Replace(" ",""), password);
+                if (token)
                 {
-                    MessageBox.Show("Súper usuario creado exitosamente. Token: " + token); 
+                    CargarUsuarios();
                 }
                 else
                 {
-                    MessageBox.Show("No se recibió un token válido.");
+                    Toast.Error("Verifica que "+ SesionUsuario_Modelo.nombre.ToString() + " este vigente.".ToString());
                 }
             }
             catch (Exception ex)

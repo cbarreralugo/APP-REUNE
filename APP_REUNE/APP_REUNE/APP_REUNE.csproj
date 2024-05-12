@@ -129,6 +129,9 @@
     <Compile Include="Vista\Pages\Log.xaml.cs">
       <DependentUpon>Log.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Pages\MiPerfil.xaml.cs">
+      <DependentUpon>MiPerfil.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Pages\SolicitarConsulta.xaml.cs">
       <DependentUpon>SolicitarConsulta.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\Pages\Log.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Pages\MiPerfil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
