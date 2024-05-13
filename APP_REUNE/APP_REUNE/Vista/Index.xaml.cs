@@ -120,7 +120,7 @@ namespace APP_REUNE.Vista
                 Popup.PlacementTarget = btnConsultas;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Consultas";
+                Header.PopupText.Text = "Aclaraciones";
             }
         }
 
@@ -254,7 +254,7 @@ namespace APP_REUNE.Vista
 
         private void btnConsultas_Click(object sender, RoutedEventArgs e)
         {
-            fContainer.Navigate(new System.Uri("Vista/Pages/SolicitarConsulta.xaml", UriKind.RelativeOrAbsolute));
+            fContainer.Navigate(new System.Uri("Vista/Pages/MenuAclaraciones.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void btnGestionDeUsuario_Click(object sender, RoutedEventArgs e)

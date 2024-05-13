@@ -96,6 +96,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Service\Aclaraciones_Service.cs" />
     <Compile Include="Service\Login_Service.cs" />
     <Compile Include="Service\Usuario_Service.cs" />
     <Compile Include="Utilidad\Util.cs" />
@@ -114,6 +115,9 @@
     <Compile Include="Vista\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Pages\Aclaraciones\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Pages\Configuraciones.xaml.cs">
       <DependentUpon>Configuraciones.xaml</DependentUpon>
     </Compile>
@@ -129,6 +133,9 @@
     <Compile Include="Vista\Pages\Log.xaml.cs">
       <DependentUpon>Log.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Pages\MenuAclaraciones.xaml.cs">
+      <DependentUpon>MenuAclaraciones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Pages\MenuReclamaciones.xaml.cs">
       <DependentUpon>MenuReclamaciones.xaml</DependentUpon>
     </Compile>
@@ -143,6 +150,9 @@
     </Compile>
     <Compile Include="Vista\Pages\Reclamaciones\Seguros.xaml.cs">
       <DependentUpon>Seguros.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Pages\ResponseAPI.xaml.cs">
+      <DependentUpon>ResponseAPI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Pages\SolicitarConsulta.xaml.cs">
       <DependentUpon>SolicitarConsulta.xaml</DependentUpon>
@@ -190,6 +200,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\Pages\Aclaraciones\General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Pages\Configuraciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +224,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\Pages\MenuAclaraciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Pages\MenuReclamaciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\Pages\Reclamaciones\Seguros.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Pages\ResponseAPI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

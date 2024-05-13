@@ -57,7 +57,7 @@
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Reclamaciones" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnConsultas" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnConsultas_MouseEnter" MouseLeave="btnConsultas_MouseLeave" Click="btnConsultas_Click">
-                            <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource collections}" IconWidth="16" Text="Consultas" VerticalAlignment="Center"/>
+                            <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource collections}" IconWidth="16" Text="Aclaraciones" VerticalAlignment="Center"/>
                         </Button>
                         <Button x:Name="btnAyudaYSoporte" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnAyudaYSoporte_MouseEnter" MouseLeave="btnAyudaYSoporte_MouseLeave">
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource notifications}" IconWidth="16" Text="Ayuda y soporte" VerticalAlignment="Center"/>

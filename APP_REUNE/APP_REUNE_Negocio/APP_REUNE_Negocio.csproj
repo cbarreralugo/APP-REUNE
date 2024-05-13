@@ -52,6 +52,7 @@
     <Compile Include="Datos\Log_Datos.cs" />
     <Compile Include="Datos\Session_Datos.cs" />
     <Compile Include="Datos\Usuario_Datos.cs" />
+    <Compile Include="Modelo\Aclaracion_Modelo.cs" />
     <Compile Include="Modelo\API_Modelo.cs" />
     <Compile Include="Modelo\Configuraciones_Modelo.cs" />
     <Compile Include="Modelo\Log_Modelo.cs" />

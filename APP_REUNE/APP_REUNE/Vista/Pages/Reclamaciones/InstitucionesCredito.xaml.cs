@@ -24,6 +24,22 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
         {
             InitializeComponent();
             dp_RecFechaReclamacion.SelectedDateChanged += DpFecha_SelectedDateChanged;
+            CargarPreInformacio();
+        }
+
+        private void CargarPreInformacio()
+        {
+            Utilidad.Util.CargarComboTrimestre(cb_RecTrimestre);
+            Utilidad.Util.CargarComboNumero(cb_RecNumero);
+            Utilidad.Util.CargarComboEstadoConPend(cb_RecEstadoConPend);
+            Utilidad.Util.CargarComboMonetario(cb_RecMonetario);
+            Utilidad.Util.CargarComboPORI(cb_RecPori);
+            Utilidad.Util.CargarComboTipoPersona(cb_RecTipoPersona);
+            Utilidad.Util.CargarComboSexo(cb_RecSexo);
+            Utilidad.Util.CargarComboEdad(cb_RecEdad);
+            Utilidad.Util.CargarComboNivelAtencion(cb_RecNivelAtencion);
+            Utilidad.Util.CargarComboReversa(cb_RecReversa);
+            Utilidad.Util.CargarComboResolucion(cb_RecSentidoResolucion);
         }
 
         private void DpFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
