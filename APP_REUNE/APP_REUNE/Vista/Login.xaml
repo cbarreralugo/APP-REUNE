@@ -27,8 +27,18 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Path.RenderTransform>
-        </Path>
-        <Button Content="iniciar sesión" HorizontalAlignment="Left" Height="40" Margin="119,379,0,0" VerticalAlignment="Top" Width="155" Style="{DynamicResource ProButtonStyle}" Click="Button_Click_1"/>
+        </Path>  
+            <Label Content="Recordar mi usuario:"
+            FontSize="12"
+                   Margin="10,288,246,134"
+            Foreground="{DynamicResource PrimaryTextColor}"
+             />
+            <ToggleButton x:Name="Chek_Login"
+                   Margin="137,292,228,138"
+                   IsChecked="False" 
+                   Style="{DynamicResource ToggleButtonStyle2}"/>
+        
+        <Button Content="iniciar sesión" HorizontalAlignment="Left" Height="40" Margin="119,379,0,0" VerticalAlignment="Top" Width="155" Style="{DynamicResource Login}" Click="Button_Click_1"/>
       
         <!-- Start: Button Close | Restore | Minimize -->
         <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">

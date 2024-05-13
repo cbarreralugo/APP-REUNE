@@ -39,14 +39,12 @@ namespace APP_REUNE.Vista.Pages
             try
             {
                 table=usuario_Datos.ObtenerTodosUsuarios();
-                dg_usuarios.ItemsSource = null;
-                dg_usuarios.ItemsSource = table.DefaultView;
+                dg_tabla.LoadData(table, "Todos los usuarios");
 
             }
             catch (Exception ex)
             {
-                table =new DataTable(); 
-                dg_usuarios.ItemsSource = null;
+                table =new DataTable();  
                 Toast.Sistema("Error al obtener los usuarios registrados", ex);
             }
         }

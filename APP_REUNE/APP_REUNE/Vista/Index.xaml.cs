@@ -103,7 +103,7 @@ namespace APP_REUNE.Vista
                 Popup.PlacementTarget = btnDashboard;
                 Popup.Placement = PlacementMode.Right;
                 Popup.IsOpen = true;
-                Header.PopupText.Text = "Dashboard";
+                Header.PopupText.Text = "Reclamaciones";
             }
         }
 
@@ -249,7 +249,7 @@ namespace APP_REUNE.Vista
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
-            fContainer.Navigate(new System.Uri("Vista/Pages/Dashboard.xaml", UriKind.RelativeOrAbsolute));
+            fContainer.Navigate(new System.Uri("Vista/Pages/MenuReclamaciones.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void btnConsultas_Click(object sender, RoutedEventArgs e)

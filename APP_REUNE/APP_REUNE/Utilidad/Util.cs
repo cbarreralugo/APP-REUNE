@@ -26,6 +26,22 @@ namespace APP_REUNE.Utilidad
             // Seleccionar el elemento con ID especificado
             SelectComboBoxItemById(comboBox, id);
         }
+        public static void CargarComboReclamaciones(ComboBox comboBox, int id)
+        {
+            List<Combo> items = new List<Combo>
+        {
+            new Combo(0, "Instituciones de Céredito"),
+            new Combo(1, "General"),
+            new Combo(2, "Seguros")
+        };
+
+            comboBox.ItemsSource = items;
+            comboBox.DisplayMemberPath = "Text";
+            comboBox.SelectedValuePath = "ID";
+
+            // Seleccionar el elemento con ID especificado
+            SelectComboBoxItemById(comboBox, id);
+        }
 
         private static void SelectComboBoxItemById(ComboBox comboBox, int id)
         {

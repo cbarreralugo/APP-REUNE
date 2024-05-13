@@ -37,6 +37,7 @@ namespace APP_REUNE.Vista
         public static void Sistema(string message, Exception ex, string title = "Se genero un error de Sistema. ")
         {
             ShowAlert(title, message + "\n " + ex.ToString(), Form_Toast.enmType.System);
+            CreateLog(title, ex.Message.ToString());
         }
 
         public static void Log(string message, string title = "Acción guardada en log!. ")

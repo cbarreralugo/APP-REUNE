@@ -102,6 +102,9 @@
     <Compile Include="Vista\Controls\MenuItem.xaml.cs">
       <DependentUpon>MenuItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Controls\Grid.xaml.cs">
+      <DependentUpon>Grid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Controls\UserPopup.xaml.cs">
       <DependentUpon>UserPopup.xaml</DependentUpon>
     </Compile>
@@ -113,9 +116,6 @@
     </Compile>
     <Compile Include="Vista\Pages\Configuraciones.xaml.cs">
       <DependentUpon>Configuraciones.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vista\Pages\Consulta.xaml.cs">
-      <DependentUpon>Consulta.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Pages\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
@@ -129,8 +129,20 @@
     <Compile Include="Vista\Pages\Log.xaml.cs">
       <DependentUpon>Log.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Pages\MenuReclamaciones.xaml.cs">
+      <DependentUpon>MenuReclamaciones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Pages\MiPerfil.xaml.cs">
       <DependentUpon>MiPerfil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Pages\Reclamaciones\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Pages\Reclamaciones\InstitucionesCredito.xaml.cs">
+      <DependentUpon>InstitucionesCredito.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Pages\Reclamaciones\Seguros.xaml.cs">
+      <DependentUpon>Seguros.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\Pages\SolicitarConsulta.xaml.cs">
       <DependentUpon>SolicitarConsulta.xaml</DependentUpon>
@@ -162,6 +174,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\Controls\Grid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Controls\UserPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,10 +191,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\Pages\Configuraciones.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vista\Pages\Consulta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,7 +210,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\Pages\MenuReclamaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\Pages\MiPerfil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Pages\Reclamaciones\General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Pages\Reclamaciones\InstitucionesCredito.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\Pages\Reclamaciones\Seguros.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

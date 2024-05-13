@@ -44,8 +44,7 @@ namespace APP_REUNE.Vista.Pages
                 table = datos.ObtenerLog(modelo);
                 if (table.Rows.Count > 0)
                 {
-                    dg_Log.ItemsSource = null;
-                    dg_Log.ItemsSource = table.DefaultView;
+                    dg_tabla.LoadData(table, "Log de actividades de usuario");
                     Toast.Correcto("Log general del sistema");
                 }
             }

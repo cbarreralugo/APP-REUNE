@@ -11,12 +11,12 @@
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="500"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="419*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical"
@@ -36,7 +36,7 @@
                              Tag="Ingresa la dirección de API Base"
                              Style="{DynamicResource TextBoxDefault}"/>
                 </StackPanel>
-               
+
                 <StackPanel Orientation="Horizontal"
                             Margin="0 20 0 0">
                     <Label Content="Validar login de acceso por medio de API:"
@@ -76,9 +76,9 @@
                             VerticalAlignment="Center">
                     <Button x:Name="btn_Guardar"
                             Content="Guardar cambios  " Click="btn_Guardar_Click"
-                            />
+                            Style="{DynamicResource Add}"/>
 
-                </StackPanel> 
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Border>

@@ -13,16 +13,31 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace APP_REUNE.Vista.Pages
+namespace APP_REUNE.Vista.Pages.Reclamaciones
 {
     /// <summary>
-    /// Lógica de interacción para Consultas.xaml
+    /// Lógica de interacción para General.xaml
     /// </summary>
-    public partial class Consulta : Page
+    public partial class General : Page
     {
-        public Consulta()
+        public General()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Limpiar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Enviar_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

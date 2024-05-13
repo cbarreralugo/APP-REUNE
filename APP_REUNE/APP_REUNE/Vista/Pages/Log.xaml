@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:APP_REUNE.Vista.Pages" 
+      xmlns:Migrid="clr-namespace:APP_REUNE.Vista.Controls" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Log">
@@ -11,12 +12,9 @@
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="28*"/>
-                <RowDefinition Height="197*"/>
+                <RowDefinition Height="*"/> 
             </Grid.RowDefinitions>
-            <DataGrid x:Name="dg_Log" Margin="10,0,10,10" Grid.Row="1" AutoGenerateColumns="True" ItemsSource="{Binding}"
-                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-
+            <Migrid:UserControl1 x:Name="dg_tabla" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0"/>
         </Grid>
     </Border>
 </Page>
