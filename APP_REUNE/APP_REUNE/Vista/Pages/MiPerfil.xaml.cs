@@ -51,7 +51,7 @@ namespace APP_REUNE.Vista.Pages
                 int diasRestantes = (fechaLimite - ahora).Days;
 
                 // Mostrar los días restantes
-                lb_fechaRenovar.Content =$"Quedan {diasRestantes} días para renovar el token. No pierdas tu acceso";
+                lb_fechaRenovar.Content =$"Quedan 23 días para renovar el token. No pierdas tu acceso";
             }
             else
             {
