@@ -8,7 +8,7 @@ namespace APP_REUNE_Negocio.Modelo
 {
     public class Usuario_Modelo
     {
-        public int id_usuario { get; set; }
+        public string id_usuario { get; set; }
 
         public string nombre { get; set; }
 
@@ -16,28 +16,30 @@ namespace APP_REUNE_Negocio.Modelo
 
         public string token { get; set; }
 
-        public int id_tipoUser { get; set; }
+        public string id_tipoUser { get; set; }
 
         public string fecha { get; set; }
-        public int diasRestantes { get; set; }
+        public string diasRestantes { get; set; }
         public string perfil { get; set; }
-        public bool esta_activo { get; set; }
+        public string esta_activo { get; set; }
     }
     // Definición de los modelos de respuesta para deserializar JSON
     public class ResponseModel
     {
         public string message { get; set; }
-        public UserData data { get; set; }
+        public Data data { get; set; }
     }
 
-    public class UserData
+    public class Data
     {
-        public int userid { get; set; }
+        public string userid { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string institucionid { get; set; }
-        public string is_active { get; set; }
-        public int profileid { get; set; }
+        public bool is_active { get; set; }
+        public string profileid { get; set; }
+        public string date { get; set; }
+        public string system { get; set; }
         public string token_access { get; set; }
     }
 }

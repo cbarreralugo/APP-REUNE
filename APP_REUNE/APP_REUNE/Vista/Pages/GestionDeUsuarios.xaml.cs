@@ -51,24 +51,31 @@ namespace APP_REUNE.Vista.Pages
 
         private async void AgregarUsuario_Click(object sender, RoutedEventArgs e)
         {
-           // string key = txtToken.Password;
+           //string key = txtToken.Text;
             string username = txtUsuario.Text.Trim();
             string password = txtPassword.Text;
+            var apiService = new ApiService();
+            // Datos de usuario 
+
             try
-            { 
-                var token = await new ApiService().CreateUser(username.Replace(" ",""), password);
-                if (token)
+            {
+                // Crear usuario con RestSharp
+                bool resultRestSharp = await apiService.CreateUser(username, password);
+                Console.WriteLine("Resultado usando RestSharp: " + resultRestSharp);
+
+                if (resultRestSharp)
                 {
                     CargarUsuarios();
+                    Toast.CreateLog("Usuario creado", $"Se ha creado un nuevo usaurio \n username:{username} password: {password}");
                 }
                 else
                 {
-                    Toast.Error("Verifica que "+ SesionUsuario_Modelo.nombre.ToString() + " este vigente.".ToString());
+                    Toast.Error("Verifica que " + SesionUsuario_Modelo.nombre.ToString() + " este vigente.".ToString());
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al crear el súper usuario: " + ex.Message);
+                Toast.Log("Error al crear el usuario", "Verifica que el token del Super usuario sea valido");
             }
         }
 

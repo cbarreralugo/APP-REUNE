@@ -124,9 +124,9 @@ namespace APP_REUNE.Vista
             }
         }
 
+        private void btn_Recuperar_Click(object sender, RoutedEventArgs e)
+        {
 
-
-
-
+        }
     }
 }

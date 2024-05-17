@@ -22,8 +22,8 @@
 
             <!-- Botones para acciones -->
             <StackPanel Orientation="Vertical"   HorizontalAlignment="Left" >
-                <Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Token:" Margin="0,5"></Label>
-                <TextBox  Name="txtToken" Width="200"  Text="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJlY2ExNTE1OS0xNDE2LTQzYjItYTUxNy1iOWNhNmIxOTAzYTIiLCJ1c2VybmFtZSI6IkNhcmxvc0JhcnJlcmFMdWdvIiwiaW5zdGl0dWNpb25pZCI6IkNEREI2QzQzLUE5NTctNEUzQi1BNDNDLTNBOTBDM0M5IiwiaW5zdGl0dWNpb25DbGF2ZSI6OTc0LCJkZW5vbWluYWNpb25fc29jaWFsIjoiU2FtIEFzc2V0IE1hbmFnZW1lbnQsIFMuQS4gZGUgQy5WLiwgU29jaWVkYWQgT3BlcmFkb3JhIGRlIEZvbmRvcyBkZSBJbnZlcnNpw7NuIiwic2VjdG9yaWQiOjcwLCJzZWN0b3IiOiJTb2NpZWRhZGVzIE9wZXJhZG9yYXMgZGUgRm9uZG9zIGRlIEludmVyc2nDs24iLCJzeXN0ZW0iOiJSRVVORSIsImlhdCI6MTcxNTc5MTM1NiwiZXhwIjoxNzE4MzgzMzU2fQ.Sn6q_IMxAH4-WSo26NCvDhMewQAYMMn3SF4Cc1rl4KE" Height="30" Margin="0,2"/>
+                <!--<Label Style="{DynamicResource FreeTeamSubTitlesLabelStyle}" Content="Token:" Margin="0,5"></Label>
+                <TextBox  Name="txtToken" Width="200"  Text="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJlY2ExNTE1OS0xNDE2LTQzYjItYTUxNy1iOWNhNmIxOTAzYTIiLCJ1c2VybmFtZSI6IkNhcmxvc0JhcnJlcmFMdWdvIiwiaW5zdGl0dWNpb25pZCI6IkNEREI2QzQzLUE5NTctNEUzQi1BNDNDLTNBOTBDM0M5IiwiaW5zdGl0dWNpb25DbGF2ZSI6OTc0LCJkZW5vbWluYWNpb25fc29jaWFsIjoiU2FtIEFzc2V0IE1hbmFnZW1lbnQsIFMuQS4gZGUgQy5WLiwgU29jaWVkYWQgT3BlcmFkb3JhIGRlIEZvbmRvcyBkZSBJbnZlcnNpw7NuIiwic2VjdG9yaWQiOjcwLCJzZWN0b3IiOiJTb2NpZWRhZGVzIE9wZXJhZG9yYXMgZGUgRm9uZG9zIGRlIEludmVyc2nDs24iLCJzeXN0ZW0iOiJSRVVORSIsImlhdCI6MTcxNTc5MTM1NiwiZXhwIjoxNzE4MzgzMzU2fQ.Sn6q_IMxAH4-WSo26NCvDhMewQAYMMn3SF4Cc1rl4KE" Height="30" Margin="0,2"/>-->
                 <Label Foreground="{DynamicResource PrimaryTextColor}" Content="Usuario:" Margin="0,2"></Label>
                 <TextBox  Style="{DynamicResource TextBoxDefault}" Tag="Ingresa el nombre del nuevo usaurio" Name="txtUsuario" Text="" Width="220" Margin="0,2" />
                 <Label Foreground="{DynamicResource PrimaryTextColor}" Content="Contraseña:" Margin="0,2"></Label>

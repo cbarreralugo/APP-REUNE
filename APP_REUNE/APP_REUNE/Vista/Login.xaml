@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:APP_REUNE.Vista" 
                 mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="400" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{x:Null}">
-    
+
     <Grid>
         <Rectangle Fill="#FF0C0C21" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="400" RadiusY="15.5" RadiusX="15.5"/>
         <TextBlock HorizontalAlignment="Left" Height="32" Margin="0,57,0,0" TextWrapping="Wrap" Text="Bienvenido " VerticalAlignment="Top" Width="400" TextAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="White"/>
@@ -27,19 +27,19 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Path.RenderTransform>
-        </Path>  
-            <Label Content="Recordar mi usuario:"
+        </Path>
+        <Label Content="Recordar mi usuario:"
             FontSize="12"
                    Margin="10,288,246,134"
             Foreground="{DynamicResource PrimaryTextColor}"
              />
-            <ToggleButton x:Name="Chek_Login"
+        <ToggleButton x:Name="Chek_Login"
                    Margin="137,292,228,138"
                    IsChecked="False" 
                    Style="{DynamicResource ToggleButtonStyle2}"/>
-        
-        <Button Content="iniciar sesión" HorizontalAlignment="Left" Height="40" Margin="119,379,0,0" VerticalAlignment="Top" Width="155" Style="{DynamicResource Login}" Click="Button_Click_1"/>
-      
+
+        <Button Content="iniciar sesión" HorizontalAlignment="Center" Height="40" Margin="0,336,0,0" VerticalAlignment="Top" Width="156" Style="{DynamicResource Login}" Click="Button_Click_1"/>
+
         <!-- Start: Button Close | Restore | Minimize -->
         <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">
             <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
@@ -57,6 +57,7 @@
             </Button>
             <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
         </StackPanel>
+        <Button Content="Olvide mi contraseña." x:Name="btn_Recuperar" HorizontalAlignment="Center" Height="40" Margin="0,381,0,0" VerticalAlignment="Top" Width="156" Style="{DynamicResource PopupButtonStyle}" Foreground="{DynamicResource PrimaryTextColor}" Click="btn_Recuperar_Click" Cursor="Hand" />
         <!-- End: Button Close | Restore | Minimize -->
     </Grid>
 </Window>
