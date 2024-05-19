@@ -1,23 +1,10 @@
 ﻿using APP_REUNE.Service;
 using APP_REUNE_Negocio.Datos;
 using APP_REUNE_Negocio.Modelo;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System; 
+using System.Data; 
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
+using System.Windows.Controls; 
 
 namespace APP_REUNE.Vista.Pages
 {
@@ -67,6 +54,8 @@ namespace APP_REUNE.Vista.Pages
                 {
                     CargarUsuarios();
                     Toast.CreateLog("Usuario creado", $"Se ha creado un nuevo usaurio \n username:{username} password: {password}");
+                    txtUsuario.Text="";
+                    txtPassword.Text = "";
                 }
                 else
                 {

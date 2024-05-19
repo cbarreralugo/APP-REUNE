@@ -146,12 +146,12 @@ namespace APP_REUNE.Service
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<bool> CreateUser(string username, string password )
+        public async Task<bool> CreateUser(string username, string password)
         {
             var data = new
             {
                 username = username,
-                password = password,    
+                password = password,
                 confirm_password = password
             };
 
@@ -175,14 +175,20 @@ namespace APP_REUNE.Service
                     if (responseData != null && responseData.data != null)
                     {
                         Usuario_Modelo user = new Usuario_Modelo
-                        {
-                            id_usuario = responseData.data.userid.ToString(),
+                        { 
                             nombre = username,
                             password = password,
                             token = responseData.data.token_access.ToString(),
-                            fecha = DateTime.Now.ToString("yyyy-MM-dd"),
-                            perfil = responseData.data.profileid.ToString(),
-                            esta_activo = responseData.data.is_active.ToString()
+                            fecha = DateTime.Now.ToString("yyyy-MM-dd"), 
+                            esta_activo = responseData.data.is_active.ToString(),
+                            userid_api = responseData.data.userid.ToString(),
+                            username_api = responseData.data.username.ToString(),
+                            password_api = responseData.data.password.ToString(),
+                            institucionid_api = responseData.data.institucionid.ToString(),
+                            is_active_api = responseData.data.is_active.ToString(),
+                            profileid_api = responseData.data.profileid.ToString(),
+                            date_api = responseData.data.date.ToString(),
+                            system_api = responseData.data.system.ToString()
                         };
                         Usuario_Datos datos = new Usuario_Datos();
                         datos.CrearUsuario(user);
@@ -190,7 +196,7 @@ namespace APP_REUNE.Service
                         return true;
                     }
                     else
-                    { 
+                    {
                         Toast.Log("Usuario creado con errores", "El Usuario se creo con exito, pero se genero un error al obtener los datos de respuesta de la API");
                         return false;
                     }

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:APP_REUNE.Vista"
         mc:Ignorable="d" Name="Main"
-        Title="Index" Height="720" Width="1280"
+        Title="Index" Height="720" Width="1320"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize" FontFamily="Poppins">
@@ -112,6 +112,10 @@
                         </EventTrigger>
                     </ToggleButton.Triggers>
                 </ToggleButton>
+
+                <StackPanel>
+                    
+                </StackPanel>
 
                 <!-- Start: Button Close | Restore | Minimize -->
                 <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">

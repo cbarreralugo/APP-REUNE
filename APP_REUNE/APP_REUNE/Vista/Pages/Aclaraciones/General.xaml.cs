@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.Design;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -43,6 +44,11 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
             Utilidad.Util.CargarComboNivelAtencion(cb_AclaracionNivelAtencion);
             Utilidad.Util.CargarComboReversa(cb_AclaracionReversa);
             Utilidad.Util.CargarComboOperacionExtranjero(cb_AclaracionOperacionExtranjero);
+            txt_AclaracionDenominacion.Text = "SAM Asset Management S.A. de C.V., Sociedad Operadora de Fondos de Inversión.";
+            txt_AclaracionSector.Text = "Sociedad Operadora de Fondos de Inversión";
+            txt_AclaracionEntidadFederativa.Text = "09";
+            txt_AclaracionCodigoPostal.Text = "5120";
+            txt_AclaracionMunicipioAlcaldia.Text = "004";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -52,48 +58,43 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
 
         private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
         {
-            Aclaracion_Model aclaracion = new Aclaracion_Model
+            var apiService = new Aclaraciones_Service();
+
+            var aclaracion = new Aclaracion_Model
             {
                 AclaracionDenominacion = txt_AclaracionDenominacion.Text,
                 AclaracionSector = txt_AclaracionSector.Text,
-                AclaracionTrimestre = (int) cb_AclaracionTrimestre.SelectedValue,
-                AclaracionNumero = (int) cb_AclaracionNumero.SelectedValue,
+                AclaracionTrimestre =  cb_AclaracionTrimestre.SelectedValue.ToString(),
+                AclaracionNumero =  cb_AclaracionNumero.SelectedValue.ToString(),
                 AclaracionFolioAtencion = txt_AclaracionFolioAtencion.Text,
-                AclaracionEstadoConPend = (int) cb_AclaracionEstadoConPend.SelectedValue,
+                AclaracionEstadoConPend =  cb_AclaracionEstadoConPend.SelectedValue.ToString(),
                 AclaracionFechaReclamacion = dp_AclaracionFechaAclaracionReclmacion.SelectedDate.Value.ToString("dd/MM/yyyy"),
                 AclaracionFechaAtencion = dp_AclaracionFechaAtencion.SelectedDate.Value.ToString("dd/MM/yyyy"),
-                AclaracionMedioRecepcionCanal = int.Parse(txt_AclaracionMedioAclaracionepcionCanal.Text),
+                AclaracionMedioRecepcionCanal = (txt_AclaracionMedioAclaracionepcionCanal.Text),
                 AclaracionProductoServicio = txt_AclaracionProductoServicio.Text,
                 AclaracionCausaMotivo = txt_AclaracionCausaMotivo.Text,
                 AclaracionFechaResolucion = dp_AclaracionFechaResolucion.SelectedDate.Value.ToString("dd/MM/yyyy"),
                 AclaracionFechaNotifiUsuario = dp_AclaracionFechaNotifiUsuario.SelectedDate.Value.ToString("dd/MM/yyyy"),
-                AclaracionEntidadFederativa = int.Parse(txt_AclaracionEntidadFederativa.Text),
-                AclaracionCodigoPostal = int.Parse(txt_AclaracionCodigoPostal.Text),
-                AclaracionMunicipioAlcaldia = int.Parse(txt_AclaracionMunicipioAlcaldia.Text),
-                AclaracionLocalidad = int.Parse(txt_AclaracionLocalidad.Text),
+                AclaracionEntidadFederativa = (txt_AclaracionEntidadFederativa.Text),
+                AclaracionCodigoPostal = (txt_AclaracionCodigoPostal.Text),
+                AclaracionMunicipioAlcaldia = (txt_AclaracionMunicipioAlcaldia.Text),
+                AclaracionLocalidad = (txt_AclaracionLocalidad.Text),
                 AclaracionColonia = txt_AclaracionColonia.Text,
-                AclaracionMonetario = (string)cb_AclaracionMonetario.SelectedValue,
-                AclaracionMontoReclamado = int.Parse(txt_AclaracionMontoReclamado.Text),
-                AclaracionPori = (string)cb_AclaracionPori.SelectedValue,
-                AclaracionTipoPersona = (int)cb_AclaracionTipoPersona.SelectedValue,
-                AclaracionSexo = (string) cb_AclaracionSexo.SelectedValue,
-                AclaracionEdad = (int) cb_AclaracionEdad.SelectedValue,
-                AclaracionNivelAtencion = (int) cb_AclaracionNivelAtencion.SelectedValue,
+                AclaracionMonetario = cb_AclaracionMonetario.SelectedValue.ToString(),
+                AclaracionMontoReclamado = (txt_AclaracionMontoReclamado.Text),
+                AclaracionPori = cb_AclaracionPori.SelectedValue.ToString(),
+                AclaracionTipoPersona = cb_AclaracionTipoPersona.SelectedValue.ToString(),
+                AclaracionSexo =  cb_AclaracionSexo.SelectedValue.ToString(),
+                AclaracionEdad =  cb_AclaracionEdad.SelectedValue.ToString(),
+                AclaracionNivelAtencion =  cb_AclaracionNivelAtencion.SelectedValue.ToString(),
                 AclaracionFolioCondusef = txt_AclaracionFolioCondusef.Text,
-                AclaracionReversa = (string) cb_AclaracionReversa.SelectedValue,
-                AclaracionOperacionExtranjero = (string) cb_AclaracionOperacionExtranjero.SelectedValue
+                AclaracionReversa =  cb_AclaracionReversa.SelectedValue.ToString(),
+                AclaracionOperacionExtranjero = cb_AclaracionOperacionExtranjero.SelectedValue.ToString()
             };
-            ResponseAPI aPI = new ResponseAPI();
-            string response = await _aclaracionesService.SendAclaracion(aclaracion); // Nota el cambio aquí
+            string response = await apiService.SendAclaracion(aclaracion);
             if (response != null)
-            {
-                aPI.txtApiResponse.Text = response; // Muestra la respuesta en el TextBox
-                aPI.Show();
-            }
-            else
-            {
-                aPI.txtApiResponse.Text = "Error al enviar la aclaración.";
-                aPI.Show();
+            { 
+            
             }
         }
 

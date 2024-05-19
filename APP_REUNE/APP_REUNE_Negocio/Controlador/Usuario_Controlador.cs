@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,7 +39,15 @@ namespace APP_REUNE_Negocio.Controlador
                 {"@id_usuario","" },
                 {"@nombre","" },
                 {"@password","" },
-                {"@token","" }
+                {"@token","" },
+                {"@userid_api","" },
+                {"@username_api","" },
+                {"@password_api","" },
+                {"@institucionid_api","" },
+                {"@is_active_api","" },
+                {"@profileid_api","" },
+                {"@date_api","" },
+                {"@system_api","" }
             };
 
             try
@@ -67,7 +76,15 @@ namespace APP_REUNE_Negocio.Controlador
                 {"@id_usuario","" },
                 {"@nombre",modelo.nombre.ToString() },
                 {"@password",modelo.password.ToString()},
-                {"@token",modelo.token.ToString() }
+                {"@token",modelo.token.ToString() },
+                {"@userid_api",modelo.userid_api.ToString()  },
+                {"@username_api",modelo.username_api.ToString()  },
+                {"@password_api",modelo.password_api.ToString()  },
+                {"@institucionid_api",modelo.institucionid_api.ToString() },
+                {"@is_active_api",modelo.is_active_api.ToString()},
+                {"@profileid_api",modelo.profileid_api.ToString()  }, 
+                {"@date_api",modelo.date_api.ToString()  },
+                {"@system_api",modelo.system_api.ToString()}
             };
 
             try

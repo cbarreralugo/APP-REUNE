@@ -1,28 +1,52 @@
-﻿using System;
+﻿using APP_REUNE_Negocio.Modelo;
+using EncryptionLibrary;
+using System;
 using System.IO;
-using System.Web.UI.WebControls;
 
 namespace APP_REUNE.Utilidad
 {
     public class SesionTemporal
     {
-        private static readonly string folderPath = @"C:\Temp_File\Reune\SesionTemporal";
-        private static readonly string filePath = Path.Combine(folderPath, "sesion.txt");
+        private static string folderPath;
+        private static string filePath;
+        private static AESEncryptor AES;
+        private static bool isInitialized = false;
 
-        public static void CreateFile(string word1, string word2)
+        public static void Initialize()
         {
             try
             {
-                // Validar y crear la carpeta si no existe
+                AES = new AESEncryptor();
+                string ruta = (Configuracion_Modelo.ruta_sesion_temporal);
+                folderPath = Path.Combine("", ruta);
+                filePath = Path.Combine(folderPath, "sesion.txt");
+                isInitialized = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during initialization: {ex.Message}");
+                isInitialized = false;
+            }
+        }
+
+        public static void CreateFile(string word1, string word2)
+        {
+            if (!isInitialized)
+            {
+                Console.WriteLine("SesionTemporal is not initialized.");
+                return;
+            }
+
+            try
+            {
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
                 }
 
-                // Crear y escribir en el archivo
                 using (StreamWriter writer = new StreamWriter(filePath))
                 {
-                    writer.WriteLine($"{word1}|{word2}");
+                    writer.WriteLine(AES.Encrypt($"{word1}|{word2}"));
                 }
 
                 Console.WriteLine("Archivo creado con éxito en: " + filePath);
@@ -35,6 +59,12 @@ namespace APP_REUNE.Utilidad
 
         public static string ReadFile()
         {
+            if (!isInitialized)
+            {
+                Console.WriteLine("SesionTemporal is not initialized.");
+                return null;
+            }
+
             try
             {
                 if (File.Exists(filePath))
@@ -60,6 +90,12 @@ namespace APP_REUNE.Utilidad
 
         public static void DeleteFile()
         {
+            if (!isInitialized)
+            {
+                Console.WriteLine("SesionTemporal is not initialized.");
+                return;
+            }
+
             try
             {
                 if (File.Exists(filePath))
@@ -98,5 +134,4 @@ namespace APP_REUNE.Utilidad
             }
         }
     }
-
 }

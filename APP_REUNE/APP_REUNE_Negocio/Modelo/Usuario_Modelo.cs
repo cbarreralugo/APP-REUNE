@@ -22,6 +22,14 @@ namespace APP_REUNE_Negocio.Modelo
         public string diasRestantes { get; set; }
         public string perfil { get; set; }
         public string esta_activo { get; set; }
+        public string userid_api { get; set; }
+        public string username_api { get; set; }
+        public string password_api { get; set; }
+        public string institucionid_api { get; set; }
+        public string is_active_api { get; set; }
+        public string profileid_api { get; set; }
+        public string system_api { get; set; }
+        public string date_api { get; set; }
     }
     // Definición de los modelos de respuesta para deserializar JSON
     public class ResponseModel

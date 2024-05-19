@@ -1,6 +1,8 @@
 ﻿using APP_REUNE.Service;
+using APP_REUNE.Utilidad;
 using APP_REUNE_Negocio.Datos;
 using APP_REUNE_Negocio.Modelo;
+using EncryptionLibrary;
 using System;
 using System.Web.UI.WebControls;
 using System.Windows;
@@ -16,15 +18,23 @@ namespace APP_REUNE.Vista
     public partial class Login : Window
     {
         Configuracion_Datos configuracion;
+        AESEncryptor AES;
         public Login()
         {
             InitializeComponent();
             configuracion = new Configuracion_Datos();
             configuracion.Obtener_Configuracion();
+
+            // Inicializar AES con la clave correcta 
+            AES = new AESEncryptor();
+
+            // Inicializar SesionTemporal con la clave de encriptación
+            SesionTemporal.Initialize();
+
             var texto = Utilidad.SesionTemporal.ReadFile();
             if (texto != null)
             {
-                var (part1, part2) = Utilidad.SesionTemporal.SplitContent(texto);
+                var (part1, part2) = Utilidad.SesionTemporal.SplitContent(AES.Decrypt(texto));
                 if (part1 != null && part2 != null)
                 {
                     txt_email.Text = part1;
@@ -33,7 +43,6 @@ namespace APP_REUNE.Vista
                     Button_Click_1(null, null);
                 }
             }
-
         }
         private void txt_email_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -92,6 +101,7 @@ namespace APP_REUNE.Vista
                     {
                         if (Chek_Login.IsChecked == true)
                         {
+                            SesionTemporal.Initialize();
                             Utilidad.SesionTemporal.CreateFile(username, password);
                             Toast.Correcto("Sesión guardada con exito");
                             Toast.CreateLog("Sesión guardad con exito en el equipo", "Se almaceno las credenciales en el equipo de forma local, para hacer un logeo facil");

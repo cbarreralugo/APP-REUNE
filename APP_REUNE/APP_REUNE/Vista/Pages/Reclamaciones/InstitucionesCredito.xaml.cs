@@ -40,6 +40,12 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             Utilidad.Util.CargarComboNivelAtencion(cb_RecNivelAtencion);
             Utilidad.Util.CargarComboReversa(cb_RecReversa);
             Utilidad.Util.CargarComboResolucion(cb_RecSentidoResolucion);
+            txt_RecDenominacion.Text = "SAM Asset Management S.A. de C.V., Sociedad Operadora de Fondos de Inversión.";
+            txt_RecSector.Text = "Sociedad Operadora de Fondos de Inversión";
+            txt_RecEntidadFederativa.Text = "09";
+            txt_RecCodigoPostal.Text = "5120";
+            txt_RecMunicipioAlcaldia.Text = "004";
+            
         }
 
         private void DpFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

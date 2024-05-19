@@ -7,7 +7,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using APP_REUNE.Vista; // Asegúrate de tener esta referencia para la serialización
+using APP_REUNE.Vista;
+using APP_REUNE.Vista.Pages; // Asegúrate de tener esta referencia para la serialización
 
 namespace APP_REUNE.Service
 {
@@ -29,23 +30,38 @@ namespace APP_REUNE.Service
         {
             var json = JsonConvert.SerializeObject(aclaracion);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", SesionUsuario_Modelo.token);
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SesionUsuario_Modelo.token);
 
-            var response = await _client.PostAsync("reune/aclaraciones/general", content);
-            var responseContent = await response.Content.ReadAsStringAsync(); // Captura la respuesta como string
-            responseContent = await response.Content.ReadAsStringAsync(); // Captura la respuesta como string
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                Toast.Correcto("Operación exitosa!!");
-                return responseContent; // Retorna el contenido de la respuesta si fue exitosa
+                var response = await _client.PostAsync("reune/aclaraciones/general", content);
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                Console.WriteLine("Response StatusCode: " + response.StatusCode);
+                Console.WriteLine("Response Body: " + responseContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    ResponseAPI apiWindow = new ResponseAPI();
+                    apiWindow.LoadResponse(responseContent);
+                    apiWindow.Show();
+                    Toast.Correcto("Operación exitosa!!");
+                    return responseContent;
+                }
+                else
+                {
+                    Toast.Error("Error sending aclaracion: " + responseContent);
+                    return null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Toast.Error("Error sending aclaracion: " + responseContent);
-                return null; 
+                Console.WriteLine("Exception: " + ex.Message);
+                Toast.Error("Exception sending aclaracion: " + ex.Message);
+                return null;
             }
         }
+
 
     }
 }

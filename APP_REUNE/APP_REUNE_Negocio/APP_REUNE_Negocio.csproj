@@ -69,6 +69,10 @@
       <Project>{fbac0fed-3206-41db-b097-750a5d97a4db}</Project>
       <Name>ConnectorLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EncryptionLibrary\EncryptionLibrary.csproj">
+      <Project>{05e8bc21-8945-41b8-b7ee-20e652e1860a}</Project>
+      <Name>EncryptionLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

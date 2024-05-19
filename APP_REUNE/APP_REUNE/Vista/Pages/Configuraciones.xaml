@@ -11,12 +11,12 @@
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="500"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="419*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical"
@@ -24,11 +24,11 @@
                         Grid.Column="1"
                         HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" 
-             Margin="0 20 0 0"
-             VerticalAlignment="Center">
-                    <Label Content="URL de la API:"
-            FontSize="12"
-            Foreground="{DynamicResource PrimaryTextColor}"/>
+                             Margin="0 20 0 0"
+                             VerticalAlignment="Center">
+                                    <Label Content="URL de la API:"
+                            FontSize="12"
+                            Foreground="{DynamicResource PrimaryTextColor}"/>
                     <TextBox Name="txt_API"
                              Width="350"
                              Text=""
@@ -70,6 +70,31 @@
                              Text=""
                              Tag="Coloca la ruta en donde estará el .log"
                              Style="{DynamicResource TextBoxDefault}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+              Margin="0 20 0 0"
+              VerticalAlignment="Center">
+                    <Label Content="Ruta local de sessiones temporales:"
+             FontSize="12"
+             Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <TextBox Name="txt_rutaTemporalSesion"
+              Width="237"
+              Text=""
+              Margin="15 0 0 0"
+              Tag="Ingresa la ruta local de sesiones temporales"
+              Style="{DynamicResource TextBoxDefault}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+             Margin="0 20 0 0">
+                    <Label Content="Los usuarios pueden auto regenerar su token de acceso:"
+            FontSize="12"
+            Foreground="{DynamicResource PrimaryTextColor}"
+             />
+                    <ToggleButton x:Name="Chek_autoToken"
+                   Margin="15 0 0 0"
+                   IsChecked="False" 
+                   Style="{DynamicResource ToggleButtonStyle2}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Margin="0 20 0 0"

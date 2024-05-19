@@ -8,11 +8,14 @@ using APP_REUNE.Vista.Forms;
 using System.Net;
 using System.Text.RegularExpressions;
 using APP_REUNE_Negocio.Datos;
+using EncryptionLibrary;
 
 namespace APP_REUNE.Vista
 {
     public static class Toast
     {
+         
+
         // Usando métodos estáticos para diferentes tipos de alertas
         public static void Error(string message, string title = "Error inesperado!. ")
         {
@@ -40,20 +43,24 @@ namespace APP_REUNE.Vista
             CreateLog(title, ex.Message.ToString());
         }
 
-        public static void Log(string message, string title = "Acción guardada en log!. ",Exception ex=null)
+        public static void Log(string message, string title = "Acción guardada en log!. ", Exception ex = null)
         {
-            ShowAlert(title, message, Form_Toast.enmType.Warning); 
-            CreateLog(title, message + " \n\n" + ex != null ? ex.ToString() : "") ;
+            ShowAlert(title, message, Form_Toast.enmType.Warning);
+            CreateLog(title, message + " \n\n" + ex != null ? ex.ToString() : "");
         }
 
         private static void ShowAlert(string title, string message, Form_Toast.enmType type)
         {
-            Task.Run(() =>
+            int CrearAlerta = int.Parse((Configuracion_Modelo.mostrar_alerts.ToString()));
+            if (CrearAlerta == 1)
             {
-                Form_Toast frm = new Form_Toast();
-                frm.showAlert(title, Process(message), type);
-                Application.Run(frm);
-            });
+                Task.Run(() =>
+                {
+                    Form_Toast frm = new Form_Toast();
+                    frm.showAlert(title, Process(message), type);
+                    Application.Run(frm);
+                });
+            }
         }
 
         private static string Process(string message)
@@ -79,7 +86,7 @@ namespace APP_REUNE.Vista
 
         public static void CreateLog(string title, string message)
         {
-            int logOption = Configuracion_Modelo.escribir_log;
+            int logOption = int.Parse((Configuracion_Modelo.escribir_log.ToString()));
             string logMessage = FormatLogMessage(title, message);
 
             if (logOption == 1 || logOption == 2)
@@ -89,7 +96,7 @@ namespace APP_REUNE.Vista
 
             if (logOption == 0 || logOption == 2)
             {
-                WriteToDatabase(title,logMessage);
+                WriteToDatabase(title, logMessage);
             }
         }
 
@@ -104,7 +111,7 @@ namespace APP_REUNE.Vista
         {
             // Obtiene o establece la ruta del directorio de logs desde el archivo de configuración.
             // Si no se encuentra, usa un directorio predeterminado.
-            string directoryPath = Configuracion_Modelo.ruta_log ?? @"C:\Log_Reune";
+            string directoryPath = (Configuracion_Modelo.ruta_log) ?? @"C:\Log_Reune";
             string fileName = DateTime.Now.ToString("dd_MM_yyyy") + ".log";
             string filePath = Path.Combine(directoryPath, fileName);
 
@@ -120,7 +127,7 @@ namespace APP_REUNE.Vista
             File.AppendAllText(filePath, message + Environment.NewLine);
         }
 
-        private static void WriteToDatabase(string title,string message)
+        private static void WriteToDatabase(string title, string message)
         {
             // Simulación de escritura en base de datos
             Log_Modelo log = new Log_Modelo();
@@ -130,7 +137,7 @@ namespace APP_REUNE.Vista
                 log.fecha = (DateTime.Now.ToString("dd-MM-yyyy, HH:mm:ss")).ToString();
                 log.mensaje = message;
                 log.equipo = Environment.MachineName;
-                log.nombreUsuario = (SesionUsuario_Modelo.nombre ==null  ? log.equipo : SesionUsuario_Modelo.nombre);
+                log.nombreUsuario = (SesionUsuario_Modelo.nombre == null ? log.equipo : SesionUsuario_Modelo.nombre);
                 log.titulo = title;
 
                 Log_Datos datos = new Log_Datos();
@@ -138,7 +145,7 @@ namespace APP_REUNE.Vista
             }
             catch (Exception ex)
             {
-                Toast.Sistema("Error al crear log en BD",ex);
+                Toast.Sistema("Error al crear log en BD", ex);
             }
 
 

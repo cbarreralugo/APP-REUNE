@@ -385,6 +385,10 @@
       <Project>{815ddcae-ce07-41eb-a612-58958dc1e050}</Project>
       <Name>APP_REUNE_Negocio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EncryptionLibrary\EncryptionLibrary.csproj">
+      <Project>{05e8bc21-8945-41b8-b7ee-20e652e1860a}</Project>
+      <Name>EncryptionLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
