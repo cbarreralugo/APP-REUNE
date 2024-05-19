@@ -1,7 +1,8 @@
 ﻿using System; 
 using System.Windows;
 using System.Windows.Controls.Primitives; 
-using System.Windows.Input; 
+using System.Windows.Input;
+using System.Windows.Media;
 using APP_REUNE_Negocio.Modelo;
 
 namespace APP_REUNE.Vista
@@ -31,9 +32,11 @@ namespace APP_REUNE.Vista
                     Toast.Correcto("Haz ingresado como Usuario general", "Bienvenido");
                     this.AccesoUsuarioGeneral();
                 }
+                lb_username.Content = SesionUsuario_Modelo.nombre;
             }
             else
             {
+                lb_username.Content = "Usuario no identificado"; 
                 Toast.Denegado("No tienes los permisos necesarios para ingresar");
                 this.AccesoDenegado();
             }
@@ -250,32 +253,38 @@ namespace APP_REUNE.Vista
         private void btnDashboard_Click(object sender, RoutedEventArgs e)
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/MenuReclamaciones.xaml", UriKind.RelativeOrAbsolute));
+            lb_title.Content = "Reclamaciones";
         }
 
         private void btnConsultas_Click(object sender, RoutedEventArgs e)
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/MenuAclaraciones.xaml", UriKind.RelativeOrAbsolute));
+            lb_title.Content = "Aclaraciones";
         }
 
         private void btnGestionDeUsuario_Click(object sender, RoutedEventArgs e)
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/GestionDeUsuarios.xaml", UriKind.RelativeOrAbsolute));
+            lb_title.Content = "Usuarios";
         }
 
         private void btnLog_Click(object sender, RoutedEventArgs e)
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/Log.xaml", UriKind.RelativeOrAbsolute));
+            lb_title.Content = "Log del sistema";
         }
 
         private void btnConfiguraciones_Click(object sender, RoutedEventArgs e)
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/Configuraciones.xaml", UriKind.RelativeOrAbsolute));
+            lb_title.Content = "Configuraciones del sistema";
         }
 
         private void btnPerfilDeUsuario_Click(object sender, RoutedEventArgs e)
         {
 
             fContainer.Navigate(new System.Uri("Vista/Pages/MiPerfil.xaml", UriKind.RelativeOrAbsolute));
-        }
+            lb_title.Content = "Mi perfil";
+        } 
     }
 }
