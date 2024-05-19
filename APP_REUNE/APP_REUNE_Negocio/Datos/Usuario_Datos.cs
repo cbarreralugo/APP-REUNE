@@ -45,5 +45,17 @@ namespace APP_REUNE_Negocio.Datos
             }
             finally {   }
         }
+        public void Actualizar(Usuario_Modelo modelo)
+        {
+            try
+            {
+                Usuario_Controlador.Instancia.ActualizarUsuario(modelo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally { }
+        }
     }
 }

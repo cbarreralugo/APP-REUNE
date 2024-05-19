@@ -1,4 +1,6 @@
-﻿using APP_REUNE_Negocio.Modelo;
+﻿using APP_REUNE.Service;
+using APP_REUNE_Negocio.Datos;
+using APP_REUNE_Negocio.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +25,18 @@ namespace APP_REUNE.Vista.Pages
     {
         public MiPerfil()
         {
-            InitializeComponent();
-
+            InitializeComponent(); 
             ObtenerPerfil();
+            RenovarToken();
+        }
+
+        private void RenovarToken()
+        {
+            int bandera = Configuracion_Modelo.auto_regenerar_token_user;
+            if (bandera == 0)
+            {
+                btnRenovar.Visibility= Visibility.Collapsed;
+            }
         }
 
         private void ObtenerPerfil()
@@ -58,6 +69,48 @@ namespace APP_REUNE.Vista.Pages
                 lb_fechaRenovar.Content = "No logramos calcular tu fecha límite de acceso, pero debes renovar el token cada 30 días";
             }
              
+        }
+
+        private async void btnRenovar_Click(object sender, RoutedEventArgs e)
+        {
+            string username = SesionUsuario_Modelo.nombre; // Asumiendo que el nombre del usuario se ingresa en un campo de texto
+            string password = SesionUsuario_Modelo.password; // Asumiendo que la contraseña se ingresa en un campo de texto
+            var apiService = new ApiService();
+
+            try
+            {
+                bool result = await apiService.RenewToken(username, password);
+                if (result)
+                {
+                    Toast.CreateLog("Token renovado", $"El token para el usuario {username} ha sido renovado.");
+                    Configuracion_Datos datos = new Configuracion_Datos();
+                    datos.Obtener_Configuracion();
+                    ObtenerPerfil();
+                }
+                else
+                {
+                    Toast.Error("Error al renovar el token", "No se pudo renovar el token, por favor intente nuevamente.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.Log("Error al renovar el token", "Verifica que el token del Super usuario sea valido");
+            }
+        }
+
+        private async void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            // Eliminar el archivo de sesión temporal
+            Utilidad.SesionTemporal.DeleteFile();
+
+            // Crear y guardar el log
+            await Task.Run(() =>
+            {
+                Toast.Correcto("Sesión cerrada en el dispositivo actual"); 
+            });
+
+            // Cerrar la aplicación
+            Application.Current.Shutdown();
         }
     }
 }

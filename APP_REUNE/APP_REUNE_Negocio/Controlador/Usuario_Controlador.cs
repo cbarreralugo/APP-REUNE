@@ -99,5 +99,43 @@ namespace APP_REUNE_Negocio.Controlador
             }
             finally { dt = null; }
         }
+
+        public DataTable ActualizarUsuario(Usuario_Modelo modelo)
+        {
+            //@accion -- 'C' para crear, 'O' para obtener, 'E' para editar
+            //@id_usuario  -- Usado para obtener o editar un usuario específico
+            //@nombre
+            //@password
+            //@token
+            DataTable dt = new DataTable();
+            string[,] parametro =
+            {
+                {"@accion","E" },
+                {"@id_usuario","" },
+                {"@nombre","" },
+                {"@password",""},
+                {"@token",modelo.token.ToString() },
+                {"@userid_api",""},
+                {"@username_api",modelo.username_api.ToString()  },
+                {"@password_api",""},
+                {"@institucionid_api","" },
+                {"@is_active_api",""},
+                {"@profileid_api",""  },
+                {"@date_api",""  },
+                {"@system_api",""}
+            };
+
+            try
+            {
+                dt = ConnectorLibrary.App.GetCurrentConnector().Tabla(Utilidades.SP_Usuario.sp_reune_crear_obtener_editar_usuario, parametro);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new DataTable();
+            }
+            finally { dt = null; }
+        }
     }
 }

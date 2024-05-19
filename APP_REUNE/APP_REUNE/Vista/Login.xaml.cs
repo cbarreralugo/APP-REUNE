@@ -111,6 +111,7 @@ namespace APP_REUNE.Vista
                         Index index = new Index();
                         index.Show();
                         this.Close();
+
                     }
                     else
                     {

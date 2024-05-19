@@ -455,6 +455,82 @@
         </Setter>
 
     </Style>
+    <Style x:Key="RenovarToken" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="white"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+
+
+                    <Border Name="back" CornerRadius="5" Padding="{TemplateBinding Padding}" Background="{DynamicResource PrimaryOrangeColor}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width ="20"/>
+                                <ColumnDefinition Width ="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Path Margin="5,0,0,0" Height="12" Width="12" SnapsToDevicePixels="True" Data="{DynamicResource lock}" Fill="White" Stretch="Uniform" VerticalAlignment="Center"  />
+                            <ContentPresenter Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+
+
+                        </Grid>
+
+                    </Border>
+
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="back"  Value="#FF41417D"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+    <Style x:Key="CerrarSesion" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="white"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+
+
+                    <Border Name="back" CornerRadius="5" Padding="{TemplateBinding Padding}" Background="{DynamicResource PrimaryRedColor}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width ="20"/>
+                                <ColumnDefinition Width ="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Path Margin="5,0,0,0" Height="12" Width="12" SnapsToDevicePixels="True" Data="{DynamicResource close}" Fill="White" Stretch="Uniform" VerticalAlignment="Center"  />
+                            <ContentPresenter Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+
+
+                        </Grid>
+
+                    </Border>
+
+
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="back"  Value="#FF41417D"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
     
     
     <Style TargetType="{x:Type GridViewColumnHeader}">
