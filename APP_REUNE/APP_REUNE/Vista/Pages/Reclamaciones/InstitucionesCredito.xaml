@@ -30,8 +30,7 @@
             <Button VerticalAlignment="Center"
                     Margin="0,0,20,0"
                     Style="{DynamicResource Examinar}"
-                    HorizontalAlignment="Right"
-                    Visibility="Hidden"
+                    HorizontalAlignment="Right" 
                     Content="  Examinar archivo   "
                     Click="Button_Click"/>
             <StackPanel Orientation="Horizontal"

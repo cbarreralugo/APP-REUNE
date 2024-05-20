@@ -145,6 +145,9 @@
     </ApplicationDefinition>
     <Compile Include="Service\Aclaraciones_Service.cs" />
     <Compile Include="Service\Login_Service.cs" />
+    <Compile Include="Service\ReclamacionCredito_Service.cs" />
+    <Compile Include="Service\ReclamacionGeneral_Service.cs" />
+    <Compile Include="Service\ReclamacionSeguros_Service.cs" />
     <Compile Include="Service\Usuario_Service.cs" />
     <Compile Include="Utilidad\SesionTemporal.cs" />
     <Compile Include="Utilidad\Util.cs" />

@@ -1,5 +1,10 @@
-﻿using System;
+﻿using APP_REUNE.Service;
+using APP_REUNE_Negocio.Modelo;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +50,7 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             txt_RecEntidadFederativa.Text = "09";
             txt_RecCodigoPostal.Text = "5120";
             txt_RecMunicipioAlcaldia.Text = "004";
-            
+
         }
 
         private void DpFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -54,16 +59,48 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             //MessageBox.Show("Fecha seleccionada: " + dp_RecFechaReclamacion.SelectedDate.Value.ToString("dd/MM/yyyy"));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "JSON files (*.json)|*.json",
+                Title = "Seleccionar archivo JSON"
+            };
 
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+                string jsonContent = File.ReadAllText(filePath);
+
+                var reclamacionCredito = JsonConvert.DeserializeObject<ReclamacionCredito_Model>(jsonContent);
+
+                if (reclamacionCredito != null)
+                {
+                    var apiService = new ReclamacionCredito_Service();
+                    bool success = await apiService.SendReclamacion(reclamacionCredito);
+
+                    if (success)
+                    {
+
+                        Toast.Correcto("Archivo enviado correctamente.");
+                    }
+                    else
+                    {
+                        Toast.Error("Error al enviar el archivo.");
+                    }
+                }
+                else
+                {
+                    Toast.Error("El archivo JSON no es válido.");
+                }
+            }
         }
 
-        private void btn_Enviar_Click(object sender, RoutedEventArgs e)
+
+        private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
         {
-
+            Toast.Denegado("Acción fuera de servicio");
         }
-
         private void btn_Limpiar_Click(object sender, RoutedEventArgs e)
         {
 

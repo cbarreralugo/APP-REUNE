@@ -1,12 +1,17 @@
-﻿using System;
+﻿using APP_REUNE.Service;
+using APP_REUNE_Negocio.Modelo;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
+using System.Windows.Documents; 
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -46,8 +51,47 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             txt_RecMunicipioAlcaldia.Text = "004";
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "JSON files (*.json)|*.json",
+                Title = "Seleccionar archivo JSON"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filePath = openFileDialog.FileName;
+                string jsonContent = File.ReadAllText(filePath);
+
+                var reclamacionGeneral = JsonConvert.DeserializeObject<ReclamacionGeneral_Model>(jsonContent);
+
+                if (reclamacionGeneral != null)
+                {
+                    var apiService = new ReclamacionesGeneral_Service();
+                    bool success = await apiService.SendReclamacion(reclamacionGeneral);
+
+                    if (success)
+                    {
+
+                        Toast.Correcto("Archivo enviado correctamente.");
+                    }
+                    else
+                    {
+                        Toast.Error("Error al enviar el archivo.");
+                    }
+                }
+                else
+                {
+                    Toast.Error("El archivo JSON no es válido.");
+                }
+            }
+        }
+
+
+        private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
+        {
+            Toast.Denegado("Acción fuera de servicio");
 
         }
 
@@ -56,9 +100,5 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
 
         }
 
-        private void btn_Enviar_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

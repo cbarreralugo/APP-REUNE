@@ -56,6 +56,7 @@
     <Compile Include="Modelo\API_Modelo.cs" />
     <Compile Include="Modelo\Configuraciones_Modelo.cs" />
     <Compile Include="Modelo\Log_Modelo.cs" />
+    <Compile Include="Modelo\Reclamaciones_Modelo.cs" />
     <Compile Include="Modelo\SesionUsuario_Modelo.cs" />
     <Compile Include="Modelo\Sesion_Modelo.cs" />
     <Compile Include="Modelo\Usuario_Modelo.cs" />
