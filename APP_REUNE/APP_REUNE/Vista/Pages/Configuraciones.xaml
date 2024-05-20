@@ -1,0 +1,110 @@
+﻿<Page x:Class="APP_REUNE.Vista.Pages.Configuraciones"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:APP_REUNE.Vista.Pages"
+                  mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Dashboard">
+
+    <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="419*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" 
+                             Margin="0 20 0 0"
+                             VerticalAlignment="Center">
+                                    <Label Content="URL de la API:"
+                            FontSize="12"
+                            Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <TextBox Name="txt_API"
+                             Width="350"
+                             Text=""
+                             Margin="15 0 0 0"
+                             Tag="Ingresa la dirección de API Base"
+                             Style="{DynamicResource TextBoxDefault}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 20 0 0">
+                    <Label Content="Validar login de acceso por medio de API:"
+                           FontSize="12"
+                           Foreground="{DynamicResource PrimaryTextColor}"
+                            />
+                    <ToggleButton x:Name="Chek_Login"
+                                  Margin="15 0 0 0"
+                                  IsChecked="False" 
+                                  Style="{DynamicResource ToggleButtonStyle2}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                             Margin="0 20 0 0"
+                             VerticalAlignment="Center">
+                    <Label Content="Crear Log de actividades:"
+                            FontSize="12"
+                            Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <ComboBox x:Name="cb_log"
+                              Width="295"
+                              Margin="10 0 0 0"
+                              SelectedIndex="0" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0 20 0 0"
+                            VerticalAlignment="Center">
+                    <Label Content="Ruta local del archivo .log:"
+                           FontSize="12"
+                           Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <TextBox Name="txt_RutaLog" 
+                             Width="300"
+                             Text=""
+                             Tag="Coloca la ruta en donde estará el .log"
+                             Style="{DynamicResource TextBoxDefault}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+              Margin="0 20 0 0"
+              VerticalAlignment="Center">
+                    <Label Content="Ruta local de sessiones temporales:"
+             FontSize="12"
+             Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <TextBox Name="txt_rutaTemporalSesion"
+              Width="237"
+              Text=""
+              Margin="15 0 0 0"
+              Tag="Ingresa la ruta local de sesiones temporales"
+              Style="{DynamicResource TextBoxDefault}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+             Margin="0 20 0 0">
+                    <Label Content="Los usuarios pueden auto regenerar su token de acceso:"
+            FontSize="12"
+            Foreground="{DynamicResource PrimaryTextColor}"
+             />
+                    <ToggleButton x:Name="Chek_autoToken"
+                   Margin="15 0 0 0"
+                   IsChecked="False" 
+                   Style="{DynamicResource ToggleButtonStyle2}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="0 20 0 0"
+                            VerticalAlignment="Center">
+                    <Button x:Name="btn_Guardar"
+                            Content="Guardar cambios  " Click="btn_Guardar_Click"
+                            Style="{DynamicResource Add}"/>
+
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Page>

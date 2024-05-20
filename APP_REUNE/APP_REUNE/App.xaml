@@ -2,8 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:APP_REUNE"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Vista/Login.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="Vista/Themes/DarkTheme.xaml"/>
+
+                <ResourceDictionary Source="Vista/Assets/Icons.xaml"/>
+
+                <ResourceDictionary Source="Vista/Styles/MainStyle.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
