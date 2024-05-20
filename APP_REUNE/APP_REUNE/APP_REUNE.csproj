@@ -411,5 +411,8 @@
   <ItemGroup>
     <Resource Include="Vista\sesion.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Pages\user.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

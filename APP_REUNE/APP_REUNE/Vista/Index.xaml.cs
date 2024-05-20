@@ -16,8 +16,15 @@ namespace APP_REUNE.Vista
         {
             InitializeComponent();
             validarSesion();
-        }
 
+        }
+        private void Header_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
         private void validarSesion()
         {
             if (SesionUsuario_Modelo.id_usuario != 0)
@@ -32,7 +39,9 @@ namespace APP_REUNE.Vista
                     Toast.Correcto("Haz ingresado como Usuario general", "Bienvenido");
                     this.AccesoUsuarioGeneral();
                 }
-                lb_username.Content = SesionUsuario_Modelo.nombre;
+                lb_username.Content = SesionUsuario_Modelo.nombre; 
+                fContainer.Navigate(new System.Uri("Vista/Pages/Home.xaml", UriKind.RelativeOrAbsolute));
+                lb_title.Content = "";
             }
             else
             {
@@ -248,6 +257,7 @@ namespace APP_REUNE.Vista
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
             fContainer.Navigate(new System.Uri("Vista/Pages/Home.xaml", UriKind.RelativeOrAbsolute));
+            lb_title.Content = "";
         }
 
         private void btnDashboard_Click(object sender, RoutedEventArgs e)

@@ -7,22 +7,21 @@
         xmlns:local="clr-namespace:APP_REUNE.Vista"
         mc:Ignorable="d" Name="Main"
         Title="Index" Height="720" Width="1320"
-        WindowStartupLocation="CenterScreen" WindowStyle="None"
-        Background="Transparent" AllowsTransparency="True"
-        ResizeMode="NoResize" FontFamily="Poppins">
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        Background="Transparent" 
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip" 
+        FontFamily="Poppins">
 
-
-    <Border Background="{DynamicResource PrimaryBackgroundColor}"
-            CornerRadius="8">
+    <Border Background="{DynamicResource PrimaryBackgroundColor}" CornerRadius="8">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="0"
-                    Background="{DynamicResource SecundaryBackgroundColor}"
-                    CornerRadius="8 0 0 8">
+            <Border Grid.Column="0" Background="{DynamicResource SecundaryBackgroundColor}" CornerRadius="8 0 0 8">
                 <Grid x:Name="GridNav" Width="60">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>
@@ -30,55 +29,46 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <Border 
-                              Margin="14 0 0 0"
-                              Width="32" Height="24"
-                              HorizontalAlignment="Left">
+                        <Border Margin="14 0 0 0" Width="32" Height="24" HorizontalAlignment="Left">
                             <!--<Border.Background>
                                 <ImageBrush ImageSource="Resources/logo.png" Stretch="Uniform"/>
                             </Border.Background>-->
                         </Border>
 
-                        <Label Content="API Reune"
-                               Foreground="{DynamicResource PrimaryTextColor}"
-                               FontWeight="Bold"
-                               FontSize="16"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Left"
-                               Margin="60 0 0 0"/>
+                        <Label Content="API Reune" Foreground="{DynamicResource PrimaryTextColor}" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60 0 0 0"/>
                     </Grid>
 
                     <!-- Start: MenuItem -->
                     <StackPanel Grid.Row="1" Margin="-1 40 0 20">
-                        <Button x:Name="btnHome" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnHome_MouseEnter" MouseLeave="btnHome_MouseLeave" Click="btnHome_Click">
+                        <Button x:Name="btnHome" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnHome_MouseEnter" MouseLeave="btnHome_MouseLeave" Click="btnHome_Click">
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource home}" IconWidth="16" Text="Home" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
+                        <Button x:Name="btnDashboard" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnDashboard_MouseEnter" MouseLeave="btnDashboard_MouseLeave" Click="btnDashboard_Click">
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource dashboard}" IconWidth="16" Text="Reclamaciones" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnConsultas" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnConsultas_MouseEnter" MouseLeave="btnConsultas_MouseLeave" Click="btnConsultas_Click">
+                        <Button x:Name="btnConsultas" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnConsultas_MouseEnter" MouseLeave="btnConsultas_MouseLeave" Click="btnConsultas_Click">
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource collections}" IconWidth="16" Text="Aclaraciones" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnAyudaYSoporte" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnAyudaYSoporte_MouseEnter" MouseLeave="btnAyudaYSoporte_MouseLeave">
+                        <Button x:Name="btnAyudaYSoporte" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnAyudaYSoporte_MouseEnter" MouseLeave="btnAyudaYSoporte_MouseLeave">
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource notifications}" IconWidth="16" Text="Ayuda y soporte" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnPerfilDeUsuario" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnPerfilDeUsuario_MouseEnter" MouseLeave="btnPerfilDeUsuario_MouseLeave" Click="btnPerfilDeUsuario_Click">
+                        <Button x:Name="btnPerfilDeUsuario" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnPerfilDeUsuario_MouseEnter" MouseLeave="btnPerfilDeUsuario_MouseLeave" Click="btnPerfilDeUsuario_Click">
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource users}" IconWidth="16" Text="Perfil de usaurio" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnGestionDeUsuario" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnGestionDeUsuario_MouseEnter" MouseLeave="btnGestionDeUsuario_MouseLeave" Click="btnGestionDeUsuario_Click">
+                        <Button x:Name="btnGestionDeUsuario" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnGestionDeUsuario_MouseEnter" MouseLeave="btnGestionDeUsuario_MouseLeave" Click="btnGestionDeUsuario_Click">
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource customers}" IconWidth="16" Text="Gestion de usuarios" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnConfiguraciones" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnConfiguraciones_MouseEnter" MouseLeave="btnConfiguraciones_MouseLeave" Click="btnConfiguraciones_Click">
+                        <Button x:Name="btnConfiguraciones" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnConfiguraciones_MouseEnter" MouseLeave="btnConfiguraciones_MouseLeave" Click="btnConfiguraciones_Click">
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource settings}" IconWidth="16" Text="Configuraciones" VerticalAlignment="Center"/>
                         </Button>
-                        <Button x:Name="btnLog" Style="{DynamicResource PopupButtonStyle}"  MouseEnter="btnLog_MouseEnter" MouseLeave="btnLog_MouseLeave" Click="btnLog_Click">
+                        <Button x:Name="btnLog" Style="{DynamicResource PopupButtonStyle}" MouseEnter="btnLog_MouseEnter" MouseLeave="btnLog_MouseLeave" Click="btnLog_Click">
                             <menu:MenuItem GroupName="MenuItem" IndicatorBrush="{DynamicResource PrimaryBlueColor}" Icon="{DynamicResource ResourceKey=lock}" IconWidth="16" Text="Log" VerticalAlignment="Center"/>
                         </Button>
                     </StackPanel>
                     <!-- End: MenuItem -->
 
                     <!-- Start: Popup User Control -->
-                    <Popup x:Name="Popup"  AllowsTransparency="True"  HorizontalOffset="0" VerticalOffset="10">
+                    <Popup x:Name="Popup" AllowsTransparency="True" HorizontalOffset="0" VerticalOffset="10">
                         <menu:UserPopup x:Name="Header" Foreground="{DynamicResource PrimaryTextColor}"/>
                     </Popup>
                     <!-- End: Popup User Control -->
@@ -97,28 +87,22 @@
                         <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                             <BeginStoryboard>
                                 <Storyboard x:Name="HideStackPanel">
-                                    <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="210" To="60" Duration="0:0:0.5">
-                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="210" To="60" Duration="0:0:0.5"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                         <EventTrigger RoutedEvent="ToggleButton.Checked">
                             <BeginStoryboard>
                                 <Storyboard x:Name="ShowStackPanel">
-                                    <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="60" To="210" Duration="0:0:0.5">
-                                    </DoubleAnimation>
+                                    <DoubleAnimation Storyboard.TargetName="GridNav" Storyboard.TargetProperty="Width" BeginTime="0:0:0" From="60" To="210" Duration="0:0:0.5"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                     </ToggleButton.Triggers>
                 </ToggleButton>
 
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Border Grid.Row="0" 
-                         Padding="5"
-                            Margin=" 50 0 0 0"
-                         Background="{DynamicResource PrimaryEmojiColor}"
-                         HorizontalAlignment="Left" CornerRadius="50">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" MouseDown="Header_MouseDown">
+                    <Border Grid.Row="0" Padding="5" Margin="50 0 0 0" Background="{DynamicResource PrimaryEmojiColor}" HorizontalAlignment="Left" CornerRadius="50">
                         <Ellipse Height="20" Width="20">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="/Vista/user.png"/>
@@ -126,23 +110,13 @@
                         </Ellipse>
                     </Border>
 
-                    <Label x:Name="lb_username"
-                           HorizontalAlignment="Left"  
-                           FontSize="14" 
-                           VerticalAlignment="Center"
-                           Content="UserName"
-                           Foreground="{DynamicResource PrimaryTextColor}"/>
+                    <Label x:Name="lb_username" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" Content="UserName" Foreground="{DynamicResource PrimaryTextColor}"/>
                 </StackPanel>
 
-                <StackPanel  VerticalAlignment="Center">
-                     
-                    <Label x:Name="lb_title"
-                           HorizontalAlignment="Center"   
-                           VerticalAlignment="Center"
-                           Content=""
-                           Style="{DynamicResource FreeTeamSubTitlesLabelStyle}"/>
+                <StackPanel VerticalAlignment="Center">
+                    <Label x:Name="lb_title" HorizontalAlignment="Center" VerticalAlignment="Center" Content="" Style="{DynamicResource FreeTeamSubTitlesLabelStyle}"/>
                 </StackPanel>
-                <StackPanel  VerticalAlignment="Center"/>
+                <StackPanel VerticalAlignment="Center"/>
                 <!-- Start: Button Close | Restore | Minimize -->
                 <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">
                     <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
@@ -162,17 +136,8 @@
                 </StackPanel>
                 <!-- End: Button Close | Restore | Minimize -->
 
-                <Frame Grid.Row="1"
-                       Name="fContainer" 
-                       NavigationUIVisibility="Hidden"
-                       Margin="15,0,15,20">
-
-                </Frame>
-
+                <Frame Grid.Row="1" Name="fContainer" NavigationUIVisibility="Hidden" Margin="15,0,15,20"/>
             </Grid>
-
-
-
         </Grid>
     </Border>
 </Window>
