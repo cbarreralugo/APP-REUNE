@@ -98,6 +98,8 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form_Toast";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "FormToast";
             ((System.ComponentModel.ISupportInitialize)(this.img_estatus)).EndInit();
             this.ResumeLayout(false);

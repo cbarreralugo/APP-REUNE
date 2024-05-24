@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:APP_REUNE.Vista.Pages.Reclamaciones"
-       xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1200"
       Title="InstitucionesCredito">
@@ -25,12 +25,12 @@
             </Grid.RowDefinitions>
             <Label Content="Ingresa la información necesaria en los campos, o selecciona un archivo con la información mapeada."
                    Foreground="{DynamicResource PrimaryTextColor}"
-                    VerticalAlignment="Center"
+                   VerticalAlignment="Center"
                    Margin="10,0,0,0"/>
             <Button VerticalAlignment="Center"
                     Margin="0,0,20,0"
                     Style="{DynamicResource Examinar}"
-                    HorizontalAlignment="Right" 
+                    HorizontalAlignment="Right"
                     Content="  Examinar archivo   "
                     Click="Button_Click"/>
             <StackPanel Orientation="Horizontal"
@@ -38,7 +38,7 @@
                         Grid.Row="2">
 
                 <StackPanel Orientation="Vertical"
-                            Width="320"
+                            Width="300"
                             HorizontalAlignment="Left"
                             Margin="10 0 0 0">
                     <Label Content="Denominación o razón social:"
@@ -46,14 +46,14 @@
                            FontSize="12"/>
                     <TextBox Name="txt_RecDenominacion"
                              Text="" 
-                             Width="320"
+                             Width="300"
                              Tag="Nombre completo tal cual como se muestra en REUNE."
                              MaxLength="400"
                              Style="{DynamicResource TextBoxDefault}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                             Width="320"
+                             Width="300"
                              HorizontalAlignment="Left"
                              Margin="10 0 0 0">
                     <Label Content="Sector al que pertenece la IF:"
@@ -61,38 +61,51 @@
                             FontSize="12"/>
                     <TextBox Name="txt_RecSector"
                               Text="" 
-                             Width="320"
+                             Width="300"
                               Tag="Sector completo tal cual como se muestra en REUNE."
                               MaxLength="200"
                               Style="{DynamicResource TextBoxDefault}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                             Width="150"
+                             Width="120"
                              HorizontalAlignment="Left"
                              Margin="10 0 0 0">
                     <Label Content="Trimestre a informar:"
                             Foreground="{DynamicResource PrimaryTextColor}"
                             FontSize="12"/>
                     <ComboBox x:Name="cb_RecTrimestre"
-                               Width="150" 
+                               Width="120" 
                               Height="35"
                                SelectedIndex="0" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical"
-                             Width="150"
+                             Width="130"
                              HorizontalAlignment="Left"
                              Margin="10 0 0 0">
                     <Label Content="Número de reclamación:"
                             Foreground="{DynamicResource PrimaryTextColor}"
                             FontSize="12"/>
                     <ComboBox x:Name="cb_RecNumero"
-                               Width="150" 
+                               Width="130" 
                               Height="35"
                                SelectedIndex="0" />
                 </StackPanel>
-
+                <StackPanel Orientation="Vertical"
+                             Width="240"
+                             HorizontalAlignment="Left"
+                             Margin="10 0 0 0">
+                    <Label Content="Subfolio de atención:"
+                           Foreground="{DynamicResource PrimaryTextColor}"
+                           FontSize="12"/>
+                    <TextBox Name="txt_RecSubFolioAtencion"
+                             Text="" 
+                             Width="240"
+                             Tag="Subfolio único definido por la Institución."
+                             MaxLength="50"
+                             Style="{DynamicResource TextBoxDefault}"/>
+                </StackPanel>
 
             </StackPanel>
             <StackPanel  Orientation="Horizontal"
@@ -207,7 +220,7 @@
                              Width="150"
                              HorizontalAlignment="Left"
                              Margin="10 0 0 0">
-                    <Label Content="Fecha de atención:"
+                    <Label Content="Fecha de notificación :"
                             Foreground="{DynamicResource PrimaryTextColor}"
                             FontSize="12"/>
                     <DatePicker x:Name="dp_RecFechaNotifiUsuario"
@@ -449,34 +462,58 @@
                  VerticalAlignment="Center"
                  Grid.Row="7">
                 <StackPanel Orientation="Vertical"
-                          Width="700"
+                          Width="500"
+                            Visibility="Collapsed"
                           HorizontalAlignment="Left"
                           Margin="10 0 0 0">
                     <Label Content="Folio R27:"
                          Foreground="{DynamicResource PrimaryTextColor}"
                          FontSize="12"/>
                     <TextBox Name="txt_RecFolioR27"
-             Text="" 
-            Width="700"
-             Tag="(De acuerdo al monto reclamado o requerido y del Estado de concluido o pendiente)"
-             MaxLength="500"
-             Style="{DynamicResource TextBoxDefault}"/>
+                         Text="" 
+                        Width="500"
+                         Tag="(De acuerdo al monto reclamado o requerido y del Estado de concluido o pendiente)"
+                         MaxLength="500"
+                         Style="{DynamicResource TextBoxDefault}"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+           Width="200"
+           HorizontalAlignment="Left"
+           Margin="10 0 0 0">
+                    <Label Content="Clave SIPRES"
+          Foreground="{DynamicResource PrimaryTextColor}"
+          FontSize="12"/>
+                    <TextBox Name="txt_RecClaveSIPRES"
+          Text="" 
+         Width="200"
+          Tag="Clave SIPRES"
+          MaxLength="6"
+          Style="{DynamicResource TextBoxDefault}"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
- VerticalAlignment="Center"
- Grid.Row="8">
+                         VerticalAlignment="Center"
+                         Grid.Row="8">
                 <Button x:Name="btn_Enviar"
-                        Content="   Enviar   "
-                        Margin="10 0 10 0"
-                        Style="{DynamicResource Add}"
-                        Click="btn_Enviar_Click"/>
+                         Content="   Enviar   "
+                         Margin="10 0 10 0"
+                         Style="{DynamicResource Add}"
+                         Click="btn_Enviar_Click"/>
                 <Button x:Name="btn_Limpiar" 
                          Content="   Limpiar   "
                          Margin="10 0 10 0"
-                        
-                        Style="{DynamicResource Del}"
+                         Style="{DynamicResource Del}"
                          Click="btn_Limpiar_Click"/>
+                <Button x:Name="btn_Guardar"
+                         Content="   Guardar registros   "
+                         Margin="10 0 10 0"
+                         Style="{DynamicResource ExpTxt}"
+                         Click="btn_Guardar_Click"/>
+                <Button x:Name="btn_Cargar"
+                         Content="   Cargar información previa   "
+                         Margin="10 0 10 0"
+                         Style="{DynamicResource Examinar}"
+                         Click="btn_Cargar_Click"/>
             </StackPanel>
         </Grid>
     </Border>

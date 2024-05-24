@@ -24,6 +24,7 @@ namespace APP_REUNE_Negocio.Modelo
         public string ruta_sesion_temporal { get; set; }
         public int mostrar_alerts { get; set; }
         public int auto_regenerar_token_user { get; set; }
+        public  string pre_info { get; set; }
     }
 
     public static class Configuracion_Modelo
@@ -44,5 +45,6 @@ namespace APP_REUNE_Negocio.Modelo
         public static string key { get; set; }
         public static int mostrar_alerts { get; set; }
         public static string api_reune { get; set; }
+        public static string pre_info {  get; set; }
     }
 }

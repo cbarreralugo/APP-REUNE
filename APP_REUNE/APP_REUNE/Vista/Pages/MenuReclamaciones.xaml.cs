@@ -30,7 +30,7 @@ namespace APP_REUNE.Vista.Pages
         private void CargarCombo()
         {
 
-            Util.CargarComboReclamaciones(cb_Reclamaciones, 0);
+            Util.CargarComboReclamaciones(cb_Reclamaciones, 1);
            // VerFrame(0);
         }
 

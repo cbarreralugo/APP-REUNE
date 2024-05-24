@@ -1,4 +1,5 @@
 ﻿using APP_REUNE.Service;
+using APP_REUNE.Utilidad;
 using APP_REUNE_Negocio.Modelo;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -25,15 +26,43 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
     /// </summary>
     public partial class InstitucionesCredito : Page
     {
+        private ReclamacionesCredito_Service _reclamacionesService;
+        private string fileName = "ReclamacionesCredito.txt";
+
         public InstitucionesCredito()
         {
             InitializeComponent();
-            dp_RecFechaReclamacion.SelectedDateChanged += DpFecha_SelectedDateChanged;
             CargarPreInformacio();
+            _reclamacionesService = new ReclamacionesCredito_Service();
         }
 
         private void CargarPreInformacio()
         {
+            // Limpiar todos los campos
+            txt_RecDenominacion.Clear();
+            txt_RecSector.Clear();
+            cb_RecTrimestre.SelectedIndex = 0;
+            cb_RecNumero.SelectedIndex = 0;
+            txt_RecFolioAtencion.Clear();
+            txt_RecSubFolioAtencion.Clear();
+            cb_RecEstadoConPend.SelectedIndex = 0;
+            dp_RecFechaReclamacion.SelectedDate = DateTime.Now;
+            dp_RecFechaAtencion.SelectedDate = DateTime.Now;
+            txt_RecMedioRecepcionCanal.Clear();
+            txt_RecProductoServicio.Clear();
+            txt_RecCausaMotivo.Clear();
+            dp_RecFechaResolucion.SelectedDate = DateTime.Now;
+            dp_RecFechaNotifiUsuario.SelectedDate = DateTime.Now;
+            txt_RecEntidadFederativa.Clear();
+            txt_RecCodigoPostal.Clear();
+            txt_RecMunicipioAlcaldia.Clear();
+            txt_RecLocalidad.Clear();
+            txt_RecColonia.Clear();
+            cb_RecTipoPersona.SelectedIndex = 0;
+            cb_RecNivelAtencion.SelectedIndex = 0;
+            txt_RecClaveSIPRES.Clear();
+            txt_RecFolioCondusef.Clear();
+            cb_RecReversa.SelectedIndex = 0;
             Utilidad.Util.CargarComboTrimestre(cb_RecTrimestre);
             Utilidad.Util.CargarComboNumero(cb_RecNumero);
             Utilidad.Util.CargarComboEstadoConPend(cb_RecEstadoConPend);
@@ -61,49 +90,180 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            try
             {
-                Filter = "JSON files (*.json)|*.json",
-                Title = "Seleccionar archivo JSON"
-            };
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string filePath = openFileDialog.FileName;
-                string jsonContent = File.ReadAllText(filePath);
-
-                var reclamacionCredito = JsonConvert.DeserializeObject<ReclamacionCredito_Model>(jsonContent);
-
-                if (reclamacionCredito != null)
+                OpenFileDialog openFileDialog = new OpenFileDialog
                 {
-                    var apiService = new ReclamacionCredito_Service();
-                    bool success = await apiService.SendReclamacion(reclamacionCredito);
+                    Filter = "JSON files (*.json)|*.json",
+                    Title = "Seleccionar archivo JSON"
+                };
 
-                    if (success)
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string filePath = openFileDialog.FileName;
+                    string jsonContent = File.ReadAllText(filePath);
+
+                    var reclamaciones = JsonConvert.DeserializeObject<List<ReclamacionCredito_Model>>(jsonContent);
+
+                    if (reclamaciones != null)
                     {
+                        var success = await _reclamacionesService.SendReclamacionesCredito(reclamaciones);
 
-                        Toast.Correcto("Archivo enviado correctamente.");
+                        if (success)
+                        {
+                            Toast.Correcto("Archivo enviado correctamente.");
+                        }
+                        else
+                        {
+                            Toast.Error("Error al enviar el archivo.");
+                        }
                     }
                     else
                     {
-                        Toast.Error("Error al enviar el archivo.");
+                        Toast.Error("El archivo JSON no es válido.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.Sistema("Error al leer archivo json: ",ex);
+            }
+        }
+
+        private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var reclamacion = new ReclamacionCredito_Model
+                {
+                    RecDenominacion = txt_RecDenominacion.Text,
+                    RecSector = txt_RecSector.Text,
+                    RecTrimestre = int.Parse(cb_RecTrimestre.SelectedValue?.ToString() ?? "0"),
+                    RecNumero = int.Parse(cb_RecNumero.SelectedValue?.ToString() ?? "0"),
+                    RecFolioAtencion = txt_RecFolioAtencion.Text,
+                    RecSubFolioAtencion = txt_RecSubFolioAtencion.Text,
+                    RecEstadoConPend = int.Parse(cb_RecEstadoConPend.SelectedValue?.ToString() ?? "0"),
+                    RecFechaReclamacion = dp_RecFechaReclamacion.SelectedDate?.ToString("dd/MM/yyyy"),
+                    RecFechaAtencion = dp_RecFechaAtencion.SelectedDate?.ToString("dd/MM/yyyy"),
+                    RecMedioRecepcionCanal = int.TryParse(txt_RecMedioRecepcionCanal.Text, out var medioRecepcionCanal) ? medioRecepcionCanal : 0,
+                    RecProductoServicio = txt_RecProductoServicio.Text,
+                    RecCausaMotivo = txt_RecCausaMotivo.Text,
+                    RecFechaResolucion = dp_RecFechaResolucion.SelectedDate?.ToString("dd/MM/yyyy"),
+                    RecFechaNotifiUsuario = dp_RecFechaNotifiUsuario.SelectedDate?.ToString("dd/MM/yyyy"),
+                    RecEntidadFederativa = int.TryParse(txt_RecEntidadFederativa.Text, out var entidadFederativa) ? entidadFederativa : 0,
+                    RecCodigoPostal = int.TryParse(txt_RecCodigoPostal.Text, out var codigoPostal) ? codigoPostal : 0,
+                    RecMunicipioAlcaldia = int.TryParse(txt_RecMunicipioAlcaldia.Text, out var municipioAlcaldia) ? municipioAlcaldia : 0,
+                    RecLocalidad = int.TryParse(txt_RecLocalidad.Text, out var localidad) ? localidad : 0,
+                    RecColonia = string.IsNullOrEmpty(txt_RecColonia.Text) ? (int?)null : int.TryParse(txt_RecColonia.Text, out var colonia) ? colonia : (int?)null,
+                    RecTipoPersona = int.TryParse(cb_RecTipoPersona.SelectedValue?.ToString(), out var tipoPersona) ? tipoPersona : 0,
+                    RecNivelAtencion = int.TryParse(cb_RecNivelAtencion.SelectedValue?.ToString(), out var nivelAtencion) ? nivelAtencion : 0,
+                    RecClaveSIPRES = int.TryParse(txt_RecClaveSIPRES.Text, out var claveSIPRES) ? claveSIPRES : 0,
+                    RecFolioCondusef = txt_RecFolioCondusef.Text,
+                    RecReversa = cb_RecReversa.Text
+                };
+
+                var reclamaciones = new List<ReclamacionCredito_Model> { reclamacion };
+
+                bool success = await _reclamacionesService.SendReclamacionesCredito(reclamaciones);
+
+                if (success)
+                {
+                    Toast.Correcto("Reclamación enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la reclamación.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.Sistema("Error: " ,ex);
+            }
+        }
+        private void btn_Guardar_Click(object sender, RoutedEventArgs e)
+        {
+            string campos = string.Empty;
+
+            try
+            {
+                campos = $"{txt_RecDenominacion.Text}|{txt_RecSector.Text}|{cb_RecTrimestre.SelectedValue}|{cb_RecNumero.SelectedValue}|{txt_RecFolioAtencion.Text}|{txt_RecSubFolioAtencion.Text}|{cb_RecEstadoConPend.SelectedValue}|{dp_RecFechaReclamacion.SelectedDate?.ToString("dd/MM/yyyy")}|{dp_RecFechaAtencion.SelectedDate?.ToString("dd/MM/yyyy")}|{txt_RecMedioRecepcionCanal.Text}|{txt_RecProductoServicio.Text}|{txt_RecCausaMotivo.Text}|{dp_RecFechaResolucion.SelectedDate?.ToString("dd/MM/yyyy")}|{dp_RecFechaNotifiUsuario.SelectedDate?.ToString("dd/MM/yyyy")}|{txt_RecEntidadFederativa.Text}|{txt_RecCodigoPostal.Text}|{txt_RecMunicipioAlcaldia.Text}|{txt_RecLocalidad.Text}|{txt_RecColonia.Text}|{cb_RecTipoPersona.SelectedValue}|{cb_RecNivelAtencion.SelectedValue}|{txt_RecClaveSIPRES.Text}|{txt_RecFolioCondusef.Text}|{cb_RecReversa.SelectedValue}";
+
+                if (SesionTemporal.GuardarPreInfo(campos, fileName))
+                {
+                    Toast.CreateLog("Reclamaciones", "Datos guardados correctamente.");
+                }
+                else
+                {
+                    Toast.CreateLog("Reclamaciones", "Error al guardar información previa");
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.Sistema("Error al guardar los datos ", ex);
+            }
+            finally { campos = string.Empty; }
+        }
+
+        private void btn_Cargar_Click(object sender, RoutedEventArgs e)
+        {
+            string campos = string.Empty;
+
+            try
+            {
+                campos = SesionTemporal.ObtenerPreInfo(fileName);
+                if (campos != null)
+                {
+                    var parts = campos.Split('|');
+
+                    if (parts.Length >= 24)
+                    {
+                        txt_RecDenominacion.Text = parts[0];
+                        txt_RecSector.Text = parts[1];
+                        cb_RecTrimestre.SelectedValue = parts[2];
+                        cb_RecNumero.SelectedValue = parts[3];
+                        txt_RecFolioAtencion.Text = parts[4];
+                        txt_RecSubFolioAtencion.Text = parts[5];
+                        cb_RecEstadoConPend.SelectedValue = parts[6];
+                        dp_RecFechaReclamacion.SelectedDate = DateTime.ParseExact(parts[7], "dd/MM/yyyy", null);
+                        dp_RecFechaAtencion.SelectedDate = DateTime.ParseExact(parts[8], "dd/MM/yyyy", null);
+                        txt_RecMedioRecepcionCanal.Text = parts[9];
+                        txt_RecProductoServicio.Text = parts[10];
+                        txt_RecCausaMotivo.Text = parts[11];
+                        dp_RecFechaResolucion.SelectedDate = DateTime.ParseExact(parts[12], "dd/MM/yyyy", null);
+                        dp_RecFechaNotifiUsuario.SelectedDate = DateTime.ParseExact(parts[13], "dd/MM/yyyy", null);
+                        txt_RecEntidadFederativa.Text = parts[14];
+                        txt_RecCodigoPostal.Text = parts[15];
+                        txt_RecMunicipioAlcaldia.Text = parts[16];
+                        txt_RecLocalidad.Text = parts[17];
+                        txt_RecColonia.Text = parts[18];
+                        cb_RecTipoPersona.SelectedValue = parts[19];
+                        cb_RecNivelAtencion.SelectedValue = parts[20];
+                        txt_RecClaveSIPRES.Text = parts[21];
+                        txt_RecFolioCondusef.Text = parts[22];
+                        cb_RecReversa.SelectedValue = parts[23];
+
+                        Toast.Correcto("Datos cargados correctamente.");
+                        Toast.Correcto("Verifica los campos antes de enviar la solicitud.");
+                    }
+                    else
+                    {
+                        Toast.CreateLog("Reclamaciones", "Error al obtener la información previa");
                     }
                 }
                 else
                 {
-                    Toast.Error("El archivo JSON no es válido.");
+                    Toast.Error("No existe información para pre cargar.");
                 }
             }
-        }
-
-
-        private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
-        {
-            Toast.Denegado("Acción fuera de servicio");
+            catch (Exception ex)
+            {
+                Toast.Sistema("Error al cargar los datos ", ex);
+            }
+            finally { campos = string.Empty; }
         }
         private void btn_Limpiar_Click(object sender, RoutedEventArgs e)
         {
-
+            CargarPreInformacio();
         }
     }
 }

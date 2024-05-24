@@ -313,7 +313,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
 
 
-                    <Border Name="back" CornerRadius="5" Padding="{TemplateBinding Padding}" Background="{DynamicResource PrimaryGrayColor}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                    <Border Name="back" CornerRadius="5" Padding="{TemplateBinding Padding}" Background="{DynamicResource PrimaryBlueColor}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width ="20"/>

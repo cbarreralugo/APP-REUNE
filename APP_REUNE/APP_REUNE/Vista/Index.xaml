@@ -12,7 +12,8 @@
         Background="Transparent" 
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip" 
-        FontFamily="Poppins">
+        FontFamily="Poppins" Icon="/Vista/Recursos/icon.ico"
+        >
 
     <Border Background="{DynamicResource PrimaryBackgroundColor}" CornerRadius="8">
         <Grid>

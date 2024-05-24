@@ -46,7 +46,15 @@ namespace APP_REUNE.Vista
         public static void Log(string message, string title = "Acción guardada en log!. ", Exception ex = null)
         {
             ShowAlert(title, message, Form_Toast.enmType.Warning);
-            CreateLog(title, message + " \n\n" + ex != null ? ex.ToString() : "");
+            try
+            {
+             CreateLog(title, message + " \n\n" + ex != null ? ex.ToString() : "");
+            }
+            catch (Exception)
+            {
+                 
+            }
+           
         }
 
         private static void ShowAlert(string title, string message, Form_Toast.enmType type)

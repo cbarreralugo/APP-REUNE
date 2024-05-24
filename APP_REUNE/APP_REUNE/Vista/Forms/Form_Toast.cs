@@ -1,7 +1,6 @@
 ﻿using APP_REUNE.Properties;
-using System; 
+using System;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace APP_REUNE.Vista.Forms
@@ -12,8 +11,8 @@ namespace APP_REUNE.Vista.Forms
         {
             InitializeComponent();
         }
+
         // Usando métodos estáticos para diferentes tipos de alertas
-      
         public enum enmAction
         {
             wait,
@@ -30,10 +29,8 @@ namespace APP_REUNE.Vista.Forms
             System,
             Log
         }
-        private Form_Toast.enmAction action;
 
-        
-
+        private enmAction action;
         private int x, y;
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -44,7 +41,7 @@ namespace APP_REUNE.Vista.Forms
                     timer1.Interval = 5000;
                     action = enmAction.close;
                     break;
-                case Form_Toast.enmAction.start:
+                case enmAction.start:
                     this.timer1.Interval = 1;
                     this.Opacity += 0.1;
                     if (this.x < this.Location.X)
@@ -55,18 +52,17 @@ namespace APP_REUNE.Vista.Forms
                     {
                         if (this.Opacity == 1.0)
                         {
-                            action = Form_Toast.enmAction.wait;
+                            action = enmAction.wait;
                         }
                     }
                     break;
                 case enmAction.close:
                     timer1.Interval = 1;
                     this.Opacity -= 0.1;
-
                     this.Left -= 3;
-                    if (base.Opacity == 0.0)
+                    if (this.Opacity == 0.0)
                     {
-                        base.Close();
+                        this.Close();
                     }
                     break;
             }
@@ -78,12 +74,13 @@ namespace APP_REUNE.Vista.Forms
             action = enmAction.close;
         }
 
-        public void showAlert(string title,string msg, enmType type)
+        public void showAlert(string title, string msg, enmType type)
         {
             this.Opacity = 0.0;
             this.StartPosition = FormStartPosition.Manual;
-            string fname;
+            this.TopMost = true; // Asegura que el formulario esté siempre encima
 
+            string fname;
             for (int i = 1; i < 10; i++)
             {
                 fname = "alert" + i.ToString();
@@ -96,11 +93,10 @@ namespace APP_REUNE.Vista.Forms
                     this.y = Screen.PrimaryScreen.WorkingArea.Height - this.Height * i - 5 * i;
                     this.Location = new Point(this.x, this.y);
                     break;
-
                 }
-
             }
-            this.x = Screen.PrimaryScreen.WorkingArea.Width - base.Width - 5;
+
+            this.x = Screen.PrimaryScreen.WorkingArea.Width - this.Width - 5;
 
             switch (type)
             {
@@ -130,7 +126,6 @@ namespace APP_REUNE.Vista.Forms
                     break;
             }
 
-
             this.lb_mensaje.Text = msg;
             this.lb_Titulo.Text = title;
             this.Show();
@@ -138,6 +133,5 @@ namespace APP_REUNE.Vista.Forms
             this.timer1.Interval = 1;
             this.timer1.Start();
         }
-
     }
 }

@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:APP_REUNE.Vista.Pages.Aclaraciones"
-           xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1200"
       Title="General">
@@ -91,19 +91,19 @@
                               Height="35"
                                SelectedIndex="0" />
                 </StackPanel>
-                <StackPanel Orientation="Vertical"
+                <!--<StackPanel Orientation="Vertical"
                     Width="160" 
                              Margin="10 0 0 0">
                     <Label Content="Medio de recepción o canal:"
                         Foreground="{DynamicResource PrimaryTextColor}"
                         FontSize="12"/>
-                    <TextBox x:Name="txt_AclaracionCodigoPostal1"
+                    <TextBox x:Name="txt_AclaracionMedioAclaracionepcionCanal"
                         Text="" 
                         Width="160"
                         Tag="Clave del medio de recepción."
                         MaxLength="10"
                         Style="{DynamicResource TextBoxDefault}"/>
-                </StackPanel>
+                </StackPanel>-->
 
 
             </StackPanel>
@@ -142,11 +142,12 @@
                              Width="150"
                              HorizontalAlignment="Left"
                              Margin="10 0 0 0">
-                    <Label Content="Fecha de Reclamación:"
+                    <Label Content="Fecha de Aclaración:"
                             Foreground="{DynamicResource PrimaryTextColor}"
                             FontSize="12"/>
                     <DatePicker x:Name="dp_AclaracionFechaAclaracionReclmacion"
-                                DisplayDateStart="{x:Static System:DateTime.Now}"/>
+                                DisplayDateStart="{x:Static System:DateTime.Now}"
+                                SelectedDate="{x:Static System:DateTime.Now}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                              Width="150"
@@ -156,19 +157,20 @@
                             Foreground="{DynamicResource PrimaryTextColor}"
                             FontSize="12"/>
                     <DatePicker x:Name="dp_AclaracionFechaAtencion"
-                                DisplayDateStart="{x:Static System:DateTime.Now}"/>
+                                DisplayDateStart="{x:Static System:DateTime.Now}"
+                                SelectedDate="{x:Static System:DateTime.Now}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                               Width="200"
                               HorizontalAlignment="Left"
                               Margin="10 0 0 0">
-                    <Label Content="Medio de Aclaracionepción o canal:"
+                    <Label Content="Medio de recepción o canal:"
                              Foreground="{DynamicResource PrimaryTextColor}"
                              FontSize="12"/>
                     <TextBox Name="txt_AclaracionMedioAclaracionepcionCanal"
                                Text="" 
                               Width="200"
-                               Tag="Clave del medio de Aclaracionepción. "
+                               Tag="Clave del medio de recepción."
                                MaxLength="2"
                                Style="{DynamicResource TextBoxDefault}"/>
                 </StackPanel>
@@ -209,21 +211,23 @@
                              Width="150"
                              HorizontalAlignment="Left"
                              Margin="10 0 0 0">
-                    <Label Content="Fecha de resolcución:"
+                    <Label Content="Fecha de resolución:"
                             Foreground="{DynamicResource PrimaryTextColor}"
                             FontSize="12"/>
                     <DatePicker x:Name="dp_AclaracionFechaResolucion"
-                                DisplayDateStart="{x:Static System:DateTime.Now}"/>
+                                DisplayDateStart="{x:Static System:DateTime.Now}"
+                                SelectedDate="{x:Static System:DateTime.Now}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                              Width="150"
                              HorizontalAlignment="Left"
                              Margin="10 0 0 0">
-                    <Label Content="Fecha de notificación :"
+                    <Label Content="Fecha de notificación:"
                             Foreground="{DynamicResource PrimaryTextColor}"
                             FontSize="12"/>
                     <DatePicker x:Name="dp_AclaracionFechaNotifiUsuario"
-                                DisplayDateStart="{x:Static System:DateTime.Now}"/>
+                                DisplayDateStart="{x:Static System:DateTime.Now}"
+                                SelectedDate="{x:Static System:DateTime.Now}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical"
                             Width="185"
@@ -415,7 +419,7 @@
                     <TextBox Name="txt_AclaracionFolioCondusef"
                                 Text="" 
                                Width="235"
-                                Tag="(Solo si el medio de Aclaracionepción es  6 o 7)"
+                                Tag="(Solo si el medio de recepción es  6 o 7)"
                                 MaxLength="13"
                                 Style="{DynamicResource TextBoxDefault}"/>
                 </StackPanel>
@@ -436,20 +440,31 @@
                  VerticalAlignment="Center"
                  Grid.Row="7"/>
             <StackPanel Orientation="Horizontal"
- VerticalAlignment="Center"
- Grid.Row="8">
+            VerticalAlignment="Center"
+            Grid.Row="8">
                 <Button x:Name="btn_Enviar"
-                        Content="   Enviar   "
-                        Margin="10 0 10 0"
-                        Style="{DynamicResource Add}"
-                        Click="btn_Enviar_Click"/>
+            Content="   Enviar   "
+            Margin="10 0 10 0"
+            Style="{DynamicResource Add}"
+            Click="btn_Enviar_Click"/>
                 <Button x:Name="btn_Limpiar" 
-                         Content="   Limpiar   "
-                         Margin="10 0 10 0"
-                        
-                        Style="{DynamicResource Del}"
-                         Click="btn_Limpiar_Click"/>
+            Content="   Limpiar   "
+            Margin="10 0 10 0"
+            Style="{DynamicResource Del}"
+            Click="btn_Limpiar_Click"/>
+                <Button x:Name="btn_Guardar"
+            Content="   Guardar registros   "
+            Margin="10 0 10 0"
+            Style="{DynamicResource ExpTxt}"
+            Click="btn_Guardar_Click"/>
+                <Button x:Name="btn_Cargar"
+            Content="   Cargar información previa   "
+            Margin="10 0 10 0"
+            Style="{DynamicResource Examinar}"
+            Click="btn_Cargar_Click"/>
             </StackPanel>
+
+
         </Grid>
     </Border>
 </Page>
