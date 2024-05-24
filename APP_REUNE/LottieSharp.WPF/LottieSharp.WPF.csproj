@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0-windows;net47</TargetFrameworks>
+	<LangVersion>Latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>lottie_sharp.ico</ApplicationIcon>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>lottie_sharp_rect-128.png</PackageIcon>
+    <RepositoryUrl>https://github.com/quicoli/LottieSharp</RepositoryUrl>
+	  <Version>2.3.0</Version>
+	  <Platforms>AnyCPU</Platforms>
+	  <AssemblyName>LottieSharp</AssemblyName>
+	  <PackageReadmeFile>readme.md</PackageReadmeFile>
+	  <PackageTags>wpf;lottie;animation;c-sharp</PackageTags>
+	  <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	  <SignAssembly>True</SignAssembly>
+	  <AssemblyOriginatorKeyFile>..\LottieSharp.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+	
+
+  <ItemGroup>
+    <Content Include="lottie_sharp.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="SkiaSharp.Skottie" Version="2.88.6" />
+    <PackageReference Include="SkiaSharp.Views.WPF" Version="2.88.3" />
+  </ItemGroup>
+
+</Project>

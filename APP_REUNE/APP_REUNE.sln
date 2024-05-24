@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APP_REUNE_Negocio", "APP_RE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionLibrary", "EncryptionLibrary\EncryptionLibrary.csproj", "{05E8BC21-8945-41B8-B7EE-20E652E1860A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LottieSharp.WPF", "LottieSharp.WPF\LottieSharp.WPF.csproj", "{3185BDBD-A458-439E-BE90-38EB2EC1FCE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{05E8BC21-8945-41B8-B7EE-20E652E1860A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05E8BC21-8945-41B8-B7EE-20E652E1860A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05E8BC21-8945-41B8-B7EE-20E652E1860A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3185BDBD-A458-439E-BE90-38EB2EC1FCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3185BDBD-A458-439E-BE90-38EB2EC1FCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3185BDBD-A458-439E-BE90-38EB2EC1FCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3185BDBD-A458-439E-BE90-38EB2EC1FCE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

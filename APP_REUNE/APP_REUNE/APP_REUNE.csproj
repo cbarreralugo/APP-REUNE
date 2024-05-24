@@ -395,6 +395,10 @@
       <Project>{05e8bc21-8945-41b8-b7ee-20e652e1860a}</Project>
       <Name>EncryptionLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LottieSharp.WPF\LottieSharp.WPF.csproj">
+      <Project>{3185bdbd-a458-439e-be90-38eb2ec1fce5}</Project>
+      <Name>LottieSharp.WPF</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
