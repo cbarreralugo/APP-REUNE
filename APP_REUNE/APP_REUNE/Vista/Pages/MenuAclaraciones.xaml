@@ -16,14 +16,16 @@
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="0"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal"
+                        Margin="10 -70 90 0"
                         Grid.Row="1"
                         Grid.Column="1"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right">
                 <Label Content="Tipo de Aclaración:" 
                        Foreground="{DynamicResource PrimaryTextColor}"/>
                 <ComboBox x:Name="cb_Aclaraciones" 

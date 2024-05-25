@@ -241,69 +241,7 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             finally { campos = string.Empty; }
         }
 
-        private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var reclamacion = new ReclamacionGeneral_Model
-                {
-                    RecDenominacion = txt_RecDenominacion.Text,
-                    RecSector = txt_RecSector.Text,
-                    RecTrimestre = int.TryParse(cb_RecTrimestre.SelectedValue?.ToString(), out var recTrimestre) ? recTrimestre : 0,
-                    RecNumero = int.TryParse(cb_RecNumero.SelectedValue?.ToString(), out var recNumero) ? recNumero : 0,
-                    RecFolioAtencion = txt_RecFolioAtencion.Text,
-                    RecEstadoConPend = int.TryParse(cb_RecEstadoConPend.SelectedValue?.ToString(), out var recEstadoConPend) ? recEstadoConPend : 0,
-                    RecFechaReclamacion = dp_RecFechaReclamacion.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecFechaAtencion = dp_RecFechaAtencion.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecMedioRecepcionCanal = int.TryParse(txt_RecMedioRecepcionCanal.Text, out var recMedioRecepcionCanal) ? recMedioRecepcionCanal : 0,
-                    RecProductoServicio = txt_RecProductoServicio.Text,
-                    RecCausaMotivo = txt_RecCausaMotivo.Text,
-                    RecFechaResolucion = dp_RecFechaResolucion.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecFechaNotifiUsuario = dp_RecFechaNotifiUsuario.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecEntidadFederativa = int.TryParse(txt_RecEntidadFederativa.Text, out var recEntidadFederativa) ? recEntidadFederativa : 0,
-                    RecCodigoPostal = int.TryParse(txt_RecCodigoPostal.Text, out var recCodigoPostal) ? recCodigoPostal : 0,
-                    RecMunicipioAlcaldia = int.TryParse(txt_RecMunicipioAlcaldia.Text, out var recMunicipioAlcaldia) ? recMunicipioAlcaldia : 0,
-                    RecLocalidad = int.TryParse(txt_RecLocalidad.Text, out var recLocalidad) ? recLocalidad : 0,
-                    RecColonia = int.TryParse(txt_RecColonia.Text, out var recColonia) ? (int?)recColonia : null,
-                    RecMonetario = cb_RecMonetario.Text,
-                    RecMontoReclamado = int.TryParse(txt_RecMontoReclamado.Text, out var recMontoReclamado) ? (int?)recMontoReclamado : null,
-                    RecImporteAbonado = int.TryParse(txt_RecImporteAbonado.Text, out var recImporteAbonado) ? (int?)recImporteAbonado : null,
-                    RecFechaAbonoImporte = dp_RecFechaAbonoImporte.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecPori = cb_RecPori.Text,
-                    RecTipoPersona = int.TryParse(cb_RecTipoPersona.SelectedValue?.ToString(), out var recTipoPersona) ? recTipoPersona : 0,
-                    RecSexo = cb_RecSexo.Text,
-                    RecEdad = int.TryParse(cb_RecEdad.SelectedValue?.ToString(), out var recEdad) ? recEdad : 0,
-                    RecSentidoResolucion = int.TryParse(cb_RecSentidoResolucion.SelectedValue?.ToString(), out var recSentidoResolucion) ? recSentidoResolucion : 0,
-                    RecNivelAtencion = int.TryParse(cb_RecNivelAtencion.SelectedValue?.ToString(), out var recNivelAtencion) ? recNivelAtencion : 0,
-                    RecFolioCondusef = txt_RecFolioCondusef.Text,
-                    RecReversa = cb_RecReversa.Text
-                };
-
-                var reclamaciones = new List<ReclamacionGeneral_Model> { reclamacion };
-
-                bool success = await _reclamacionesService.SendReclamacionesGeneral(reclamaciones);
-
-                if (success)
-                {
-                    Toast.Correcto("Reclamación enviada correctamente.");
-                }
-                else
-                {
-                    Toast.Error("Error al enviar la reclamación.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Toast.Sistema("Error: " , ex);
-            }
-        }
-
-        private void btn_Limpiar_Click(object sender, RoutedEventArgs e)
-        {
-            CargarPreInformacio();
-        }
-
-
+    
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             try

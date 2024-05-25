@@ -45,7 +45,8 @@ public class Aclaraciones_Service
                 ResponseAPI aPI = new ResponseAPI();
                 Toast.Correcto("Operación exitosa!!");
                 Toast.Correcto("Response Body: " + responseBody);
-                aPI.LoadResponse(responseBody);
+                aPI.LoadResponse(responseBody); 
+                aPI.Show();
                 return true;
             }
             else

@@ -87,50 +87,7 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
             txt_AclaracionColonia.Text = CamposPreCargados.Colonia;
 
         }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "JSON files (*.json)|*.json",
-                    Title = "Seleccionar archivo JSON"
-                };
-
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    string filePath = openFileDialog.FileName;
-                    string jsonContent = File.ReadAllText(filePath);
-
-                    var aclaraciones = JsonConvert.DeserializeObject<List<Aclaracion_Model>>(jsonContent);
-
-                    if (aclaraciones != null)
-                    {
-                        var apiService = new Aclaraciones_Service();
-                        bool success = await apiService.SendAclaraciones(aclaraciones);
-
-                        if (success)
-                        {
-                            Toast.Correcto("Archivo enviado correctamente.");
-                        }
-                        else
-                        {
-                            Toast.Error("Error al enviar el archivo.");
-                        }
-                    }
-                    else
-                    {
-                        Toast.Error("El archivo JSON no es válido.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Toast.Sistema("Error al leer archivo json", ex);
-            }
-        }
-
+ 
         private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -270,10 +227,89 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
             }
             finally { campos = string.Empty; }
         }
+         
+        private async void CargaMasivaJson_Click(object sender, RoutedEventArgs e)
+        {
 
-        private void btn_Limpiar_Click(object sender, RoutedEventArgs e)
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    Filter = "JSON files (*.json)|*.json",
+                    Title = "Seleccionar archivo JSON"
+                };
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string filePath = openFileDialog.FileName;
+                    string jsonContent = File.ReadAllText(filePath);
+
+                    var aclaraciones = JsonConvert.DeserializeObject<List<Aclaracion_Model>>(jsonContent);
+
+                    if (aclaraciones != null)
+                    {
+                        var apiService = new Aclaraciones_Service();
+                        bool success = await apiService.SendAclaraciones(aclaraciones);
+
+                        if (success)
+                        {
+                            Toast.Correcto("Archivo enviado correctamente.");
+                        }
+                        else
+                        {
+                            Toast.Error("Error al enviar el archivo.");
+                        }
+                    }
+                    else
+                    {
+                        Toast.Error("El archivo JSON no es válido.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.Sistema("Error al leer archivo json", ex);
+            }
+        }
+
+        private void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Nueva_Click(object sender, RoutedEventArgs e)
         {
             CargarPreInformacio();
+        }
+
+        private void Historial_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EliminarHistorial_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ReiniciarSistema_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ComoFunciona_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NotificarFallaSistema_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

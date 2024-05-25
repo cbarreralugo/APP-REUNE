@@ -48,6 +48,7 @@ namespace APP_REUNE.Service
                     Toast.Correcto("Operación exitosa!!");
                     Toast.Correcto("Response Body: " + responseBody);
                     aPI.LoadResponse(responseBody);
+                    aPI.Show();
                     return true;
                 }
                 else

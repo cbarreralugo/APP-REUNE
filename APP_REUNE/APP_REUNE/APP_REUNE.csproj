@@ -432,5 +432,17 @@
   <ItemGroup>
     <Resource Include="Vista\Recursos\icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Recursos\archivoExcel.png" />
+    <Resource Include="Vista\Recursos\archivoJson.png" />
+    <Resource Include="Vista\Recursos\archivoTxt.png" />
+    <Resource Include="Vista\Recursos\ayuda.png" />
+    <Resource Include="Vista\Recursos\cargaMasiva.png" />
+    <Resource Include="Vista\Recursos\enviarSolicitud.png" />
+    <Resource Include="Vista\Recursos\guardarCampos.png" />
+    <Resource Include="Vista\Recursos\limpiar.png" />
+    <Resource Include="Vista\Recursos\nuevaSolicitud.png" />
+    <Resource Include="Vista\Recursos\preInfo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
