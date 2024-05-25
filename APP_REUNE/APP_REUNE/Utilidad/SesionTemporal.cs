@@ -1,4 +1,5 @@
-﻿using APP_REUNE_Negocio.Modelo;
+﻿using APP_REUNE.Vista;
+using APP_REUNE_Negocio.Modelo;
 using EncryptionLibrary;
 using System;
 using System.IO;
@@ -132,6 +133,51 @@ namespace APP_REUNE.Utilidad
                 Console.WriteLine("El contenido no está en el formato esperado.");
                 return (null, null);
             }
+        }
+
+        public static bool GuardarPreInfo(string campos, string fileName)
+        {
+            string rutaFilePreInfo = Path.Combine(Configuracion_Modelo.pre_info.ToString(), fileName);
+            try
+            {
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                using (StreamWriter writer = new StreamWriter(rutaFilePreInfo))
+                {
+                    writer.WriteLine(AES.Encrypt(campos));
+                }
+
+                Toast.Correcto("Datos guardados correctamente.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Toast.Sistema("Error al guardar los datos: " , ex);
+                return false;
+            }
+        }
+
+
+        public static string ObtenerPreInfo(string fileName)
+        {
+            string rutaFilePreInfo = Path.Combine(Configuracion_Modelo.pre_info.ToString(), fileName);
+            string campos = "";
+            try
+            {
+                if (File.Exists(rutaFilePreInfo))
+                {
+                    campos = AES.Decrypt(File.ReadAllText(rutaFilePreInfo));
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.Sistema("Error al obtener los datos: ", ex);
+                campos = string.Empty;
+            }
+            return campos;
         }
     }
 }

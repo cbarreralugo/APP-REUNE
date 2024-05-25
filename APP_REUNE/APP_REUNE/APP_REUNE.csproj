@@ -49,6 +49,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Vista\Recursos\icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -214,6 +217,11 @@
     <Compile Include="Vista\Forms\Form_Toast.Designer.cs">
       <DependentUpon>Form_Toast.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\PreInfo\CamposPreCargados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CamposPreCargados.resx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Toast.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -337,6 +345,10 @@
     <EmbeddedResource Include="Vista\Forms\Form_Toast.resx">
       <DependentUpon>Form_Toast.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vista\PreInfo\CamposPreCargados.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CamposPreCargados.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -416,6 +428,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\Pages\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Recursos\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

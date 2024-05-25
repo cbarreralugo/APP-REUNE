@@ -1,0 +1,30 @@
+                                   
+[ 
+	{
+	"RecDenominacion":"Sam Asset Management, S.A. de C.V., Sociedad Operadora de Fondos de Inversión",
+    "RecSector":"Sociedades Operadoras de Fondos de Inversión",
+	"RecTrimestre": 1,
+	"RecNumero": 1,
+	"RecFolioAtencion": "SAM_TEST01",
+	"RecSubFolioAtencion": "SAM_TEST001",
+	"RecEstadoConPend": 2,
+	"RecFechaReclamacion": "16/03/2024",
+	"RecFechaAtencion": "18/03/2024",
+	"RecMedioRecepcionCanal": 1,
+	"RecProductoServicio": "024609150918",
+	"RecCausaMotivo": "1006",
+	"RecFechaResolucion": "20/03/2024",
+	"RecFechaNotifiUsuario": "21/03/2024",  
+	"RecEntidadFederativa":9,
+	"RecCodigoPostal":5120,
+	"RecMunicipioAlcaldia":4,
+	"RecLocalidad":9,
+	"RecColonia":753,
+	"RecTipoPersona": 1,
+	"RecNivelAtencion": 1,
+	"RecClaveSIPRES": 1,
+	"RecFolioCondusef": null,
+	"RecReversa": null
+	} 
+]
+ 

@@ -20,10 +20,10 @@ namespace APP_REUNE_Negocio.Modelo
         public int RecCodigoPostal { get; set; }
         public int RecMunicipioAlcaldia { get; set; }
         public int RecLocalidad { get; set; }
-        public int RecColonia { get; set; }
+        public int? RecColonia { get; set; }
         public string RecMonetario { get; set; }
-        public int RecMontoReclamado { get; set; }
-        public int RecImporteAbonado { get; set; }
+        public int? RecMontoReclamado { get; set; }
+        public int? RecImporteAbonado { get; set; }
         public string RecFechaAbonoImporte { get; set; }
         public string RecPori { get; set; }
         public int RecTipoPersona { get; set; }
@@ -42,6 +42,7 @@ namespace APP_REUNE_Negocio.Modelo
         public int RecTrimestre { get; set; }
         public int RecNumero { get; set; }
         public string RecFolioAtencion { get; set; }
+        public string RecSubFolioAtencion { get; set; }
         public int RecEstadoConPend { get; set; }
         public string RecFechaReclamacion { get; set; }
         public string RecFechaAtencion { get; set; }
@@ -54,20 +55,12 @@ namespace APP_REUNE_Negocio.Modelo
         public int RecCodigoPostal { get; set; }
         public int RecMunicipioAlcaldia { get; set; }
         public int RecLocalidad { get; set; }
-        public string RecColonia { get; set; }
-        public string RecMonetario { get; set; }
-        public int RecMontoReclamado { get; set; }
-        public int RecImporteAbonado { get; set; }
-        public string RecFechaAbonoImporte { get; set; }
-        public string RecPori { get; set; }
+        public int? RecColonia { get; set; }
         public int RecTipoPersona { get; set; }
-        public string RecSexo { get; set; }
-        public int RecEdad { get; set; }
-        public int RecSentidoResolucion { get; set; }
         public int RecNivelAtencion { get; set; }
+        public int RecClaveSIPRES { get; set; }
         public string RecFolioCondusef { get; set; }
         public string RecReversa { get; set; }
-        public string RecFolioR27 { get; set; }
     }
 
     public class ReclamacionSeguros_Model
@@ -89,11 +82,11 @@ namespace APP_REUNE_Negocio.Modelo
         public int RecEntidadFederativa { get; set; }
         public int RecCodigoPostal { get; set; }
         public int RecMunicipioAlcaldia { get; set; }
-        public int RecLocalidad { get; set; }
-        public string RecColonia { get; set; }
+        public int? RecLocalidad { get; set; }
+        public int? RecColonia { get; set; }
         public string RecMonetario { get; set; }
-        public int RecMontoReclamado { get; set; }
-        public int RecImporteAbonado { get; set; }
+        public decimal? RecMontoReclamado { get; set; }
+        public decimal? RecImporteAbonado { get; set; }
         public string RecFechaAbonoImporte { get; set; }
         public string RecPori { get; set; }
         public int RecTipoPersona { get; set; }

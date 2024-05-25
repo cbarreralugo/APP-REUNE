@@ -1,13 +1,14 @@
 ﻿using APP_REUNE.Vista;
 using APP_REUNE_Negocio.Modelo;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System;
+using System.Windows;
+using APP_REUNE.Vista.Pages;
 
 namespace APP_REUNE.Service
 {
@@ -25,9 +26,9 @@ namespace APP_REUNE.Service
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<bool> SendReclamacion(ReclamacionGeneral_Model reclamacion)
+        public async Task<bool> SendReclamacionesGeneral(List<ReclamacionGeneral_Model> reclamaciones)
         {
-            var json = JsonConvert.SerializeObject(reclamacion);
+            var json = JsonConvert.SerializeObject(reclamaciones);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             // Omitir el prefijo "Bearer"
@@ -43,20 +44,22 @@ namespace APP_REUNE.Service
 
                 if (response.IsSuccessStatusCode)
                 {
+                    ResponseAPI aPI = new ResponseAPI();
                     Toast.Correcto("Operación exitosa!!");
+                    Toast.Correcto("Response Body: " + responseBody);
+                    aPI.LoadResponse(responseBody);
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("Error: " + responseBody);
-                    Toast.Error("Error sending reclamacion: " + responseBody);
+                    Toast.Error("Error: " + responseBody);
+                    Toast.CreateLog("Error sending reclamaciones general", responseBody);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.Message);
-                Toast.Error("Exception sending reclamacion: " + ex.Message);
+                Toast.Sistema("Exception: ",ex); 
                 return false;
             }
         }

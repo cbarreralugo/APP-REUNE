@@ -54,6 +54,9 @@ namespace APP_REUNE_Negocio.Datos
                                 case "auto_regenerar_token_user":
                                     conf_.auto_regenerar_token_user = Configuracion_Modelo.auto_regenerar_token_user = int.Parse(decryptedValue);
                                     break;
+                                case "pre_info":
+                                    conf_.pre_info = Configuracion_Modelo.pre_info = (decryptedValue);
+                                    break;
                             }
                         }
                         catch (FormatException ex)

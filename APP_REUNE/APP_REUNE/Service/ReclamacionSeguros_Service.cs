@@ -1,11 +1,14 @@
 ﻿using APP_REUNE.Vista;
 using APP_REUNE_Negocio.Modelo;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System;
+using System.Windows;
+using APP_REUNE.Vista.Pages;
 
 public class ReclamacionesSeguros_Service
 {
@@ -21,12 +24,11 @@ public class ReclamacionesSeguros_Service
         _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
-    public async Task<bool> SendReclamacionSeguros(ReclamacionSeguros_Model reclamacion)
+    public async Task<bool> SendReclamacionesSeguros(List<ReclamacionSeguros_Model> reclamaciones)
     {
-        var json = JsonConvert.SerializeObject(reclamacion);
+        var json = JsonConvert.SerializeObject(reclamaciones);  
         var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        // Omitir el prefijo "Bearer"
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(SesionUsuario_Modelo.token);
 
         try
@@ -39,20 +41,23 @@ public class ReclamacionesSeguros_Service
 
             if (response.IsSuccessStatusCode)
             {
+                ResponseAPI aPI = new ResponseAPI();
                 Toast.Correcto("Operación exitosa!!");
+                Toast.Correcto("Response Body: " + responseBody);
+                aPI.LoadResponse(responseBody);
                 return true;
             }
             else
             {
                 Console.WriteLine("Error: " + responseBody);
-                Toast.Error("Error sending reclamacion: " + responseBody);
+                Toast.CreateLog("Error sending reclamaciones seguros", responseBody);
                 return false;
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine("Exception: " + ex.Message);
-            Toast.Error("Exception sending reclamacion: " + ex.Message);
+            Toast.CreateLog("Exception sending reclamaciones seguros", ex.Message);
             return false;
         }
     }

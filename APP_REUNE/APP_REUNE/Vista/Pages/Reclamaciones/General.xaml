@@ -446,23 +446,31 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
-                 VerticalAlignment="Center"
-                 Grid.Row="7"/>
-            <StackPanel Orientation="Horizontal"
- VerticalAlignment="Center"
- Grid.Row="8">
-                <Button x:Name="btn_Enviar"
-                        Content="   Enviar   "
-                        Margin="10 0 10 0"
-                        Style="{DynamicResource Add}"
-                        Click="btn_Enviar_Click"/>
-                <Button x:Name="btn_Limpiar" 
-                         Content="   Limpiar   "
-                         Margin="10 0 10 0"
-                        
-                        Style="{DynamicResource Del}"
-                         Click="btn_Limpiar_Click"/>
+                     VerticalAlignment="Center"
+                     Grid.Row="8">
+                                    <Button x:Name="btn_Enviar"
+                     Content="   Enviar   "
+                     Margin="10 0 10 0"
+                     Style="{DynamicResource Add}"
+                     Click="btn_Enviar_Click"/>
+                                    <Button x:Name="btn_Limpiar" 
+                     Content="   Limpiar   "
+                     Margin="10 0 10 0"
+                     Style="{DynamicResource Del}"
+                     Click="btn_Limpiar_Click"/>
+                                    <Button x:Name="btn_Guardar"
+                     Content="   Guardar registros   "
+                     Margin="10 0 10 0"
+                     Style="{DynamicResource ExpTxt}"
+                     Click="btn_Guardar_Click"/>
+                                    <Button x:Name="btn_Cargar"
+                     Content="   Cargar información previa   "
+                     Margin="10 0 10 0"
+                     Style="{DynamicResource Examinar}"
+                     Click="btn_Cargar_Click"/>
             </StackPanel>
+
+
         </Grid>
     </Border>
 </Page>
