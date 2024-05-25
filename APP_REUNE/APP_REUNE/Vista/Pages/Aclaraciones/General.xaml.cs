@@ -1,5 +1,6 @@
 ﻿using APP_REUNE.Service;
 using APP_REUNE.Utilidad;
+using APP_REUNE.Vista.PreInfo;
 using APP_REUNE_Negocio.Modelo;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -77,11 +78,14 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
             Utilidad.Util.CargarComboNivelAtencion(cb_AclaracionNivelAtencion);
             Utilidad.Util.CargarComboReversa(cb_AclaracionReversa);
             Utilidad.Util.CargarComboOperacionExtranjero(cb_AclaracionOperacionExtranjero);
-            txt_AclaracionDenominacion.Text = "Sam Asset Management, S.A. de C.V., Sociedad Operadora de Fondos de Inversión";
-            txt_AclaracionSector.Text = "Sociedades Operadoras de Fondos de Inversión";
-            txt_AclaracionEntidadFederativa.Text = "09";
-            txt_AclaracionCodigoPostal.Text = "5120";
-            txt_AclaracionMunicipioAlcaldia.Text = "004";
+            txt_AclaracionDenominacion.Text = CamposPreCargados.Denominacion;
+            txt_AclaracionSector.Text = CamposPreCargados.Sector;
+            txt_AclaracionEntidadFederativa.Text = CamposPreCargados.EntidadFederativa;
+            txt_AclaracionCodigoPostal.Text = CamposPreCargados.CodigoPostal;
+            txt_AclaracionMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
+            txt_AclaracionLocalidad.Text = CamposPreCargados.Localidad;
+            txt_AclaracionColonia.Text = CamposPreCargados.Colonia;
+
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

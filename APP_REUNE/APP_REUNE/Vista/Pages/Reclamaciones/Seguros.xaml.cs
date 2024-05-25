@@ -1,5 +1,6 @@
 ﻿using APP_REUNE.Service;
 using APP_REUNE.Utilidad;
+using APP_REUNE.Vista.PreInfo;
 using APP_REUNE_Negocio.Modelo;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -81,11 +82,13 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             Utilidad.Util.CargarComboReversa(cb_RecReversa);
             Utilidad.Util.CargarComboResolucion(cb_RecSentidoResolucion);
             Utilidad.Util.CargarComboRamo(cb_RecRamo);
-            txt_RecDenominacion.Text = "SAM Asset Management S.A. de C.V., Sociedad Operadora de Fondos de Inversión.";
-            txt_RecSector.Text = "Sociedad Operadora de Fondos de Inversión";
-            txt_RecEntidadFederativa.Text = "09";
-            txt_RecCodigoPostal.Text = "5120";
-            txt_RecMunicipioAlcaldia.Text = "004";
+            txt_RecDenominacion.Text = CamposPreCargados.Denominacion;
+            txt_RecSector.Text = CamposPreCargados.Sector;
+            txt_RecEntidadFederativa.Text = CamposPreCargados.EntidadFederativa;
+            txt_RecCodigoPostal.Text = CamposPreCargados.CodigoPostal;
+            txt_RecMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
+            txt_RecLocalidad.Text = CamposPreCargados.Localidad;
+            txt_RecColonia.Text = CamposPreCargados.Colonia;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

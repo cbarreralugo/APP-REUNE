@@ -217,6 +217,11 @@
     <Compile Include="Vista\Forms\Form_Toast.Designer.cs">
       <DependentUpon>Form_Toast.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\PreInfo\CamposPreCargados.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CamposPreCargados.resx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Toast.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -339,6 +344,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\Forms\Form_Toast.resx">
       <DependentUpon>Form_Toast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\PreInfo\CamposPreCargados.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CamposPreCargados.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
