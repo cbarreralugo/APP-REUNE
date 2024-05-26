@@ -26,15 +26,13 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
     /// Lógica de interacción para InstitucionesCredito.xaml
     /// </summary>
     public partial class InstitucionesCredito : Page
-    {
-        private ReclamacionesCredito_Service _reclamacionesService;
+    { 
         private string fileName = "ReclamacionesCredito.txt";
 
         public InstitucionesCredito()
         {
             InitializeComponent();
-            CargarPreInformacio();
-            _reclamacionesService = new ReclamacionesCredito_Service();
+            CargarPreInformacio(); 
         }
 
         private void CargarPreInformacio()
@@ -90,49 +88,7 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             // Aquí puedes manejar lo que sucede cuando cambia la fecha seleccionada
             //MessageBox.Show("Fecha seleccionada: " + dp_RecFechaReclamacion.SelectedDate.Value.ToString("dd/MM/yyyy"));
         }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "JSON files (*.json)|*.json",
-                    Title = "Seleccionar archivo JSON"
-                };
-
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    string filePath = openFileDialog.FileName;
-                    string jsonContent = File.ReadAllText(filePath);
-
-                    var reclamaciones = JsonConvert.DeserializeObject<List<ReclamacionCredito_Model>>(jsonContent);
-
-                    if (reclamaciones != null)
-                    {
-                        var success = await _reclamacionesService.SendReclamacionesCredito(reclamaciones);
-
-                        if (success)
-                        {
-                            Toast.Correcto("Archivo enviado correctamente.");
-                        }
-                        else
-                        {
-                            Toast.Error("Error al enviar el archivo.");
-                        }
-                    }
-                    else
-                    {
-                        Toast.Error("El archivo JSON no es válido.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Toast.Sistema("Error al leer archivo json: ",ex);
-            }
-        }
-
+ 
         private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -167,7 +123,8 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
 
                 var reclamaciones = new List<ReclamacionCredito_Model> { reclamacion };
 
-                bool success = await _reclamacionesService.SendReclamacionesCredito(reclamaciones);
+                string endpoint = CamposPreCargados.ReclamacionesInstitucionesCredito;
+                var success = await Utilidad.SendDataFrom.SendData(reclamaciones, endpoint);
 
                 if (success)
                 {
@@ -268,5 +225,80 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
         {
             CargarPreInformacio();
         }
+
+        private async void CargaMasivaJson_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = CamposPreCargados.ReclamacionesInstitucionesCredito;
+            var success = await Utilidad.SendDataFrom.SendDataFromJson<ReclamacionCredito_Model>(endpoint);
+            if (success)
+            {
+                Toast.Correcto("Reclamación enviada correctamente.");
+            }
+            else
+            {
+                Toast.Error("Error al enviar la reclamación.");
+            }
+        }
+
+        private async void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = CamposPreCargados.ReclamacionesInstitucionesCredito;
+            var success = await Utilidad.SendDataFrom.SendDataFromExcel<ReclamacionCredito_Model>(endpoint);
+            if (success)
+            {
+                Toast.Correcto("Reclamación enviada correctamente.");
+            }
+            else
+            {
+                Toast.Error("Error al enviar la reclamación.");
+            }
+        }
+
+        private async void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = CamposPreCargados.ReclamacionesInstitucionesCredito;
+            var success = await Utilidad.SendDataFrom.SendDataFromTxt<ReclamacionCredito_Model>(endpoint);
+            if (success)
+            {
+                Toast.Correcto("Reclamación enviada correctamente.");
+            }
+            else
+            {
+                Toast.Error("Error al enviar la reclamación.");
+            }
+        }
+
+        private void Nueva_Click(object sender, RoutedEventArgs e)
+        {
+            CargarPreInformacio();
+        }
+
+        private void Historial_Click(object sender, RoutedEventArgs e)
+        {
+            Toast.Notifiacion("Acción no disponible por ahora");
+        }
+
+        private void EliminarHistorial_Click(object sender, RoutedEventArgs e)
+        {
+            Toast.Notifiacion("Acción no disponible por ahora");
+        }
+
+        private void ReiniciarSistema_Click(object sender, RoutedEventArgs e)
+        {
+            SesionTemporal.RestartApplication();
+        }
+
+        private void ComoFunciona_Click(object sender, RoutedEventArgs e)
+        {
+            ComoFunciona cf = new ComoFunciona();
+            cf.Show();
+        }
+
+        private void NotificarFallaSistema_Click(object sender, RoutedEventArgs e)
+        {
+            Ayuda notificar = new Ayuda();
+            notificar.Show();
+        }
+
     }
 }

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:APP_REUNE.Vista.Pages.Aclaraciones"
       xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:Migrid="clr-namespace:APP_REUNE.Vista.Controls" 
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="1200"
       Title="General">
@@ -19,8 +20,7 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="30"/> 
                 <RowDefinition/>
             </Grid.RowDefinitions>
  
@@ -518,14 +518,14 @@
                         Margin="10 0 0 0 "
                         HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
-            Grid.Row="8" Height="30">
+            Grid.Row="7" Height="30">
                 <Button x:Name="btn_Enviar"
             Content="   Enviar   "
             Margin="10 0 10 0"
             Style="{DynamicResource Add}"
             Click="btn_Enviar_Click"/>
-            </StackPanel>
- 
+            </StackPanel >
+            <Migrid:UserControl1 x:Name="dg_tabla" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="8" Visibility="Collapsed"/>
         </Grid>
     </Border>
 </Page>

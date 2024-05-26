@@ -1,0 +1,78 @@
+﻿<Window x:Class="APP_REUNE.Vista.Pages.ComoFunciona"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:APP_REUNE.Vista.Pages"
+        mc:Ignorable="d" Height="350" Width="850">
+    <Grid>
+
+        <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/> 
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="419*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" 
+                          Margin="0 20 0 0"
+                          VerticalAlignment="Center">
+                        <Label Content="¿Comó puedo realizar una solicitud?"
+                         FontSize="12"
+                         Foreground="{DynamicResource PrimaryTextColor}"/>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                         Margin="0 20 0 0">
+                        <Label Content="Para realizar una solicitud de forma correcta, es posible mediante archivos (carga masiva) o ingresando uno por uno de forma manual en el formulario."
+                        FontSize="12"
+                        Foreground="{DynamicResource PrimaryTextColor}"
+                         />
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                          Margin="0 20 0 0"
+                          VerticalAlignment="Center">
+                        <Label Content="Puedes ingresar de forma manual campo por campo los datos requeridos en el formulario."
+                         FontSize="12"
+                         Style="{DynamicResource FreeTeamIconLabelsStyle}"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" 
+                         Margin="0 20 0 0"
+                         VerticalAlignment="Center">
+                        <Label Content="En caso de realizar multiples solicitudes, ingresa todos los registros en un archivo de tipo excel, .txt o en formato .json."
+                        FontSize="12"
+                         Style="{DynamicResource FreeTeamIconLabelsStyle}"/>
+
+                    </StackPanel> 
+
+                    <StackPanel Orientation="Horizontal"
+          Margin="0 20 0 0">
+                        <Label Content="No olvides consultar los catalogos para enviar información correcta, de lo contrario el sistema arrojara error."
+         FontSize="12"
+                         Style="{DynamicResource FreeTeamIconLabelsStyle}"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                         Margin="0 20 0 0"
+                         VerticalAlignment="Center">
+                        <Button x:Name="btn_Aceptar"
+                         Content="Aceptar  " Click="btn_Aceptar_Click"
+                         Style="{DynamicResource SuccessButtonStyle}"/>
+
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

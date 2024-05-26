@@ -2,6 +2,7 @@
 using APP_REUNE.Utilidad;
 using APP_REUNE.Vista.PreInfo;
 using APP_REUNE_Negocio.Modelo;
+using ClosedXML.Excel;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
@@ -26,14 +27,12 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
     /// </summary>
     public partial class General : Page
     {
-        private Aclaraciones_Service _aclaracionesService;
         private string fileName = "AclaracionesGeneral.txt";
 
         public General()
         {
             InitializeComponent();
             CargarPreInformacio();
-            _aclaracionesService = new Aclaraciones_Service();
         }
 
         private void CargarPreInformacio()
@@ -85,9 +84,10 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
             txt_AclaracionMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
             txt_AclaracionLocalidad.Text = CamposPreCargados.Localidad;
             txt_AclaracionColonia.Text = CamposPreCargados.Colonia;
-
+            dg_tabla.LoadData(null, "");//reiniciar tabla
+            dg_tabla.Visibility = Visibility.Collapsed;//ocultar tabla
         }
- 
+
         private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -123,10 +123,10 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
                     AclaracionReversa = cb_AclaracionReversa.SelectedValue != null ? cb_AclaracionReversa.SelectedValue.ToString() : null,
                     AclaracionOperacionExtranjero = cb_AclaracionOperacionExtranjero.SelectedValue != null ? cb_AclaracionOperacionExtranjero.SelectedValue.ToString() : null
                 };
-
                 var aclaraciones = new List<Aclaracion_Model> { aclaracion };
 
-                bool success = await _aclaracionesService.SendAclaraciones(aclaraciones);
+                string endpoint = CamposPreCargados.AclaracionesGeneral;
+                var success = await Utilidad.SendDataFrom.SendData(aclaraciones, endpoint);
 
                 if (success)
                 {
@@ -227,59 +227,47 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
             }
             finally { campos = string.Empty; }
         }
-         
+
         private async void CargaMasivaJson_Click(object sender, RoutedEventArgs e)
         {
-
-            try
+            string endpoint = CamposPreCargados.AclaracionesGeneral;
+            var success = await Utilidad.SendDataFrom.SendDataFromJson<Aclaracion_Model>(endpoint);
+            if (success)
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "JSON files (*.json)|*.json",
-                    Title = "Seleccionar archivo JSON"
-                };
-
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    string filePath = openFileDialog.FileName;
-                    string jsonContent = File.ReadAllText(filePath);
-
-                    var aclaraciones = JsonConvert.DeserializeObject<List<Aclaracion_Model>>(jsonContent);
-
-                    if (aclaraciones != null)
-                    {
-                        var apiService = new Aclaraciones_Service();
-                        bool success = await apiService.SendAclaraciones(aclaraciones);
-
-                        if (success)
-                        {
-                            Toast.Correcto("Archivo enviado correctamente.");
-                        }
-                        else
-                        {
-                            Toast.Error("Error al enviar el archivo.");
-                        }
-                    }
-                    else
-                    {
-                        Toast.Error("El archivo JSON no es válido.");
-                    }
-                }
+                Toast.Correcto("Aclaración enviada correctamente.");
             }
-            catch (Exception ex)
+            else
             {
-                Toast.Sistema("Error al leer archivo json", ex);
+                Toast.Error("Error al enviar la aclaración.");
             }
         }
 
-        private void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
+        private async void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
         {
-
+            string endpoint = CamposPreCargados.AclaracionesGeneral;
+            var success = await Utilidad.SendDataFrom.SendDataFromExcel<Aclaracion_Model>(endpoint);
+            if (success)
+            {
+                Toast.Correcto("Aclaración enviada correctamente.");
+            }
+            else
+            {
+                Toast.Error("Error al enviar la aclaración.");
+            }
         }
 
-        private void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
+        private async void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
         {
-
+            string endpoint = CamposPreCargados.AclaracionesGeneral;
+            var success = await Utilidad.SendDataFrom.SendDataFromTxt<Aclaracion_Model>(endpoint);
+            if (success)
+            {
+                Toast.Correcto("Aclaración enviada correctamente.");
+            }
+            else
+            {
+                Toast.Error("Error al enviar la aclaración.");
+            }
         }
 
         private void Nueva_Click(object sender, RoutedEventArgs e)
@@ -289,27 +277,29 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
 
         private void Historial_Click(object sender, RoutedEventArgs e)
         {
-
+            Toast.Notifiacion("Acción no disponible por ahora");
         }
 
         private void EliminarHistorial_Click(object sender, RoutedEventArgs e)
         {
-
+            Toast.Notifiacion("Acción no disponible por ahora");
         }
 
         private void ReiniciarSistema_Click(object sender, RoutedEventArgs e)
         {
-
+            SesionTemporal.RestartApplication();
         }
 
         private void ComoFunciona_Click(object sender, RoutedEventArgs e)
         {
-
+            ComoFunciona cf = new ComoFunciona();
+            cf.Show();
         }
 
         private void NotificarFallaSistema_Click(object sender, RoutedEventArgs e)
         {
-
+            Ayuda notificar = new Ayuda();
+            notificar.Show();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace APP_REUNE.Vista
         {
             InitializeComponent();
             validarSesion();
-
+            btnAyudaYSoporte.Visibility = Visibility.Collapsed;
         }
         private void Header_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -58,7 +58,7 @@ namespace APP_REUNE.Vista
             btnConsultas.Visibility = Visibility.Collapsed;
             btnGestionDeUsuario.Visibility = Visibility.Collapsed;
             btnConfiguraciones.Visibility = Visibility.Collapsed;
-            btnAyudaYSoporte.Visibility = Visibility.Collapsed;
+           // btnAyudaYSoporte.Visibility = Visibility.Collapsed;
             btnPerfilDeUsuario.Visibility = Visibility.Collapsed;
             btnLog.Visibility = Visibility.Collapsed;
         }
@@ -69,7 +69,7 @@ namespace APP_REUNE.Vista
             btnConsultas.Visibility = Visibility.Visible;
             btnGestionDeUsuario.Visibility = Visibility.Collapsed;
             btnConfiguraciones.Visibility = Visibility.Collapsed;
-            btnAyudaYSoporte.Visibility = Visibility.Visible;
+           // btnAyudaYSoporte.Visibility = Visibility.Visible;
             btnPerfilDeUsuario.Visibility = Visibility.Visible;
             btnLog.Visibility = Visibility.Collapsed;
         }
@@ -80,7 +80,7 @@ namespace APP_REUNE.Vista
             btnConsultas.Visibility = Visibility.Visible;
             btnGestionDeUsuario.Visibility = Visibility.Visible;
             btnConfiguraciones.Visibility = Visibility.Visible;
-            btnAyudaYSoporte.Visibility = Visibility.Visible;
+           // btnAyudaYSoporte.Visibility = Visibility.Visible;
             btnPerfilDeUsuario.Visibility = Visibility.Visible;
             btnLog.Visibility = Visibility.Visible;
         }

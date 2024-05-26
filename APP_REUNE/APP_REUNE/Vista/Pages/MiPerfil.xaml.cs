@@ -94,7 +94,7 @@ namespace APP_REUNE.Vista.Pages
             }
             catch (Exception ex)
             {
-                Toast.Log("Error al renovar el token", "Verifica que el token del Super usuario sea valido");
+                Toast.Sistema("Error al renovar el token", ex, "Verifica que el token del Super usuario sea valido");
             }
         }
 
@@ -111,6 +111,11 @@ namespace APP_REUNE.Vista.Pages
 
             // Cerrar la aplicación
             Application.Current.Shutdown();
+        }
+
+        private void btnReiniciarSistema_Click(object sender, RoutedEventArgs e)
+        {
+            Utilidad.SesionTemporal.RestartApplication();
         }
     }
 }

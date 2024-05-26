@@ -26,15 +26,13 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
     /// Lógica de interacción para General.xaml
     /// </summary>
     public partial class General : Page
-    {
-        private ReclamacionesGeneral_Service _reclamacionesService;
+    { 
         private string fileName = "ReclamacionesGeneral.txt";
 
         public General()
         {
             InitializeComponent();
-            CargarPreInformacio();
-            _reclamacionesService = new ReclamacionesGeneral_Service();
+            CargarPreInformacio(); 
         }
 
 
@@ -89,6 +87,8 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             txt_RecMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
             txt_RecLocalidad.Text=CamposPreCargados.Localidad; 
             txt_RecColonia.Text=CamposPreCargados.Colonia;
+            dg_tabla.LoadData(null, "");//reiniciar tabla
+            dg_tabla.Visibility = Visibility.Collapsed;//ocultar tabla
         }
 
         private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
@@ -131,7 +131,8 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
 
                 var reclamaciones = new List<ReclamacionGeneral_Model> { reclamacion };
 
-                bool success = await _reclamacionesService.SendReclamacionesGeneral(reclamaciones);
+                string endpoint = CamposPreCargados.ReclamacionesGeneral;
+                var success = await Utilidad.SendDataFrom.SendData(reclamaciones, endpoint);
 
                 if (success)
                 {
@@ -241,47 +242,79 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             finally { campos = string.Empty; }
         }
 
-    
-        private async void Button_Click(object sender, RoutedEventArgs e)
+
+        private async void CargaMasivaJson_Click(object sender, RoutedEventArgs e)
         {
-            try
+            string endpoint = CamposPreCargados.ReclamacionesGeneral;
+            var success = await Utilidad.SendDataFrom.SendDataFromJson<ReclamacionGeneral_Model>(endpoint);
+            if (success)
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "JSON files (*.json)|*.json",
-                    Title = "Seleccionar archivo JSON"
-                };
-
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    string filePath = openFileDialog.FileName;
-                    string jsonContent = File.ReadAllText(filePath);
-
-                    var reclamaciones = JsonConvert.DeserializeObject<List<ReclamacionGeneral_Model>>(jsonContent);
-
-                    if (reclamaciones != null)
-                    {
-                        var success = await _reclamacionesService.SendReclamacionesGeneral(reclamaciones);
-
-                        if (success)
-                        {
-                            Toast.Correcto("Archivo enviado correctamente.");
-                        }
-                        else
-                        {
-                            Toast.Error("Error al enviar el archivo.");
-                        }
-                    }
-                    else
-                    {
-                        Toast.Error("El archivo JSON no es válido.");
-                    }
-                }
+                Toast.Correcto("Reclamación enviada correctamente.");
             }
-            catch (Exception ex)
+            else
             {
-                Toast.Sistema("Error al leer archivo json: ", ex);
+                Toast.Error("Error al enviar la reclamación.");
             }
+        }
+
+        private async void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = CamposPreCargados.ReclamacionesGeneral;
+            var success = await Utilidad.SendDataFrom.SendDataFromExcel<ReclamacionGeneral_Model>(endpoint);
+            if (success)
+            {
+                Toast.Correcto("Reclamación enviada correctamente.");
+            }
+            else
+            {
+                Toast.Error("Error al enviar la reclamación.");
+            }
+        }
+
+        private async void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = CamposPreCargados.ReclamacionesGeneral;
+            var success = await Utilidad.SendDataFrom.SendDataFromTxt<ReclamacionGeneral_Model>(endpoint);
+            if (success)
+            {
+                Toast.Correcto("Reclamación enviada correctamente.");
+            }
+            else
+            {
+                Toast.Error("Error al enviar la reclamación.");
+            }
+        }
+
+        private void Nueva_Click(object sender, RoutedEventArgs e)
+        {
+            CargarPreInformacio();
+        }
+
+        private void Historial_Click(object sender, RoutedEventArgs e)
+        {
+            Toast.Notifiacion("Acción no disponible por ahora");
+        }
+
+        private void EliminarHistorial_Click(object sender, RoutedEventArgs e)
+        {
+            Toast.Notifiacion("Acción no disponible por ahora");
+        }
+
+        private void ReiniciarSistema_Click(object sender, RoutedEventArgs e)
+        {
+            SesionTemporal.RestartApplication();
+        }
+
+        private void ComoFunciona_Click(object sender, RoutedEventArgs e)
+        {
+            ComoFunciona cf = new ComoFunciona();
+            cf.Show();
+        }
+
+        private void NotificarFallaSistema_Click(object sender, RoutedEventArgs e)
+        {
+            Ayuda notificar = new Ayuda();
+            notificar.Show();
         }
 
     }

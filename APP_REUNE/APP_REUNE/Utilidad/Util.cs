@@ -27,6 +27,7 @@ namespace APP_REUNE.Utilidad
             // Seleccionar el elemento con ID especificado
             comboBox.SelectedIndex = 0;
         }
+
         public static void CargarComboResolucion(ComboBox comboBox)
         {
             List<Combo> items = new List<Combo>
@@ -225,8 +226,6 @@ namespace APP_REUNE.Utilidad
             // Seleccionar el elemento con ID especificado
             SelectComboBoxItemById(comboBox, GetActualTrimestre());
         }
-
-
 
         public static void CargarComboLog(ComboBox comboBox, int id)
         {

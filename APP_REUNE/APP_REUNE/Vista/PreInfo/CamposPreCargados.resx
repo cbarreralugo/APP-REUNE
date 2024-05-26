@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AclaracionesGeneral" xml:space="preserve">
+    <value>reune/aclaraciones/general</value>
+  </data>
   <data name="CodigoPostal" xml:space="preserve">
     <value>5120</value>
   </data>
@@ -134,6 +137,18 @@
   </data>
   <data name="Localidad" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="ReclamacionesGeneral" xml:space="preserve">
+    <value>reune/reclamaciones/general</value>
+  </data>
+  <data name="ReclamacionesInstitucionesCredito" xml:space="preserve">
+    <value>reclamaciones/institucionescredito</value>
+  </data>
+  <data name="ReclamacionesSeguros" xml:space="preserve">
+    <value>reune/reclamaciones/seguros</value>
+  </data>
+  <data name="ReclamacionesSIC" xml:space="preserve">
+    <value>reune/reclamaciones/sic</value>
   </data>
   <data name="Sector" xml:space="preserve">
     <value>Sociedades Operadoras de Fondos de Inversión</value>
