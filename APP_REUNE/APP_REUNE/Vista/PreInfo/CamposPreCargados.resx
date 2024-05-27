@@ -138,18 +138,6 @@
   <data name="Localidad" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="ReclamacionesGeneral" xml:space="preserve">
-    <value>reune/reclamaciones/general</value>
-  </data>
-  <data name="ReclamacionesInstitucionesCredito" xml:space="preserve">
-    <value>reclamaciones/institucionescredito</value>
-  </data>
-  <data name="ReclamacionesSeguros" xml:space="preserve">
-    <value>reune/reclamaciones/seguros</value>
-  </data>
-  <data name="ReclamacionesSIC" xml:space="preserve">
-    <value>reune/reclamaciones/sic</value>
-  </data>
   <data name="Sector" xml:space="preserve">
     <value>Sociedades Operadoras de Fondos de Inversión</value>
   </data>

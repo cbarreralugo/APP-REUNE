@@ -17,7 +17,7 @@ namespace APP_REUNE.Utilidad
 {
     public static class SendDataFrom
     {
-        public static async Task<bool> SendDataFromJson<TModel>(string endpoint)
+        public static async Task<bool> SendDataFromJson<TModel>(string endpoint, int tipo_solicitud)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace APP_REUNE.Utilidad
 
                     if (data != null)
                     {
-                        var success = await SendData(data, endpoint);
+                        var success = await SendData(data, endpoint, tipo_solicitud);
                         return success;
                     }
                     else
@@ -53,7 +53,7 @@ namespace APP_REUNE.Utilidad
             return false;
         }
 
-        public static async Task<bool> SendDataFromTxt<TModel>(string endpoint)
+        public static async Task<bool> SendDataFromTxt<TModel>(string endpoint, int tipo_solicitud)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace APP_REUNE.Utilidad
                             data.Add(JsonConvert.DeserializeObject<TModel>(json.ToString()));
                         }
 
-                        var success = await SendData(data, endpoint);
+                        var success = await SendData(data, endpoint, tipo_solicitud);
                         return success;
                     }
                     else
@@ -103,7 +103,7 @@ namespace APP_REUNE.Utilidad
             return false;
         }
 
-        public static async Task<bool> SendDataFromExcel<TModel>(string endpoint)
+        public static async Task<bool> SendDataFromExcel<TModel>(string endpoint, int tipo_solicitud)
         {
             try
             {
@@ -136,7 +136,7 @@ namespace APP_REUNE.Utilidad
                         data.Add(JsonConvert.DeserializeObject<TModel>(json.ToString()));
                     }
 
-                    var success = await SendData(data, endpoint);
+                    var success = await SendData(data, endpoint, tipo_solicitud);
                     return success;
                 }
             }
@@ -147,7 +147,7 @@ namespace APP_REUNE.Utilidad
             return false;
         }
 
-        public static async Task<bool> SendData<TModel>(List<TModel> data, string endpoint)
+        public static async Task<bool> SendData<TModel>(List<TModel> data, string endpoint,int tipo_solicitud )
         { 
             using (var client = new HttpClient())
             {

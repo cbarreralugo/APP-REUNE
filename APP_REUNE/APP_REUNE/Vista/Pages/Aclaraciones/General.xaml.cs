@@ -1,6 +1,7 @@
 ﻿using APP_REUNE.Service;
 using APP_REUNE.Utilidad;
 using APP_REUNE.Vista.PreInfo;
+using APP_REUNE_Negocio.Datos;
 using APP_REUNE_Negocio.Modelo;
 using ClosedXML.Excel;
 using Microsoft.Win32;
@@ -27,7 +28,11 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
     /// </summary>
     public partial class General : Page
     {
-        private string fileName = "AclaracionesGeneral.txt";
+        Configuracion_Datos datos = new Configuracion_Datos();
+
+        private string fileName = string.Empty;
+        private int id = 0;
+        private string api = string.Empty;
 
         public General()
         {
@@ -37,6 +42,11 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
 
         private void CargarPreInformacio()
         {
+
+            TipoSolicitudes_Modelo modelo = datos.Obtener_TipoSolicitud(Configuracion_Datos.tipo.Aclaraciones_General);
+            fileName = modelo.archivo;
+            id = modelo.id;
+            api = modelo.api;
             // Limpiar todos los campos
             txt_AclaracionDenominacion.Clear();
             txt_AclaracionSector.Clear();
@@ -125,17 +135,25 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
                 };
                 var aclaraciones = new List<Aclaracion_Model> { aclaracion };
 
-                string endpoint = CamposPreCargados.AclaracionesGeneral;
-                var success = await Utilidad.SendDataFrom.SendData(aclaraciones, endpoint);
-
-                if (success)
+                string endpoint = api;
+                if (endpoint != null)
                 {
-                    Toast.Correcto("Aclaración enviada correctamente.");
+                    var success = await Utilidad.SendDataFrom.SendData(aclaraciones, endpoint,id);
+
+                    if (success)
+                    {
+                        Toast.Correcto("Aclaración enviada correctamente.");
+                    }
+                    else
+                    {
+                        Toast.Error("Error al enviar la aclaración.");
+                    }
                 }
                 else
                 {
-                    Toast.Error("Error al enviar la aclaración.");
+                    Toast.Error("Error, no se encontro api.");
                 }
+
             }
             catch (Exception ex)
             {
@@ -230,43 +248,67 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
 
         private async void CargaMasivaJson_Click(object sender, RoutedEventArgs e)
         {
-            string endpoint = CamposPreCargados.AclaracionesGeneral;
-            var success = await Utilidad.SendDataFrom.SendDataFromJson<Aclaracion_Model>(endpoint);
-            if (success)
+            string endpoint = api; 
+            if (endpoint != null)
             {
-                Toast.Correcto("Aclaración enviada correctamente.");
+                var success = await Utilidad.SendDataFrom.SendDataFromJson<Aclaracion_Model>(endpoint,id);
+
+                if (success)
+                {
+                    Toast.Correcto("Aclaración enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la aclaración.");
+                }
             }
             else
             {
-                Toast.Error("Error al enviar la aclaración.");
+                Toast.Error("Error, no se encontro api.");
             }
         }
 
         private async void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
         {
-            string endpoint = CamposPreCargados.AclaracionesGeneral;
-            var success = await Utilidad.SendDataFrom.SendDataFromExcel<Aclaracion_Model>(endpoint);
-            if (success)
+            string endpoint = api;
+            if (endpoint != null)
             {
-                Toast.Correcto("Aclaración enviada correctamente.");
+                var success = await Utilidad.SendDataFrom.SendDataFromExcel<Aclaracion_Model>(endpoint,id);
+
+                if (success)
+                {
+                    Toast.Correcto("Aclaración enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la aclaración.");
+                }
             }
             else
             {
-                Toast.Error("Error al enviar la aclaración.");
+                Toast.Error("Error, no se encontro api.");
             }
         }
 
         private async void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
         {
-            string endpoint = CamposPreCargados.AclaracionesGeneral;
-            var success = await Utilidad.SendDataFrom.SendDataFromTxt<Aclaracion_Model>(endpoint);
-            if (success)
+            string endpoint = api;
+            if (endpoint != null)
             {
-                Toast.Correcto("Aclaración enviada correctamente.");
+                var success = await Utilidad.SendDataFrom.SendDataFromTxt<Aclaracion_Model>(endpoint,id);
+
+                if (success)
+                {
+                    Toast.Correcto("Aclaración enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la aclaración.");
+                }
             }
             else
             {
-                Toast.Error("Error al enviar la aclaración.");
+                Toast.Error("Error, no se encontro api.");
             }
         }
 

@@ -9,6 +9,54 @@
       Title="Home">
 
     <Border CornerRadius="5" Background="{DynamicResource SecundaryBackgroundColor}">
-        
+        <StackPanel
+            Orientation="Vertical"
+            Margin="30 80 0 0"
+              VerticalAlignment="Top"
+              HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="API REUNE" 
+                       FontSize="70" 
+                       Foreground="{DynamicResource SecundaryTextColor}" 
+                       FontFamily="Rubik Black" />
+                <Label Content=" v 1.0"
+                       VerticalAlignment="top"
+                       FontSize="20"
+                       Foreground="{DynamicResource PrimaryIconColor}"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Aplicación de Gestión de Reclamaciones y Aclaraciones"
+                        HorizontalAlignment="Left"
+                         FontSize="20"  
+                         Foreground="{DynamicResource PrimaryGrayColor}" 
+                         FontFamily="Rubik Black" ></Label>
+            </StackPanel>
+            <StackPanel>
+                <TextBox
+                        Name="multiLineTextBox"
+                        Width="600"
+                    Foreground="{DynamicResource SecundaryIconColor}"
+                    Background="{DynamicResource SecundaryBackgroundColor}"
+                        Text="La aplicación de Gestión de Reclamaciones y Aclaraciones está diseñada para facilitar y optimizar el proceso de gestión de quejas y aclaraciones para instituciones financieras. Esta herramienta permite a los usuarios enviar y administrar reclamaciones de manera eficiente, cumpliendo con los requisitos establecidos por las autoridades regulatorias."
+                        Height="80"
+                        TextWrapping="Wrap"
+                        AcceptsReturn="True"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto"
+                         BorderBrush="{x:Null}" SelectionBrush="{x:Null}">
+                </TextBox>
+
+            </StackPanel>
+            <StackPanel>
+                <Button Content="Saber más" 
+                        x:Name="btn_ver_mas"
+                        Click="btn_ver_mas_Click"
+                        HorizontalAlignment="Left"
+                        Style="{DynamicResource SuccessButtonStyle}"/>
+            </StackPanel>
+            <StackPanel> 
+                
+            </StackPanel>
+        </StackPanel>
     </Border>
 </Page>

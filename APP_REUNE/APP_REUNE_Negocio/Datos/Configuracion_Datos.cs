@@ -8,7 +8,39 @@ namespace APP_REUNE_Negocio.Datos
 {
     public class Configuracion_Datos
     {
+        public enum tipo
+        {
+            Aclaraciones_General = 1,
+            Reclamaciones_General = 2,
+            Reclamaciones_SIC = 3,
+            Reclamaciones_Seguros = 4,
+            Reclamaciones_InstitucionesCreditos = 5
+        }
         private readonly AESEncryptor AES = new AESEncryptor();
+
+        public TipoSolicitudes_Modelo Obtener_TipoSolicitud(tipo id)
+        {
+            DataTable dt = new DataTable();
+            TipoSolicitudes_Modelo modelo = new TipoSolicitudes_Modelo();
+            try
+            {
+                dt = Configuracion_Controlador.Instancia.Obtener_TipoSolicitud(((int)id));
+
+                if (dt.Rows.Count > 0)
+                {
+                    modelo.id = int.Parse(dt.Rows[0]["id"].ToString());
+                    modelo.nombre = dt.Rows[0]["nombre"].ToString();
+                    modelo.api = dt.Rows[0]["api"].ToString();
+                    modelo.archivo = dt.Rows[0]["archivo"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return modelo;
+        }
 
         public Configuraciones_Modelo Obtener_Configuracion()
         {

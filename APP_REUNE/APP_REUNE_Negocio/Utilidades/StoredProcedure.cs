@@ -19,6 +19,7 @@ namespace APP_REUNE_Negocio.Utilidades
         //@escribir_log  
         //@ruta_log  
         public static string sp_reune_obtener_update_configuracion = "sp_reune_obtener_update_configuracion";
+        public static string sp_reune_obtener_solicitudes = "sp_reune_obtener_solicitudes";
     }
     public static class SP_Sesion
     {

@@ -124,42 +124,6 @@ namespace APP_REUNE.Vista.PreInfo {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a reune/reclamaciones/general.
-        /// </summary>
-        internal static string ReclamacionesGeneral {
-            get {
-                return ResourceManager.GetString("ReclamacionesGeneral", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a reclamaciones/institucionescredito.
-        /// </summary>
-        internal static string ReclamacionesInstitucionesCredito {
-            get {
-                return ResourceManager.GetString("ReclamacionesInstitucionesCredito", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a reune/reclamaciones/seguros.
-        /// </summary>
-        internal static string ReclamacionesSeguros {
-            get {
-                return ResourceManager.GetString("ReclamacionesSeguros", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a reune/reclamaciones/sic.
-        /// </summary>
-        internal static string ReclamacionesSIC {
-            get {
-                return ResourceManager.GetString("ReclamacionesSIC", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Sociedades Operadoras de Fondos de Inversión.
         /// </summary>
         internal static string Sector {

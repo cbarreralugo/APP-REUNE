@@ -173,9 +173,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Service\Login_Service.cs" />
-    <Compile Include="Service\ReclamacionCredito_Service.cs" />
-    <Compile Include="Service\ReclamacionGeneral_Service.cs" />
-    <Compile Include="Service\ReclamacionSeguros_Service.cs" />
     <Compile Include="Service\Usuario_Service.cs" />
     <Compile Include="Utilidad\SendDataFrom.cs" />
     <Compile Include="Utilidad\SesionTemporal.cs" />
@@ -426,6 +423,24 @@
     <Resource Include="Vista\check.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Vista\Font\Rubik-Black.ttf" />
+    <Resource Include="Vista\Font\Rubik-BlackItalic.ttf" />
+    <Resource Include="Vista\Font\Rubik-Bold.ttf" />
+    <Resource Include="Vista\Font\Rubik-BoldItalic.ttf" />
+    <Resource Include="Vista\Font\Rubik-Italic.ttf" />
+    <Resource Include="Vista\Font\Rubik-Light.ttf" />
+    <Resource Include="Vista\Font\Rubik-LightItalic.ttf" />
+    <Resource Include="Vista\Font\Rubik-Medium.ttf" />
+    <Resource Include="Vista\Font\Rubik-MediumItalic.ttf" />
+    <Resource Include="Vista\Font\Rubik-Regular.ttf" />
+    <Resource Include="Vista\Font\OpenSans-Regular.ttf" />
+    <Resource Include="Vista\Font\OpenSans-SemiBold.ttf" />
+    <Resource Include="Vista\Font\Raleway-Medium.ttf" />
+    <Resource Include="Vista\Font\Raleway-SemiBold.ttf" />
+    <Resource Include="Vista\Font\Roboto-Medium.ttf" />
+    <Resource Include="Vista\Font\Roboto-Regular.ttf" />
+    <Resource Include="Vista\Font\Saira-Regular.ttf" />
+    <Resource Include="Vista\Font\Saira-SemiBold.ttf" />
     <None Include="Vista\Recursos\correcto.png" />
   </ItemGroup>
   <ItemGroup>

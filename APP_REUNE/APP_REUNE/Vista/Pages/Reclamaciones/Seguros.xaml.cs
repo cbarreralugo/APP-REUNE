@@ -1,6 +1,7 @@
 ﻿using APP_REUNE.Service;
 using APP_REUNE.Utilidad;
 using APP_REUNE.Vista.PreInfo;
+using APP_REUNE_Negocio.Datos;
 using APP_REUNE_Negocio.Modelo;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -26,20 +27,29 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
     /// Lógica de interacción para Seguros.xaml
     /// </summary>
     public partial class Seguros : Page
-    { 
-        private readonly string fileName = "ReclamacionesSeguros.txt";
+    {
+        Configuracion_Datos datos = new Configuracion_Datos();
+
+        private string fileName = string.Empty;
+        private int id = 0;
+        private string api = string.Empty;
 
         public Seguros()
         {
             InitializeComponent();
-            CargarPreInformacio(); 
+            CargarPreInformacio();
         }
 
         private void CargarPreInformacio()
         {
+
+            TipoSolicitudes_Modelo modelo = datos.Obtener_TipoSolicitud(Configuracion_Datos.tipo.Reclamaciones_Seguros);
+            fileName = modelo.archivo;
+            id = modelo.id;
+            api = modelo.api;
             txt_RecDenominacion.Text = string.Empty;
             txt_RecSector.Text = string.Empty;
-            cb_RecRamo.SelectedIndex =0;
+            cb_RecRamo.SelectedIndex = 0;
             cb_RecTrimestre.SelectedIndex = 0;
             cb_RecNumero.SelectedIndex = 0;
             txt_RecFolioAtencion.Text = string.Empty;
@@ -129,17 +139,23 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
                 };
 
                 var reclamaciones = new List<ReclamacionSeguros_Model> { reclamacion };
-
-                string endpoint = CamposPreCargados.ReclamacionesSeguros;
-                var success = await Utilidad.SendDataFrom.SendData(reclamaciones, endpoint);
-
-                if (success)
+                string endpoint = api;
+                if (endpoint != null)
                 {
-                    Toast.Correcto("Reclamación enviada correctamente.");
+                    var success = await Utilidad.SendDataFrom.SendData(reclamaciones, endpoint, id);
+
+                    if (success)
+                    {
+                        Toast.Correcto("Reclamación enviada correctamente.");
+                    }
+                    else
+                    {
+                        Toast.Error("Error al enviar la reclamación.");
+                    }
                 }
                 else
                 {
-                    Toast.Error("Error al enviar la reclamación.");
+                    Toast.Error("Error, no se encontro api.");
                 }
             }
             catch (Exception ex)
@@ -242,47 +258,71 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             finally { campos = string.Empty; }
         }
 
+
+
         private async void CargaMasivaJson_Click(object sender, RoutedEventArgs e)
         {
-            string endpoint = CamposPreCargados.ReclamacionesSeguros;
-            var success = await Utilidad.SendDataFrom.SendDataFromJson<ReclamacionSeguros_Model>(endpoint);
-            if (success)
+            string endpoint = api;
+            if (endpoint != null)
             {
-                Toast.Correcto("Reclamación enviada correctamente.");
+                var success = await Utilidad.SendDataFrom.SendDataFromJson<ReclamacionSeguros_Model>(endpoint, id);
+                if (success)
+                {
+                    Toast.Correcto("Reclamación enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la reclamación.");
+                }
             }
             else
             {
-                Toast.Error("Error al enviar la reclamación.");
+                Toast.Error("Error, no se encontro api.");
             }
         }
 
         private async void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
         {
-            string endpoint = CamposPreCargados.ReclamacionesSeguros;
-            var success = await Utilidad.SendDataFrom.SendDataFromExcel<ReclamacionSeguros_Model>(endpoint);
-            if (success)
+            string endpoint = api;
+            if (endpoint != null)
             {
-                Toast.Correcto("Reclamación enviada correctamente.");
+                var success = await Utilidad.SendDataFrom.SendDataFromExcel<ReclamacionSeguros_Model>(endpoint, id);
+                if (success)
+                {
+                    Toast.Correcto("Reclamación enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la reclamación.");
+                }
             }
             else
             {
-                Toast.Error("Error al enviar la reclamación.");
+                Toast.Error("Error, no se encontro api.");
             }
         }
 
         private async void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
         {
-            string endpoint = CamposPreCargados.ReclamacionesSeguros;
-            var success = await Utilidad.SendDataFrom.SendDataFromTxt<ReclamacionSeguros_Model>(endpoint);
-            if (success)
+            string endpoint = api;
+            if (endpoint != null)
             {
-                Toast.Correcto("Reclamación enviada correctamente.");
+                var success = await Utilidad.SendDataFrom.SendDataFromTxt<ReclamacionSeguros_Model>(endpoint, id);
+                if (success)
+                {
+                    Toast.Correcto("Reclamación enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la reclamación.");
+                }
             }
             else
             {
-                Toast.Error("Error al enviar la reclamación.");
+                Toast.Error("Error, no se encontro api.");
             }
         }
+
 
         private void Nueva_Click(object sender, RoutedEventArgs e)
         {

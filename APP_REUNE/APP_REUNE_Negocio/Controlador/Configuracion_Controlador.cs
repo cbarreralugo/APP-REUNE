@@ -27,6 +27,27 @@ namespace APP_REUNE_Negocio.Controlador
                 return _instancia;
             }
         }
+        public DataTable Obtener_TipoSolicitud(int id)
+        {
+            DataTable dt = new DataTable();
+            string[,] parametro =
+            {
+                {"@id",id.ToString()}
+
+            };
+
+            try
+            {
+                dt = ConnectorLibrary.App.GetCurrentConnector().Tabla(Utilidades.SP_Configuraciones.sp_reune_obtener_solicitudes, parametro);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new DataTable();
+            }
+            finally { dt = null; }
+        }
 
         public DataTable Obtener_Configuracion()
         {
