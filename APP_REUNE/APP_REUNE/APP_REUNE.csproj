@@ -52,6 +52,15 @@
   <PropertyGroup>
     <ApplicationIcon>Vista\Recursos\icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>239331619C0C6421423137E308070221C45038A7</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>APP_REUNE_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.102.2.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.102.2\lib\netstandard2.0\ClosedXML.dll</HintPath>

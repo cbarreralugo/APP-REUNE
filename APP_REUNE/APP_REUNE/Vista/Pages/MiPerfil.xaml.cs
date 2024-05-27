@@ -86,6 +86,12 @@ namespace APP_REUNE.Vista.Pages
                     Configuracion_Datos datos = new Configuracion_Datos();
                     datos.Obtener_Configuracion();
                     ObtenerPerfil();
+                    Usuario_Datos datosUsuario = new Usuario_Datos();
+                    Usuario_Modelo modelo = new Usuario_Modelo();
+                    modelo.nombre = username;
+                    modelo.token = SesionUsuario_Modelo.token;
+                    modelo.username_api = username;
+                    datosUsuario.Actualizar(modelo);
                 }
                 else
                 {
