@@ -20,9 +20,8 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="34*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/> 
             </Grid.RowDefinitions>
 
             <Menu Grid.Row="0">
@@ -521,7 +520,11 @@
               Style="{DynamicResource Add}"
               Click="btn_Enviar_Click"/>
             </StackPanel >
-            <Migrid:UserControl1 x:Name="dg_tabla" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="8" Visibility="Collapsed"/>
+            <Migrid:UserControl1 x:Name="dg_tabla" 
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Top" 
+                                 Grid.Row="8" 
+                                 Visibility="Collapsed"/>
         </Grid>
     </Border>
 </Page>

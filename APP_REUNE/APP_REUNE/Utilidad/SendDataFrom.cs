@@ -12,6 +12,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using System.IO;
+using System.Data.SqlClient;
+using System.Data;
+using APP_REUNE_Negocio.Controlador;
+using APP_REUNE_Negocio.Datos;
 
 namespace APP_REUNE.Utilidad
 {
@@ -147,8 +151,9 @@ namespace APP_REUNE.Utilidad
             return false;
         }
 
-        public static async Task<bool> SendData<TModel>(List<TModel> data, string endpoint,int tipo_solicitud )
-        { 
+        public static async Task<bool> SendData<TModel>(List<TModel> data, string endpoint, int tipo_solicitud)
+        {
+            Historial_Datos datos = new Historial_Datos();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(Configuracion_Modelo.api_reune.ToString());
@@ -167,9 +172,27 @@ namespace APP_REUNE.Utilidad
                     Console.WriteLine("Response StatusCode: " + response.StatusCode);
                     Console.WriteLine("Response Body: " + responseBody);
 
+                    // Extract data from response
+                    dynamic responseJson = JsonConvert.DeserializeObject(responseBody);
+                    int numPeticion = responseJson["Número total de envios"];
+                    string peticiones = JsonConvert.SerializeObject(responseJson["Reclamaciones enviadas"]);
+
+                    // Create and populate the Historial_Modelo object
+                    Historial_Modelo modelo = new Historial_Modelo
+                    {
+                        idTipo = tipo_solicitud,
+                        idUsuario = SesionUsuario_Modelo.id_usuario,
+                        numPeticion = numPeticion,
+                        peticiones = peticiones,
+                        EstatusPeticion = response.IsSuccessStatusCode ? "Correcto" : "Error"
+                    };
+
+                    // Register the request in the history
+                    datos.CrearHistorial(modelo);
+
                     if (response.IsSuccessStatusCode)
                     {
-                        ResponseAPI aPI = new ResponseAPI(); 
+                        ResponseAPI aPI = new ResponseAPI();
                         Toast.Correcto("Response Body: " + responseBody, "Operación exitosa!!");
                         aPI.LoadResponse(responseBody);
                         aPI.Show();
@@ -177,7 +200,7 @@ namespace APP_REUNE.Utilidad
                     }
                     else
                     {
-                        Toast.Error("Error: " + responseBody,"Verifica los campos, intenta de nuevo.");
+                        Toast.Error("Error: " + responseBody, "Verifica los campos, intenta de nuevo.");
                         Toast.CreateLog("Error sending data", responseBody);
                         return false;
                     }
@@ -186,9 +209,23 @@ namespace APP_REUNE.Utilidad
                 {
                     Console.WriteLine("Exception: " + ex.Message);
                     Toast.Sistema("Exception sending data", ex);
+
+                    // Register the failed request in the history
+                    Historial_Modelo modelo = new Historial_Modelo
+                    {
+                        idTipo = tipo_solicitud,
+                        idUsuario = SesionUsuario_Modelo.id_usuario,
+                        numPeticion = 0,
+                        peticiones = "",
+                        EstatusPeticion = "Exception"
+                    };
+                    datos.CrearHistorial(modelo);
+
                     return false;
                 }
             }
         }
+
+
     }
 }

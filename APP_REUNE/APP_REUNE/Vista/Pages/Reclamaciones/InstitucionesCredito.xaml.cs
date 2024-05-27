@@ -7,6 +7,7 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -90,6 +91,8 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             txt_RecMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
             txt_RecLocalidad.Text = CamposPreCargados.Localidad;
             txt_RecColonia.Text = CamposPreCargados.Colonia;
+            dg_tabla.LoadData(null, "");//reiniciar tabla
+            dg_tabla.Visibility = Visibility.Collapsed;//ocultar tabla
 
         }
 
@@ -311,15 +314,26 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
         {
             CargarPreInformacio();
         }
-
         private void Historial_Click(object sender, RoutedEventArgs e)
         {
-            Toast.Notifiacion("Acción no disponible por ahora");
+            Historial_Datos datos = new Historial_Datos();
+            DataTable dt = new DataTable();
+            dt = datos.ObtenerHistorial((int)Configuracion_Datos.tipo.Reclamaciones_SIC);
+            if (dt.Rows.Count > 0)
+            {
+                dg_tabla.LoadData(dt, "Historial de Solicitudes de Reclamaciones SIC");
+                dg_tabla.Visibility = Visibility.Visible;
+                Toast.Correcto("Historial de todas las solicitudes de Reclamaciones");
+            }
+            else
+            {
+                Toast.Error("No se encontraron registros", "No hay registros");
+            }
         }
 
         private void EliminarHistorial_Click(object sender, RoutedEventArgs e)
         {
-            Toast.Notifiacion("Acción no disponible por ahora");
+            Toast.Denegado("No tienes permisos para realizar esta acción");
         }
 
         private void ReiniciarSistema_Click(object sender, RoutedEventArgs e)

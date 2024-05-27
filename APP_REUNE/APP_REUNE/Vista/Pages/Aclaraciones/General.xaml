@@ -20,10 +20,10 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="30"/> 
+                <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
- 
+
             <Menu Grid.Row="0">
                 <MenuItem Header="Carga con archivos">
                     <MenuItem Header="Enviar Carga Masiva (con archivo .Json)" x:Name="CargaMasivaJson" Click="CargaMasivaJson_Click">
@@ -48,7 +48,7 @@
                         <MenuItem.Icon>
                             <Image Source="/Vista/Recursos/enviarSolicitud.png" />
                         </MenuItem.Icon>
-                    </MenuItem> 
+                    </MenuItem>
                     <MenuItem Header="Nueva Solicitud en Formulario" x:Name="Nueva" Click="Nueva_Click">
                         <MenuItem.Icon>
                             <Image Source="/Vista/Recursos/nuevaSolicitud.png" />
@@ -76,7 +76,7 @@
                             <Image Source="/Vista/Recursos/limpiar.png" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    
+
                 </MenuItem>
                 <MenuItem Header="Ayuda">
                     <MenuItem Header="¿Como usar la herramienta?" x:Name="ComoFunciona" Click="ComoFunciona_Click" >
@@ -525,7 +525,10 @@
             Style="{DynamicResource Add}"
             Click="btn_Enviar_Click"/>
             </StackPanel >
-            <Migrid:UserControl1 x:Name="dg_tabla" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="8" Visibility="Collapsed"/>
+            <Migrid:UserControl1 x:Name="dg_tabla" 
+                                 VerticalAlignment="Top" 
+                                 Grid.Row="8"  
+                                 Visibility="Collapsed"  />
         </Grid>
     </Border>
 </Page>

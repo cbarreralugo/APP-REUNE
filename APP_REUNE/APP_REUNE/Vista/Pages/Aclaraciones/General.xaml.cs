@@ -8,6 +8,7 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -319,12 +320,24 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
 
         private void Historial_Click(object sender, RoutedEventArgs e)
         {
-            Toast.Notifiacion("Acción no disponible por ahora");
+            Historial_Datos datos = new Historial_Datos();
+            DataTable dt = new DataTable();
+            dt = datos.ObtenerHistorial((int)Configuracion_Datos.tipo.Aclaraciones_General);
+            if (dt.Rows.Count > 0)
+            {
+                dg_tabla.LoadData(dt, "Historial de Solicitudes de Aclaraciones General"); 
+                dg_tabla.Visibility = Visibility.Visible;
+                Toast.Correcto("Historial de todas las solicitudes de Aclaraciones");
+            }
+            else
+            {
+                Toast.Error("No se encontraron registros","No hay registros");
+            }
         }
 
         private void EliminarHistorial_Click(object sender, RoutedEventArgs e)
         {
-            Toast.Notifiacion("Acción no disponible por ahora");
+            Toast.Denegado("No tienes permisos para realizar esta acción");
         }
 
         private void ReiniciarSistema_Click(object sender, RoutedEventArgs e)

@@ -12,7 +12,7 @@
         ResizeMode="NoResize" FontFamily="Poppins">
 
 
-    <Border Background="{DynamicResource PrimaryBackgroundColor}"
+    <Border Background="{DynamicResource PrimaryEmojiColor}"
         CornerRadius="8">
         <Grid>
             <Grid.RowDefinitions>

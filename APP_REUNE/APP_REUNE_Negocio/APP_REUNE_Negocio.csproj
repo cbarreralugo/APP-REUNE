@@ -45,16 +45,19 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Controlador\Configuracion_Controlador.cs" />
+    <Compile Include="Controlador\Historial_Controlador.cs" />
     <Compile Include="Controlador\Log_Controlador.cs" />
     <Compile Include="Controlador\Sesion_Controlador.cs" />
     <Compile Include="Controlador\Usuario_Controlador.cs" />
     <Compile Include="Datos\Configuracion_Datos.cs" />
+    <Compile Include="Datos\Historial_Datos.cs" />
     <Compile Include="Datos\Log_Datos.cs" />
     <Compile Include="Datos\Session_Datos.cs" />
     <Compile Include="Datos\Usuario_Datos.cs" />
     <Compile Include="Modelo\Aclaracion_Modelo.cs" />
     <Compile Include="Modelo\API_Modelo.cs" />
     <Compile Include="Modelo\Configuraciones_Modelo.cs" />
+    <Compile Include="Modelo\Historial_Modelo.cs" />
     <Compile Include="Modelo\Log_Modelo.cs" />
     <Compile Include="Modelo\Reclamaciones_Modelo.cs" />
     <Compile Include="Modelo\SesionUsuario_Modelo.cs" />
