@@ -112,7 +112,7 @@ namespace APP_REUNE_Negocio.Controlador
             {
                 {"@accion","E" },
                 {"@id_usuario","" },
-                {"@nombre","" },
+                {"@nombre",modelo.nombre.ToString()},
                 {"@password",""},
                 {"@token",modelo.token.ToString() },
                 {"@userid_api",""},

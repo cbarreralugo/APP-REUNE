@@ -86,6 +86,12 @@ namespace APP_REUNE.Vista.Pages
                     Configuracion_Datos datos = new Configuracion_Datos();
                     datos.Obtener_Configuracion();
                     ObtenerPerfil();
+                    Usuario_Datos datosUsuario = new Usuario_Datos();
+                    Usuario_Modelo modelo = new Usuario_Modelo();
+                    modelo.nombre = username;
+                    modelo.token = SesionUsuario_Modelo.token;
+                    modelo.username_api = username;
+                    datosUsuario.Actualizar(modelo);
                 }
                 else
                 {
@@ -94,7 +100,7 @@ namespace APP_REUNE.Vista.Pages
             }
             catch (Exception ex)
             {
-                Toast.Log("Error al renovar el token", "Verifica que el token del Super usuario sea valido");
+                Toast.Sistema("Error al renovar el token", ex, "Verifica que el token del Super usuario sea valido");
             }
         }
 
@@ -111,6 +117,11 @@ namespace APP_REUNE.Vista.Pages
 
             // Cerrar la aplicación
             Application.Current.Shutdown();
+        }
+
+        private void btnReiniciarSistema_Click(object sender, RoutedEventArgs e)
+        {
+            Utilidad.SesionTemporal.RestartApplication();
         }
     }
 }

@@ -24,5 +24,10 @@ namespace APP_REUNE.Vista.Pages
         {
             InitializeComponent();
         }
+
+        private void btn_ver_mas_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

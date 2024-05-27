@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,17 +26,17 @@ namespace APP_REUNE.Vista.Pages
         {
             InitializeComponent();
         }
-        public void LoadResponse(string responseText,DataTable table=null, string titleTable=null)
+        public void LoadResponse(string responseText)
         {
-            if (table.Rows.Count>0)
-            {
-                dg_tabla.LoadData(table, titleTable);
-                Toast.Correcto(titleTable);
-            }
-            else
-            {
-                Toast.Error(titleTable);
-            }
+            //    if (table.Rows.Count>0)
+            //    {
+            //        dg_tabla.LoadData(table, titleTable);
+            //        Toast.Correcto(titleTable);
+            //    }
+            //    else
+            //    {
+            //        Toast.Error(titleTable);
+            //    }
             DisplayResponse(responseText);
         }
 
@@ -67,8 +68,23 @@ namespace APP_REUNE.Vista.Pages
 
         private void DisplayResponse(string jsonResponse)
         {
-            var apiResponse = JsonConvert.DeserializeObject<ApiResponse_Model>(jsonResponse);
-            txtApiResponse.Text = $"Mensaje: {apiResponse.Message}\nUserID: {apiResponse.Data["userid"]}";
+            try
+            {
+                var parsedJson = JObject.Parse(jsonResponse);
+
+                StringBuilder responseBuilder = new StringBuilder();
+
+                foreach (var property in parsedJson.Properties())
+                {
+                    responseBuilder.AppendLine($"{property.Name}: {property.Value}");
+                }
+
+                txtApiResponse.Text = responseBuilder.ToString();
+            }
+            catch (Exception ex)
+            {
+                txtApiResponse.Text = $"Error parsing JSON response: {ex.Message}";
+            }
         }
     }
 }

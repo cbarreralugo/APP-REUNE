@@ -2,7 +2,9 @@
 using APP_REUNE_Negocio.Modelo;
 using EncryptionLibrary;
 using System;
-using System.IO;
+using System.Diagnostics;
+using System.IO; 
+using System.Windows;
 
 namespace APP_REUNE.Utilidad
 {
@@ -158,8 +160,7 @@ namespace APP_REUNE.Utilidad
                 Toast.Sistema("Error al guardar los datos: " , ex);
                 return false;
             }
-        }
-
+        } 
 
         public static string ObtenerPreInfo(string fileName)
         {
@@ -179,5 +180,21 @@ namespace APP_REUNE.Utilidad
             }
             return campos;
         }
+
+        public static void RestartApplication()
+        { 
+            string applicationPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+            Toast.CreateLog("Reinicio forzoso de app", "Se ha reiniciado la aplicación de manera inesperada.");
+            ProcessStartInfo startInfo = new ProcessStartInfo(applicationPath)
+            {
+                WorkingDirectory = System.IO.Path.GetDirectoryName(applicationPath)
+            };
+             
+            Process.Start(startInfo);
+             
+            Application.Current.Shutdown();
+        }
+
     }
 }

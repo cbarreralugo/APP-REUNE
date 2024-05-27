@@ -1,11 +1,14 @@
 ﻿using APP_REUNE.Service;
 using APP_REUNE.Utilidad;
 using APP_REUNE.Vista.PreInfo;
+using APP_REUNE_Negocio.Datos;
 using APP_REUNE_Negocio.Modelo;
+using ClosedXML.Excel;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,18 +29,25 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
     /// </summary>
     public partial class General : Page
     {
-        private Aclaraciones_Service _aclaracionesService;
-        private string fileName = "AclaracionesGeneral.txt";
+        Configuracion_Datos datos = new Configuracion_Datos();
+
+        private string fileName = string.Empty;
+        private int id = 0;
+        private string api = string.Empty;
 
         public General()
         {
             InitializeComponent();
             CargarPreInformacio();
-            _aclaracionesService = new Aclaraciones_Service();
         }
 
         private void CargarPreInformacio()
         {
+
+            TipoSolicitudes_Modelo modelo = datos.Obtener_TipoSolicitud(Configuracion_Datos.tipo.Aclaraciones_General);
+            fileName = modelo.archivo;
+            id = modelo.id;
+            api = modelo.api;
             // Limpiar todos los campos
             txt_AclaracionDenominacion.Clear();
             txt_AclaracionSector.Clear();
@@ -85,50 +95,8 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
             txt_AclaracionMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
             txt_AclaracionLocalidad.Text = CamposPreCargados.Localidad;
             txt_AclaracionColonia.Text = CamposPreCargados.Colonia;
-
-        }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "JSON files (*.json)|*.json",
-                    Title = "Seleccionar archivo JSON"
-                };
-
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    string filePath = openFileDialog.FileName;
-                    string jsonContent = File.ReadAllText(filePath);
-
-                    var aclaraciones = JsonConvert.DeserializeObject<List<Aclaracion_Model>>(jsonContent);
-
-                    if (aclaraciones != null)
-                    {
-                        var apiService = new Aclaraciones_Service();
-                        bool success = await apiService.SendAclaraciones(aclaraciones);
-
-                        if (success)
-                        {
-                            Toast.Correcto("Archivo enviado correctamente.");
-                        }
-                        else
-                        {
-                            Toast.Error("Error al enviar el archivo.");
-                        }
-                    }
-                    else
-                    {
-                        Toast.Error("El archivo JSON no es válido.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Toast.Sistema("Error al leer archivo json", ex);
-            }
+            dg_tabla.LoadData(null, "");//reiniciar tabla
+            dg_tabla.Visibility = Visibility.Collapsed;//ocultar tabla
         }
 
         private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
@@ -166,19 +134,27 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
                     AclaracionReversa = cb_AclaracionReversa.SelectedValue != null ? cb_AclaracionReversa.SelectedValue.ToString() : null,
                     AclaracionOperacionExtranjero = cb_AclaracionOperacionExtranjero.SelectedValue != null ? cb_AclaracionOperacionExtranjero.SelectedValue.ToString() : null
                 };
-
                 var aclaraciones = new List<Aclaracion_Model> { aclaracion };
 
-                bool success = await _aclaracionesService.SendAclaraciones(aclaraciones);
-
-                if (success)
+                string endpoint = api;
+                if (endpoint != null)
                 {
-                    Toast.Correcto("Aclaración enviada correctamente.");
+                    var success = await Utilidad.SendDataFrom.SendData(aclaraciones, endpoint,id);
+
+                    if (success)
+                    {
+                        Toast.Correcto("Aclaración enviada correctamente.");
+                    }
+                    else
+                    {
+                        Toast.Error("Error al enviar la aclaración.");
+                    }
                 }
                 else
                 {
-                    Toast.Error("Error al enviar la aclaración.");
+                    Toast.Error("Error, no se encontro api.");
                 }
+
             }
             catch (Exception ex)
             {
@@ -271,9 +247,114 @@ namespace APP_REUNE.Vista.Pages.Aclaraciones
             finally { campos = string.Empty; }
         }
 
-        private void btn_Limpiar_Click(object sender, RoutedEventArgs e)
+        private async void CargaMasivaJson_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = api; 
+            if (endpoint != null)
+            {
+                var success = await Utilidad.SendDataFrom.SendDataFromJson<Aclaracion_Model>(endpoint,id);
+
+                if (success)
+                {
+                    Toast.Correcto("Aclaración enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la aclaración.");
+                }
+            }
+            else
+            {
+                Toast.Error("Error, no se encontro api.");
+            }
+        }
+
+        private async void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = api;
+            if (endpoint != null)
+            {
+                var success = await Utilidad.SendDataFrom.SendDataFromExcel<Aclaracion_Model>(endpoint,id);
+
+                if (success)
+                {
+                    Toast.Correcto("Aclaración enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la aclaración.");
+                }
+            }
+            else
+            {
+                Toast.Error("Error, no se encontro api.");
+            }
+        }
+
+        private async void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = api;
+            if (endpoint != null)
+            {
+                var success = await Utilidad.SendDataFrom.SendDataFromTxt<Aclaracion_Model>(endpoint,id);
+
+                if (success)
+                {
+                    Toast.Correcto("Aclaración enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la aclaración.");
+                }
+            }
+            else
+            {
+                Toast.Error("Error, no se encontro api.");
+            }
+        }
+
+        private void Nueva_Click(object sender, RoutedEventArgs e)
         {
             CargarPreInformacio();
+        }
+
+        private void Historial_Click(object sender, RoutedEventArgs e)
+        {
+            Historial_Datos datos = new Historial_Datos();
+            DataTable dt = new DataTable();
+            dt = datos.ObtenerHistorial((int)Configuracion_Datos.tipo.Aclaraciones_General);
+            if (dt.Rows.Count > 0)
+            {
+                dg_tabla.LoadData(dt, "Historial de Solicitudes de Aclaraciones General"); 
+                dg_tabla.Visibility = Visibility.Visible;
+                Toast.Correcto("Historial de todas las solicitudes de Aclaraciones");
+            }
+            else
+            {
+                Toast.Error("No se encontraron registros","No hay registros");
+            }
+        }
+
+        private void EliminarHistorial_Click(object sender, RoutedEventArgs e)
+        {
+            Toast.Denegado("No tienes permisos para realizar esta acción");
+        }
+
+        private void ReiniciarSistema_Click(object sender, RoutedEventArgs e)
+        {
+            SesionTemporal.RestartApplication();
+        }
+
+        private void ComoFunciona_Click(object sender, RoutedEventArgs e)
+        {
+            ComoFunciona cf = new ComoFunciona();
+            cf.Show();
+        }
+
+        private void NotificarFallaSistema_Click(object sender, RoutedEventArgs e)
+        {
+            Ayuda notificar = new Ayuda();
+            notificar.Show();
         }
     }
 }

@@ -61,6 +61,15 @@ namespace APP_REUNE.Vista.PreInfo {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a reune/aclaraciones/general.
+        /// </summary>
+        internal static string AclaracionesGeneral {
+            get {
+                return ResourceManager.GetString("AclaracionesGeneral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a 5120.
         /// </summary>
         internal static string CodigoPostal {

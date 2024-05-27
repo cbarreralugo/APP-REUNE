@@ -1,11 +1,13 @@
 ﻿using APP_REUNE.Service;
 using APP_REUNE.Utilidad;
 using APP_REUNE.Vista.PreInfo;
+using APP_REUNE_Negocio.Datos;
 using APP_REUNE_Negocio.Modelo;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,21 +29,28 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
     /// </summary>
     public partial class Seguros : Page
     {
-        private readonly ReclamacionesSeguros_Service _service;
-        private readonly string fileName = "ReclamacionesSeguros.txt";
+        Configuracion_Datos datos = new Configuracion_Datos();
+
+        private string fileName = string.Empty;
+        private int id = 0;
+        private string api = string.Empty;
 
         public Seguros()
         {
             InitializeComponent();
             CargarPreInformacio();
-            _service = new ReclamacionesSeguros_Service();
         }
 
         private void CargarPreInformacio()
         {
+
+            TipoSolicitudes_Modelo modelo = datos.Obtener_TipoSolicitud(Configuracion_Datos.tipo.Reclamaciones_Seguros);
+            fileName = modelo.archivo;
+            id = modelo.id;
+            api = modelo.api;
             txt_RecDenominacion.Text = string.Empty;
             txt_RecSector.Text = string.Empty;
-            cb_RecRamo.SelectedIndex =0;
+            cb_RecRamo.SelectedIndex = 0;
             cb_RecTrimestre.SelectedIndex = 0;
             cb_RecNumero.SelectedIndex = 0;
             txt_RecFolioAtencion.Text = string.Empty;
@@ -89,48 +98,8 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             txt_RecMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
             txt_RecLocalidad.Text = CamposPreCargados.Localidad;
             txt_RecColonia.Text = CamposPreCargados.Colonia;
-        }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "JSON files (*.json)|*.json",
-                    Title = "Seleccionar archivo JSON"
-                };
-
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    string filePath = openFileDialog.FileName;
-                    string jsonContent = File.ReadAllText(filePath);
-
-                    var reclamaciones = JsonConvert.DeserializeObject<List<ReclamacionSeguros_Model>>(jsonContent);
-
-                    if (reclamaciones != null)
-                    {
-                        var success = await _service.SendReclamacionesSeguros(reclamaciones);
-
-                        if (success)
-                        {
-                            Toast.Correcto("Archivo enviado correctamente.");
-                        }
-                        else
-                        {
-                            Toast.Error("Error al enviar el archivo.");
-                        }
-                    }
-                    else
-                    {
-                        Toast.Error("El archivo JSON no es válido.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Toast.Sistema("Error al leer archivo json: ", ex);
-            }
+            dg_tabla.LoadData(null, "");//reiniciar tabla
+            dg_tabla.Visibility = Visibility.Collapsed;//ocultar tabla
         }
 
         private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
@@ -173,15 +142,23 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
                 };
 
                 var reclamaciones = new List<ReclamacionSeguros_Model> { reclamacion };
-                var success = await _service.SendReclamacionesSeguros(reclamaciones);
-
-                if (success)
+                string endpoint = api;
+                if (endpoint != null)
                 {
-                    Toast.Correcto("Reclamación enviada correctamente.");
+                    var success = await Utilidad.SendDataFrom.SendData(reclamaciones, endpoint, id);
+
+                    if (success)
+                    {
+                        Toast.Correcto("Reclamación enviada correctamente.");
+                    }
+                    else
+                    {
+                        Toast.Error("Error al enviar la reclamación.");
+                    }
                 }
                 else
                 {
-                    Toast.Error("Error al enviar la reclamación.");
+                    Toast.Error("Error, no se encontro api.");
                 }
             }
             catch (Exception ex)
@@ -282,6 +259,120 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
                 Toast.Sistema("Error al cargar los datos: ", ex);
             }
             finally { campos = string.Empty; }
+        }
+
+
+
+        private async void CargaMasivaJson_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = api;
+            if (endpoint != null)
+            {
+                var success = await Utilidad.SendDataFrom.SendDataFromJson<ReclamacionSeguros_Model>(endpoint, id);
+                if (success)
+                {
+                    Toast.Correcto("Reclamación enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la reclamación.");
+                }
+            }
+            else
+            {
+                Toast.Error("Error, no se encontro api.");
+            }
+        }
+
+        private async void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = api;
+            if (endpoint != null)
+            {
+                var success = await Utilidad.SendDataFrom.SendDataFromExcel<ReclamacionSeguros_Model>(endpoint, id);
+                if (success)
+                {
+                    Toast.Correcto("Reclamación enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la reclamación.");
+                }
+            }
+            else
+            {
+                Toast.Error("Error, no se encontro api.");
+            }
+        }
+
+        private async void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = api;
+            if (endpoint != null)
+            {
+                var success = await Utilidad.SendDataFrom.SendDataFromTxt<ReclamacionSeguros_Model>(endpoint, id);
+                if (success)
+                {
+                    Toast.Correcto("Reclamación enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la reclamación.");
+                }
+            }
+            else
+            {
+                Toast.Error("Error, no se encontro api.");
+            }
+        }
+
+
+        private void Nueva_Click(object sender, RoutedEventArgs e)
+        {
+            CargarPreInformacio();
+        }
+        private void Historial_Click(object sender, RoutedEventArgs e)
+        {
+            Historial_Datos datos = new Historial_Datos();
+            DataTable dt = new DataTable();
+            dt = datos.ObtenerHistorial((int)Configuracion_Datos.tipo.Reclamaciones_Seguros);
+            if (dt.Rows.Count > 0)
+            {
+                dg_tabla.LoadData(dt, "Historial de Solicitudes de Reclamaciones Seguros");
+                dg_tabla.Visibility = Visibility.Visible;
+                Toast.Correcto("Historial de todas las solicitudes de Reclamaciones");
+            }
+            else
+            {
+                Toast.Error("No se encontraron registros", "No hay registros");
+            }
+        }
+
+        private void EliminarHistorial_Click(object sender, RoutedEventArgs e)
+        {
+            Toast.Denegado("No tienes permisos para realizar esta acción");
+        }
+
+        private void ReiniciarSistema_Click(object sender, RoutedEventArgs e)
+        {
+            SesionTemporal.RestartApplication();
+        }
+
+        private void ComoFunciona_Click(object sender, RoutedEventArgs e)
+        {
+            ComoFunciona cf = new ComoFunciona();
+            cf.Show();
+        }
+
+        private void NotificarFallaSistema_Click(object sender, RoutedEventArgs e)
+        {
+            Ayuda notificar = new Ayuda();
+            notificar.Show();
+        }
+
+        private void dg_tabla_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -12,12 +12,12 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="600"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="419*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical"
                         Grid.Row="1"
@@ -26,28 +26,18 @@
                 <StackPanel Orientation="Horizontal" 
                              Margin="0 20 0 0"
                              VerticalAlignment="Center">
-                                    <Label Content="URL de la API:"
+                    <Label Content="URL de la API:"
                             FontSize="12"
                             Foreground="{DynamicResource PrimaryTextColor}"/>
                     <TextBox Name="txt_API"
-                             Width="350"
+                             Width="400"
                              Text=""
                              Margin="15 0 0 0"
                              Tag="Ingresa la dirección de API Base"
                              Style="{DynamicResource TextBoxDefault}"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal"
-                            Margin="0 20 0 0">
-                    <Label Content="Validar login de acceso por medio de API:"
-                           FontSize="12"
-                           Foreground="{DynamicResource PrimaryTextColor}"
-                            />
-                    <ToggleButton x:Name="Chek_Login"
-                                  Margin="15 0 0 0"
-                                  IsChecked="False" 
-                                  Style="{DynamicResource ToggleButtonStyle2}"/>
-                </StackPanel>
+
                 <StackPanel Orientation="Horizontal"
                              Margin="0 20 0 0"
                              VerticalAlignment="Center">
@@ -55,7 +45,7 @@
                             FontSize="12"
                             Foreground="{DynamicResource PrimaryTextColor}"/>
                     <ComboBox x:Name="cb_log"
-                              Width="295"
+                              Width="345"
                               Margin="10 0 0 0"
                               SelectedIndex="0" />
                 </StackPanel>
@@ -66,7 +56,7 @@
                            FontSize="12"
                            Foreground="{DynamicResource PrimaryTextColor}"/>
                     <TextBox Name="txt_RutaLog" 
-                             Width="300"
+                             Width="350"
                              Text=""
                              Tag="Coloca la ruta en donde estará el .log"
                              Style="{DynamicResource TextBoxDefault}"/>
@@ -78,13 +68,23 @@
              FontSize="12"
              Foreground="{DynamicResource PrimaryTextColor}"/>
                     <TextBox Name="txt_rutaTemporalSesion"
-              Width="237"
+              Width="285"
               Text=""
               Margin="15 0 0 0"
               Tag="Ingresa la ruta local de sesiones temporales"
               Style="{DynamicResource TextBoxDefault}"/>
                 </StackPanel>
-
+                <StackPanel Orientation="Horizontal"
+             Margin="0 20 0 0">
+                    <Label Content="Validar login con API (se auto regenera el token cada vez que ingrese al sistema):"
+            FontSize="12"
+            Foreground="{DynamicResource PrimaryTextColor}"
+             />
+                    <ToggleButton x:Name="Chek_Login"
+                   Margin="15 0 0 0"
+                   IsChecked="False" 
+                   Style="{DynamicResource ToggleButtonStyle2}"/>
+                </StackPanel>
                 <StackPanel Orientation="Horizontal"
              Margin="0 20 0 0">
                     <Label Content="Los usuarios pueden auto regenerar su token de acceso:"

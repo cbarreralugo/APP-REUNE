@@ -1,11 +1,13 @@
 ﻿using APP_REUNE.Service;
 using APP_REUNE.Utilidad;
 using APP_REUNE.Vista.PreInfo;
+using APP_REUNE_Negocio.Datos;
 using APP_REUNE_Negocio.Modelo;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,19 +29,25 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
     /// </summary>
     public partial class General : Page
     {
-        private ReclamacionesGeneral_Service _reclamacionesService;
-        private string fileName = "ReclamacionesGeneral.txt";
+        Configuracion_Datos datos = new Configuracion_Datos();
+
+        private string fileName = string.Empty;
+        private int id = 0;
+        private string api = string.Empty;
 
         public General()
         {
             InitializeComponent();
             CargarPreInformacio();
-            _reclamacionesService = new ReclamacionesGeneral_Service();
         }
-
 
         private void CargarPreInformacio()
         {
+
+            TipoSolicitudes_Modelo modelo = datos.Obtener_TipoSolicitud(Configuracion_Datos.tipo.Reclamaciones_General);
+            fileName = modelo.archivo;
+            id = modelo.id;
+            api = modelo.api;
             // Limpiar todos los campos
             txt_RecDenominacion.Clear();
             txt_RecSector.Clear();
@@ -87,8 +95,10 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             txt_RecEntidadFederativa.Text = CamposPreCargados.EntidadFederativa;
             txt_RecCodigoPostal.Text = CamposPreCargados.CodigoPostal;
             txt_RecMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
-            txt_RecLocalidad.Text=CamposPreCargados.Localidad; 
-            txt_RecColonia.Text=CamposPreCargados.Colonia;
+            txt_RecLocalidad.Text = CamposPreCargados.Localidad;
+            txt_RecColonia.Text = CamposPreCargados.Colonia;
+            dg_tabla.LoadData(null, "");//reiniciar tabla
+            dg_tabla.Visibility = Visibility.Collapsed;//ocultar tabla
         }
 
         private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
@@ -130,21 +140,28 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
                 };
 
                 var reclamaciones = new List<ReclamacionGeneral_Model> { reclamacion };
-
-                bool success = await _reclamacionesService.SendReclamacionesGeneral(reclamaciones);
-
-                if (success)
+                string endpoint = api;
+                if (endpoint != null)
                 {
-                    Toast.Correcto("Reclamación enviada correctamente.");
+                    var success = await Utilidad.SendDataFrom.SendData(reclamaciones, endpoint, id);
+
+                    if (success)
+                    {
+                        Toast.Correcto("Reclamación enviada correctamente.");
+                    }
+                    else
+                    {
+                        Toast.Error("Error al enviar la reclamación.");
+                    }
                 }
                 else
                 {
-                    Toast.Error("Error al enviar la reclamación.");
+                    Toast.Error("Error, no se encontro api.");
                 }
             }
             catch (Exception ex)
             {
-                Toast.Sistema("Error: " , ex);
+                Toast.Sistema("Error: ", ex);
             }
         }
 
@@ -241,48 +258,13 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             finally { campos = string.Empty; }
         }
 
-        private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
+
+        private async void CargaMasivaJson_Click(object sender, RoutedEventArgs e)
         {
-            try
+            string endpoint = api;
+            if (endpoint != null)
             {
-                var reclamacion = new ReclamacionGeneral_Model
-                {
-                    RecDenominacion = txt_RecDenominacion.Text,
-                    RecSector = txt_RecSector.Text,
-                    RecTrimestre = int.TryParse(cb_RecTrimestre.SelectedValue?.ToString(), out var recTrimestre) ? recTrimestre : 0,
-                    RecNumero = int.TryParse(cb_RecNumero.SelectedValue?.ToString(), out var recNumero) ? recNumero : 0,
-                    RecFolioAtencion = txt_RecFolioAtencion.Text,
-                    RecEstadoConPend = int.TryParse(cb_RecEstadoConPend.SelectedValue?.ToString(), out var recEstadoConPend) ? recEstadoConPend : 0,
-                    RecFechaReclamacion = dp_RecFechaReclamacion.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecFechaAtencion = dp_RecFechaAtencion.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecMedioRecepcionCanal = int.TryParse(txt_RecMedioRecepcionCanal.Text, out var recMedioRecepcionCanal) ? recMedioRecepcionCanal : 0,
-                    RecProductoServicio = txt_RecProductoServicio.Text,
-                    RecCausaMotivo = txt_RecCausaMotivo.Text,
-                    RecFechaResolucion = dp_RecFechaResolucion.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecFechaNotifiUsuario = dp_RecFechaNotifiUsuario.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecEntidadFederativa = int.TryParse(txt_RecEntidadFederativa.Text, out var recEntidadFederativa) ? recEntidadFederativa : 0,
-                    RecCodigoPostal = int.TryParse(txt_RecCodigoPostal.Text, out var recCodigoPostal) ? recCodigoPostal : 0,
-                    RecMunicipioAlcaldia = int.TryParse(txt_RecMunicipioAlcaldia.Text, out var recMunicipioAlcaldia) ? recMunicipioAlcaldia : 0,
-                    RecLocalidad = int.TryParse(txt_RecLocalidad.Text, out var recLocalidad) ? recLocalidad : 0,
-                    RecColonia = int.TryParse(txt_RecColonia.Text, out var recColonia) ? (int?)recColonia : null,
-                    RecMonetario = cb_RecMonetario.Text,
-                    RecMontoReclamado = int.TryParse(txt_RecMontoReclamado.Text, out var recMontoReclamado) ? (int?)recMontoReclamado : null,
-                    RecImporteAbonado = int.TryParse(txt_RecImporteAbonado.Text, out var recImporteAbonado) ? (int?)recImporteAbonado : null,
-                    RecFechaAbonoImporte = dp_RecFechaAbonoImporte.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecPori = cb_RecPori.Text,
-                    RecTipoPersona = int.TryParse(cb_RecTipoPersona.SelectedValue?.ToString(), out var recTipoPersona) ? recTipoPersona : 0,
-                    RecSexo = cb_RecSexo.Text,
-                    RecEdad = int.TryParse(cb_RecEdad.SelectedValue?.ToString(), out var recEdad) ? recEdad : 0,
-                    RecSentidoResolucion = int.TryParse(cb_RecSentidoResolucion.SelectedValue?.ToString(), out var recSentidoResolucion) ? recSentidoResolucion : 0,
-                    RecNivelAtencion = int.TryParse(cb_RecNivelAtencion.SelectedValue?.ToString(), out var recNivelAtencion) ? recNivelAtencion : 0,
-                    RecFolioCondusef = txt_RecFolioCondusef.Text,
-                    RecReversa = cb_RecReversa.Text
-                };
-
-                var reclamaciones = new List<ReclamacionGeneral_Model> { reclamacion };
-
-                bool success = await _reclamacionesService.SendReclamacionesGeneral(reclamaciones);
-
+                var success = await Utilidad.SendDataFrom.SendDataFromJson<ReclamacionGeneral_Model>(endpoint, id);
                 if (success)
                 {
                     Toast.Correcto("Reclamación enviada correctamente.");
@@ -292,58 +274,97 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
                     Toast.Error("Error al enviar la reclamación.");
                 }
             }
-            catch (Exception ex)
+            else
             {
-                Toast.Sistema("Error: " , ex);
+                Toast.Error("Error, no se encontro api.");
             }
         }
 
-        private void btn_Limpiar_Click(object sender, RoutedEventArgs e)
+        private async void CargaMasivaExcel_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = api;
+            if (endpoint != null)
+            {
+                var success = await Utilidad.SendDataFrom.SendDataFromExcel<ReclamacionGeneral_Model>(endpoint, id);
+                if (success)
+                {
+                    Toast.Correcto("Reclamación enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la reclamación.");
+                }
+            }
+            else
+            {
+                Toast.Error("Error, no se encontro api.");
+            }
+        }
+
+        private async void CargaMasivaTxt_Click(object sender, RoutedEventArgs e)
+        {
+            string endpoint = api;
+            if (endpoint != null)
+            {
+                var success = await Utilidad.SendDataFrom.SendDataFromTxt<ReclamacionGeneral_Model>(endpoint, id);
+                if (success)
+                {
+                    Toast.Correcto("Reclamación enviada correctamente.");
+                }
+                else
+                {
+                    Toast.Error("Error al enviar la reclamación.");
+                }
+            }
+            else
+            {
+                Toast.Error("Error, no se encontro api.");
+            }
+        }
+
+
+        private void Nueva_Click(object sender, RoutedEventArgs e)
         {
             CargarPreInformacio();
         }
 
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Historial_Click(object sender, RoutedEventArgs e)
         {
-            try
+            Historial_Datos datos = new Historial_Datos();
+            DataTable dt = new DataTable();
+            dt = datos.ObtenerHistorial((int)Configuracion_Datos.tipo.Reclamaciones_General);
+            if (dt.Rows.Count > 0)
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Filter = "JSON files (*.json)|*.json",
-                    Title = "Seleccionar archivo JSON"
-                };
-
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    string filePath = openFileDialog.FileName;
-                    string jsonContent = File.ReadAllText(filePath);
-
-                    var reclamaciones = JsonConvert.DeserializeObject<List<ReclamacionGeneral_Model>>(jsonContent);
-
-                    if (reclamaciones != null)
-                    {
-                        var success = await _reclamacionesService.SendReclamacionesGeneral(reclamaciones);
-
-                        if (success)
-                        {
-                            Toast.Correcto("Archivo enviado correctamente.");
-                        }
-                        else
-                        {
-                            Toast.Error("Error al enviar el archivo.");
-                        }
-                    }
-                    else
-                    {
-                        Toast.Error("El archivo JSON no es válido.");
-                    }
-                }
+                dg_tabla.LoadData(dt, "Historial de Solicitudes de Reclamaciones General");
+                dg_tabla.Visibility = Visibility.Visible;
+                Toast.Correcto("Historial de todas las solicitudes de Reclamaciones");
             }
-            catch (Exception ex)
+            else
             {
-                Toast.Sistema("Error al leer archivo json: ", ex);
+                Toast.Error("No se encontraron registros", "No hay registros");
             }
+        }
+
+        private void EliminarHistorial_Click(object sender, RoutedEventArgs e)
+        {
+            Toast.Denegado("No tienes permisos para realizar esta acción");
+        }
+
+        private void ReiniciarSistema_Click(object sender, RoutedEventArgs e)
+        {
+            SesionTemporal.RestartApplication();
+        }
+
+        private void ComoFunciona_Click(object sender, RoutedEventArgs e)
+        {
+            ComoFunciona cf = new ComoFunciona();
+            cf.Show();
+        }
+
+        private void NotificarFallaSistema_Click(object sender, RoutedEventArgs e)
+        {
+            Ayuda notificar = new Ayuda();
+            notificar.Show();
         }
 
     }

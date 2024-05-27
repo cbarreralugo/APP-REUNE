@@ -19,6 +19,7 @@ namespace APP_REUNE_Negocio.Utilidades
         //@escribir_log  
         //@ruta_log  
         public static string sp_reune_obtener_update_configuracion = "sp_reune_obtener_update_configuracion";
+        public static string sp_reune_obtener_solicitudes = "sp_reune_obtener_solicitudes";
     }
     public static class SP_Sesion
     {
@@ -34,5 +35,16 @@ namespace APP_REUNE_Negocio.Utilidades
         //@password
         //@token
         public static string sp_reune_crear_obtener_editar_usuario = "sp_reune_crear_obtener_editar_usuario";
+    }
+
+    public static class SP_Historial
+    {
+        //@accion -- O para obtener, C para Crear
+        //@idTipo -- Usado para filtrar el historial con el tipo de solicitud a ver
+        //@numPeticion
+        //@peticiones
+        //@idUsuario
+        //@EstatusPeticion
+        public static string sp_reune_crear_obtener_historial = "sp_reune_crear_obtener_historial";
     }
 }
