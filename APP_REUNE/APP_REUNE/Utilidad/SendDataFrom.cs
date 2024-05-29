@@ -163,7 +163,7 @@ namespace APP_REUNE.Utilidad
 
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-
+                
                 try
                 {
                     var response = await client.PostAsync(endpoint, content);
@@ -171,7 +171,7 @@ namespace APP_REUNE.Utilidad
 
                     Console.WriteLine("Response StatusCode: " + response.StatusCode);
                     Console.WriteLine("Response Body: " + responseBody);
-
+                    Toast.Notifiacion("Status"+response.StatusCode.ToString(), responseBody);
                     // Extract data from response
                     dynamic responseJson = JsonConvert.DeserializeObject(responseBody);
                     int numPeticion = responseJson["Número total de envios"];

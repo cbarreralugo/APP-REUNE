@@ -30,3 +30,14 @@
         "AclaracionOperacionExtranjero": "NO"
     }
     ]
+    [{"AclaracionDenominacion":"Sam Asset Management S.A. de C.V., Sociedad Operadora de Fondos de Inversión",
+    "AclaracionSector":"Sociedad Operadora de Fondos de Inversión",
+    "AclaracionTrimestre":1,"AclaracionNumero":1,"AclaracionFolioAtencion":"SAM_ACLARACION01",
+    "AclaracionEstadoConPend":2,"AclaracionFechaAclaracion":"01/03/2024",
+    "AclaracionFechaAtencion":"28/03/2024","AclaracionMedioRecepcionCanal":5,
+    "AclaracionProductoServicio":"024609140916","AclaracionCausaMotivo":"0523",
+    "AclaracionFechaResolucion":"28/03/2024","AclaracionFechaNotifiUsuario":"28/03/2024",
+    "AclaracionEntidadFederativa":9,"AclaracionCodigoPostal":5120,"AclaracionMunicipioAlcaldia":4,
+    "AclaracionLocalidad":9,"AclaracionColonia":753,"AclaracionMonetario":"NO","AclaracionMontoReclamado":null,
+    "AclaracionPori":"SI","AclaracionTipoPersona":1,"AclaracionSexo":"H","AclaracionEdad":18,"AclaracionNivelAtencion":1,
+    "AclaracionFolioCondusef":null,"AclaracionReversa":null,"AclaracionOperacionExtranjero":"NO"}]
