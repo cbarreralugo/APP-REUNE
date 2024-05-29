@@ -3,6 +3,7 @@ using APP_REUNE.Utilidad;
 using APP_REUNE.Vista.PreInfo;
 using APP_REUNE_Negocio.Datos;
 using APP_REUNE_Negocio.Modelo;
+using APP_REUNE_Negocio.Utilidades;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
@@ -24,9 +25,6 @@ using System.Windows.Shapes;
 
 namespace APP_REUNE.Vista.Pages.Reclamaciones
 {
-    /// <summary>
-    /// Lógica de interacción para General.xaml
-    /// </summary>
     public partial class General : Page
     {
         Configuracion_Datos datos = new Configuracion_Datos();
@@ -43,12 +41,37 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
 
         private void CargarPreInformacio()
         {
-
             TipoSolicitudes_Modelo modelo = datos.Obtener_TipoSolicitud(Configuracion_Datos.tipo.Reclamaciones_General);
             fileName = modelo.archivo;
             id = modelo.id;
             api = modelo.api;
             // Limpiar todos los campos
+            LimpiarCampos();
+            Utilidad.Util.CargarComboTrimestre(cb_RecTrimestre);
+            Utilidad.Util.CargarComboNumero(cb_RecNumero);
+            Utilidad.Util.CargarComboEstadoConPend(cb_RecEstadoConPend);
+            Utilidad.Util.CargarComboMonetario(cb_RecMonetario);
+            Utilidad.Util.CargarComboPORI(cb_RecPori);
+            Utilidad.Util.CargarComboTipoPersona(cb_RecTipoPersona);
+            Utilidad.Util.CargarComboSexo(cb_RecSexo);
+            Utilidad.Util.CargarComboEdad(cb_RecEdad);
+            Utilidad.Util.CargarComboNivelAtencion(cb_RecNivelAtencion);
+            Utilidad.Util.CargarComboReversa(cb_RecReversa);
+            Utilidad.Util.CargarComboResolucion(cb_RecSentidoResolucion);
+            txt_RecDenominacion.Text = CamposPreCargados.Denominacion;
+            txt_RecSector.Text = CamposPreCargados.Sector;
+            txt_RecEntidadFederativa.Text = CamposPreCargados.EntidadFederativa;
+            txt_RecCodigoPostal.Text = CamposPreCargados.CodigoPostal;
+            txt_RecMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
+            txt_RecLocalidad.Text = CamposPreCargados.Localidad;
+            txt_RecColonia.Text = CamposPreCargados.Colonia;
+            dg_tabla.LoadData(null, "");//reiniciar tabla
+            dg_tabla.Visibility = Visibility.Collapsed;//ocultar tabla
+            btn_Cargar_Click(null, null);
+        }
+
+        private void LimpiarCampos()
+        {
             txt_RecDenominacion.Clear();
             txt_RecSector.Clear();
             cb_RecTrimestre.SelectedIndex = 0;
@@ -79,26 +102,6 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             cb_RecNivelAtencion.SelectedIndex = 0;
             txt_RecFolioCondusef.Clear();
             cb_RecReversa.SelectedIndex = 0;
-            Utilidad.Util.CargarComboTrimestre(cb_RecTrimestre);
-            Utilidad.Util.CargarComboNumero(cb_RecNumero);
-            Utilidad.Util.CargarComboEstadoConPend(cb_RecEstadoConPend);
-            Utilidad.Util.CargarComboMonetario(cb_RecMonetario);
-            Utilidad.Util.CargarComboPORI(cb_RecPori);
-            Utilidad.Util.CargarComboTipoPersona(cb_RecTipoPersona);
-            Utilidad.Util.CargarComboSexo(cb_RecSexo);
-            Utilidad.Util.CargarComboEdad(cb_RecEdad);
-            Utilidad.Util.CargarComboNivelAtencion(cb_RecNivelAtencion);
-            Utilidad.Util.CargarComboReversa(cb_RecReversa);
-            Utilidad.Util.CargarComboResolucion(cb_RecSentidoResolucion);
-            txt_RecDenominacion.Text = CamposPreCargados.Denominacion;
-            txt_RecSector.Text = CamposPreCargados.Sector;
-            txt_RecEntidadFederativa.Text = CamposPreCargados.EntidadFederativa;
-            txt_RecCodigoPostal.Text = CamposPreCargados.CodigoPostal;
-            txt_RecMunicipioAlcaldia.Text = CamposPreCargados.DelegacionMunicipio;
-            txt_RecLocalidad.Text = CamposPreCargados.Localidad;
-            txt_RecColonia.Text = CamposPreCargados.Colonia;
-            dg_tabla.LoadData(null, "");//reiniciar tabla
-            dg_tabla.Visibility = Visibility.Collapsed;//ocultar tabla
         }
 
         private async void btn_Enviar_Click(object sender, RoutedEventArgs e)
@@ -109,10 +112,10 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
                 {
                     RecDenominacion = txt_RecDenominacion.Text,
                     RecSector = txt_RecSector.Text,
-                    RecTrimestre = int.TryParse(cb_RecTrimestre.SelectedValue?.ToString(), out var recTrimestre) ? recTrimestre : 0,
-                    RecNumero = int.TryParse(cb_RecNumero.SelectedValue?.ToString(), out var recNumero) ? recNumero : 0,
+                    RecTrimestre = ((Combo)cb_RecTrimestre.SelectedItem)?.ID ?? 0,
+                    RecNumero = ((Combo)cb_RecNumero.SelectedItem)?.ID ?? 0,
                     RecFolioAtencion = txt_RecFolioAtencion.Text,
-                    RecEstadoConPend = int.TryParse(cb_RecEstadoConPend.SelectedValue?.ToString(), out var recEstadoConPend) ? recEstadoConPend : 0,
+                    RecEstadoConPend = ((Combo)cb_RecEstadoConPend.SelectedItem)?.ID ?? 0,
                     RecFechaReclamacion = dp_RecFechaReclamacion.SelectedDate?.ToString("dd/MM/yyyy"),
                     RecFechaAtencion = dp_RecFechaAtencion.SelectedDate?.ToString("dd/MM/yyyy"),
                     RecMedioRecepcionCanal = int.TryParse(txt_RecMedioRecepcionCanal.Text, out var recMedioRecepcionCanal) ? recMedioRecepcionCanal : 0,
@@ -125,18 +128,19 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
                     RecMunicipioAlcaldia = int.TryParse(txt_RecMunicipioAlcaldia.Text, out var recMunicipioAlcaldia) ? recMunicipioAlcaldia : 0,
                     RecLocalidad = int.TryParse(txt_RecLocalidad.Text, out var recLocalidad) ? recLocalidad : 0,
                     RecColonia = int.TryParse(txt_RecColonia.Text, out var recColonia) ? (int?)recColonia : null,
-                    RecMonetario = cb_RecMonetario.Text,
+                    RecMonetario = ((Combo)cb_RecMonetario.SelectedItem)?.IDs,
                     RecMontoReclamado = int.TryParse(txt_RecMontoReclamado.Text, out var recMontoReclamado) ? (int?)recMontoReclamado : null,
                     RecImporteAbonado = int.TryParse(txt_RecImporteAbonado.Text, out var recImporteAbonado) ? (int?)recImporteAbonado : null,
                     RecFechaAbonoImporte = dp_RecFechaAbonoImporte.SelectedDate?.ToString("dd/MM/yyyy"),
-                    RecPori = cb_RecPori.Text,
-                    RecTipoPersona = int.TryParse(cb_RecTipoPersona.SelectedValue?.ToString(), out var recTipoPersona) ? recTipoPersona : 0,
-                    RecSexo = cb_RecSexo.Text,
-                    RecEdad = int.TryParse(cb_RecEdad.SelectedValue?.ToString(), out var recEdad) ? recEdad : 0,
-                    RecSentidoResolucion = int.TryParse(cb_RecSentidoResolucion.SelectedValue?.ToString(), out var recSentidoResolucion) ? recSentidoResolucion : 0,
-                    RecNivelAtencion = int.TryParse(cb_RecNivelAtencion.SelectedValue?.ToString(), out var recNivelAtencion) ? recNivelAtencion : 0,
-                    RecFolioCondusef = txt_RecFolioCondusef.Text,
-                    RecReversa = cb_RecReversa.Text
+                    RecPori = ((Combo)cb_RecPori.SelectedItem)?.IDs,
+                    RecTipoPersona = ((Combo)cb_RecTipoPersona.SelectedItem)?.ID ?? 0,
+                    RecSexo = ((Combo)cb_RecSexo.SelectedItem)?.IDs,
+                    RecEdad = ((Combo)cb_RecEdad.SelectedItem)?.ID ?? 0,
+                    RecSentidoResolucion = ((Combo)cb_RecSentidoResolucion.SelectedItem)?.ID ?? 0,
+                    RecNivelAtencion = ((Combo)cb_RecNivelAtencion.SelectedItem)?.ID ?? 0,
+                    RecFolioCondusef = string.IsNullOrEmpty(txt_RecFolioCondusef.Text) ? null : txt_RecFolioCondusef.Text,
+                    RecReversa = ((Combo)cb_RecReversa.SelectedItem)?.IDs
+
                 };
 
                 var reclamaciones = new List<ReclamacionGeneral_Model> { reclamacion };
@@ -153,6 +157,7 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
                     {
                         Toast.Error("Error al enviar la reclamación.");
                     }
+                    Historial_Click(null, null);
                 }
                 else
                 {
@@ -273,6 +278,7 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
                 {
                     Toast.Error("Error al enviar la reclamación.");
                 }
+                Historial_Click(null, null);
             }
             else
             {
@@ -335,7 +341,7 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             dt = datos.ObtenerHistorial((int)Configuracion_Datos.tipo.Reclamaciones_General);
             if (dt.Rows.Count > 0)
             {
-                dg_tabla.LoadData(dt, "Historial de Solicitudes de Reclamaciones General");
+                dg_tabla.LoadData(dt, "Historial de Solicitudes de Reclamaciones General", "Correcto");
                 dg_tabla.Visibility = Visibility.Visible;
                 Toast.Correcto("Historial de todas las solicitudes de Reclamaciones");
             }
@@ -366,8 +372,5 @@ namespace APP_REUNE.Vista.Pages.Reclamaciones
             Ayuda notificar = new Ayuda();
             notificar.Show();
         }
-
     }
-
-
 }

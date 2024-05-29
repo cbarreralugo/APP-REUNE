@@ -116,7 +116,7 @@ namespace APP_REUNE.Vista.Pages
             });
 
             // Cerrar la aplicación
-            Application.Current.Shutdown();
+             btnReiniciarSistema_Click(null,null);
         }
 
         private void btnReiniciarSistema_Click(object sender, RoutedEventArgs e)

@@ -70,7 +70,7 @@ namespace APP_REUNE.Vista.Controls
 
 
 
-        public void LoadData(DataTable dataTable,string nombreTabla ="")
+        public void LoadData(DataTable dataTable,string nombreTabla ="",string filtro="")
         { 
             if (dataTable != null)
             {
@@ -78,6 +78,8 @@ namespace APP_REUNE.Vista.Controls
                 dataView = dataTable.DefaultView;
                 dataGrid.ItemsSource = dataView; 
                 AdjustHeightBasedOnRows();
+                txtFilter.Text = filtro;
+                txtFilter.Text = filtro;
                 ApplyFilter(); // Aplicar filtro inicial si hay texto ya en el TextBox de filtro.
             }
             else

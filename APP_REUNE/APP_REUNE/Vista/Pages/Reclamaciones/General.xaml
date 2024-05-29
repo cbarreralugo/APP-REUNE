@@ -524,6 +524,7 @@
                                  HorizontalAlignment="Stretch"
                                  VerticalAlignment="Top" 
                                  Grid.Row="8" 
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                                  Visibility="Collapsed"/>
         </Grid>
     </Border>

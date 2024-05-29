@@ -146,7 +146,7 @@ namespace APP_REUNE.Utilidad
             }
             catch (Exception ex)
             {
-                Toast.Sistema($"Error al leer archivo de Excel:",ex);
+                Toast.Sistema($"Error al leer archivo de Excel:", ex);
             }
             return false;
         }
@@ -225,7 +225,5 @@ namespace APP_REUNE.Utilidad
                 }
             }
         }
-
-
     }
 }
